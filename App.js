@@ -1,20 +1,30 @@
-import { StatusBar } from 'expo-status-bar';
+import { PortalProvider, WhitePortal } from 'react-native-portal'
+
 import React from 'react';
 import { StyleSheet, Text, View } from 'react-native';
 
+import { enableScreens } from 'react-native-screens'
+
+import AppNavigator from './AppNavigator'
+
+import AppView from './components/AppView'
+
 export default function App() {
   return (
-    <View style={styles.container}>
-      <Text>Open up App.js to start working on your app!</Text>
-      <StatusBar style="auto" />
-    </View>
+    <PortalProvider>
+      <AppView>
+        <AppNavigator/>
+      </AppView>
+
+    </PortalProvider>
+  
   );
 }
 
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#fff',
+    backgroundColor: '#fff111',
     alignItems: 'center',
     justifyContent: 'center',
   },
