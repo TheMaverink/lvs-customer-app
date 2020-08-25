@@ -1,23 +1,26 @@
-import { PortalProvider, WhitePortal } from 'react-native-portal'
+import { PortalProvider, WhitePortal } from 'react-native-portal';
 
 import React from 'react';
+import { Provider } from 'react-redux'
 import { StyleSheet, Text, View } from 'react-native';
 
-import { enableScreens } from 'react-native-screens'
+import { enableScreens } from 'react-native-screens';
 
-import AppNavigator from './AppNavigator'
+import AppNavigator from './AppNavigator';
+import store from 'store/store'
 
-import AppView from './components/AppView'
+import AppView from './components/AppView';
 
 export default function App() {
   return (
     <PortalProvider>
-      <AppView>
-        <AppNavigator/>
-      </AppView>
-
+      <Provider store={store}>
+        <AppView>
+          <AppNavigator />
+        </AppView>
+        <WhitePortal name="portal" />
+      </Provider>
     </PortalProvider>
-  
   );
 }
 
