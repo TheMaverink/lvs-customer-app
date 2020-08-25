@@ -1,12 +1,17 @@
 import React from 'react';
-import { StyleSheet, Text, View, ImageBackground } from 'react-native';
+import { StyleSheet, Text, View, ImageBackground ,Button} from 'react-native';
+import { compose } from 'recompose'
+import RegisterContainer from 'containers/Register'
 
-const RegisterView = () => {
+const RegisterView = (props) => {
+  const {sendSmsRequest} = props
+ 
   return (
     <View>
       <Text>RegisterView </Text>
+      <Button title="trigger saga" onPress={sendSmsRequest}></Button>
     </View>
   );
 };
 
-export default RegisterView ;
+export default compose(RegisterContainer)(RegisterView) ;
