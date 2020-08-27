@@ -5,7 +5,7 @@ import styled from 'styled-components/native'
 import { COLORS } from 'consts'
 
 const AppBg = styled.View`
-    background: ${ COLORS.DARK_GRAY };
+    background: #121314;
     flex: 1;
     
     ${ (props) => props.forceTopPadding && `
@@ -14,7 +14,7 @@ const AppBg = styled.View`
 `
 
 const AppView = styled(SafeAreaView)`
-    background: ${ COLORS.MID_GRAY };
+    background: #121314;
     flex: 1;
 `
 

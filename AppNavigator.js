@@ -7,7 +7,7 @@ import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 // import { SCREENS, COLORS } from './consts'
 
 import SplashView from 'views/Splash';
-
+import AuthView from 'views/Auth'
 import CalendarView from 'views/Calendar';
 import ConfirmationView from 'views/Confirmation';
 import LoginView from 'views/Login';
@@ -31,7 +31,8 @@ const Stack = createStackNavigator();
 
 export function CarSpaStack() {
   return (
-    <Stack.Navigator initialRouteName="Sign Up">
+    <Stack.Navigator initialRouteName="Auth">
+      <Stack.Screen name="Auth" component={AuthView} />
       <Stack.Screen name="Sign Up" component={RegisterView} />
       <Stack.Screen name="Login" component={LoginView} />
       <Stack.Screen name="Select Wash" component={SelectWashView} />
