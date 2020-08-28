@@ -1,7 +1,7 @@
 import { connect, useStore } from 'react-redux';
 import { compose, lifecycle } from 'recompose';
 import { bindActionCreators } from 'redux';
-import { reduxForm } from 'redux-form';
+import { Field, formValueSelector, reduxForm } from 'redux-form';
 import { createStructuredSelector } from 'reselect';
 import reducer from './reducer';
 
@@ -55,6 +55,8 @@ export default compose(
   reduxForm({
     form: FORM_NAME,
     submitAsSideEffect: true,
-    onSubmit: (values) => registerRequest(values),
+
+    // onSubmit: (values) => registerRequest(values),
+    onSubmit: (values, stepNumber) => console.log(arguments),
   })
 );
