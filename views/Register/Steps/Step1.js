@@ -7,11 +7,13 @@ import {
   TouchableOpacity,
   StyleSheet,
 } from 'react-native';
-import { Field, formValueSelector } from 'redux-form'
+import { Field, formValueSelector,  reduxForm  } from 'redux-form';
 
 import AuthQuestion from 'components/AuthQuestion';
-
+import {compose} from 'recompose'
 import CheckCircle from 'assets/Icons/check-circle.png';
+
+import RegisterContainer from 'containers/Register'
 
 // const renderInput = ({ input: { onChange} }) => (
 //   <TextInput style={{flex:1, borderBottomWidth:1,borderBottomColor:'grey'}}
@@ -55,24 +57,15 @@ const TextInputField = ({ placeholder, input: { onChange, ...restInput } }) => {
   }
 };
 
-// const CheckCircleButton = (action) => {
-//   return (
-
-//   );
-// };
 
 
 
-const clickit = (stepNumber, phoneNumber) => {
-  console.log(stepNumber);
-  console.log(phoneNumber);
-};
 const Step1 = (props) => {
-  // console.log(props);
-  // console.log('props');
-  const { sendSmsRequest, handleSubmit } = props;
+  const { sendSmsRequest, handleSubmit, onSubmit } = props;
+  // console.log(props)
+  console.log('end of props step 1')
   return (
-    <View>
+    <View style={{backgroundColor: '#121314', flex: 1, justifyContent: 'center'}}>
       <AuthQuestion question="Please enter your mobile number to continue." />
       {/* <Field name="phoneNumber" component={ TextInputField } props={ { placeholder: 'Mobile number...' } } onChange={test}/> */}
       <Field
@@ -80,11 +73,18 @@ const Step1 = (props) => {
         component={TextInputField}
         props={{ placeholder: 'Mobile number...' }}
       />
-      <TouchableOpacity onPress={()=>console.log(props)}>
+      <TouchableOpacity onPress={handleSubmit((values)=> sendSmsRequest(values.phoneNumber))}>
         <Image source={CheckCircle} />
       </TouchableOpacity>
     </View>
   );
 };
 
-export default Step1;
+
+
+
+
+export default compose(
+  reduxForm({ form:'sendSmsForm'}),
+  RegisterContainer)(Step1)
+  

@@ -19,12 +19,13 @@ import {
 
 import { FORM_NAME, REDUCER_NAME } from './consts';
 
-import { selectIsLoading, selectUserData } from './selectors';
+import { selectIsLoading, selectUserData ,selectPhoneNumberToVerify} from './selectors';
 import store from 'store/store';
 
 export const mapStateToProps = createStructuredSelector({
   isLoading: selectIsLoading,
   userData: selectUserData,
+  phoneNumberToVerify: selectPhoneNumberToVerify
 });
 
 export const mapDispatchToProps = (dispatch) =>
@@ -52,11 +53,11 @@ export default compose(
     },
   }),
 
-  reduxForm({
-    form: FORM_NAME,
-    submitAsSideEffect: true,
+  // reduxForm({
+  //   form: FORM_NAME,
+  //   submitAsSideEffect: true,
 
-    // onSubmit: (values) => registerRequest(values),
-    onSubmit: (values, stepNumber) => console.log(arguments),
-  })
+  //   // onSubmit: (values) => registerRequest(values),
+  //   onSubmit: (values, stepNumber) => console.log(arguments),
+  // })
 );

@@ -6,6 +6,10 @@ import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 
 // import { SCREENS, COLORS } from './consts'
 
+import RegisterStep1View from "views/Register/Steps/Step1"
+import RegisterStep2View from "views/Register/Steps/Step2"
+import RegisterStep3View from "views/Register/Steps/Step3"
+
 import SplashView from 'views/Splash';
 import AuthView from 'views/Auth'
 import CalendarView from 'views/Calendar';
@@ -31,14 +35,25 @@ const Stack = createStackNavigator();
 
 export function CarSpaStack() {
   return (
-    <Stack.Navigator initialRouteName="Auth">
+    <Stack.Navigator initialRouteName="Register">
       <Stack.Screen name="Auth" component={AuthView} />
+      <Stack.Screen name="Register" component={RegisterStack} />
       <Stack.Screen name="Sign Up" component={RegisterView} />
       <Stack.Screen name="Login" component={LoginView} />
       <Stack.Screen name="Select Wash" component={SelectWashView} />
       <Stack.Screen name="Calendar" component={CalendarView} />
       <Stack.Screen name="Splash" component={SplashView} />
       <Stack.Screen name="Wash Description" component={WashDescriptionView} />
+    </Stack.Navigator>
+  );
+}
+
+export function RegisterStack() {
+  return (
+    <Stack.Navigator initialRouteName="Register Step 1">
+      <Stack.Screen name="Register Step 1" component={RegisterStep1View} />
+      <Stack.Screen name="Register Step 2" component={RegisterStep2View} />
+      <Stack.Screen name="Register Step 3" component={RegisterStep3View} />
     </Stack.Navigator>
   );
 }

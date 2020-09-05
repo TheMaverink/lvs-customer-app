@@ -11,3 +11,8 @@ export const selectUserData = createSelector(
   (state) => state[REDUCER_NAME],
   _get('userData'),
 )
+
+export const selectPhoneNumberToVerify = createSelector(
+  (state) => state[REDUCER_NAME],
+  _get('phoneNumberToVerify'),
+)

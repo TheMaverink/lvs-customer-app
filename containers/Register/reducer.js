@@ -16,7 +16,7 @@ const initialState = {
   loading: false,
   errorMessage: null,
   userData: null,
-  phoneNumber: null,
+  phoneNumberToVerify: null,
   code: null,
 };
 
@@ -56,7 +56,9 @@ export default function reducer(state = initialState, action) {
         errorMessage: null,
         userData: null,
         code: null,
-        phoneNumber: action.payload.phoneNumber,
+        phoneNumberToVerify:null
+        
+
       };
     }
 
@@ -67,6 +69,7 @@ export default function reducer(state = initialState, action) {
         errorMessage: action.payload.errorMessage,
         userData: null,
         code: null,
+        phoneNumberToVerify:null
       };
     }
 
@@ -77,7 +80,7 @@ export default function reducer(state = initialState, action) {
         errorMessage: null,
         userData: null,
         code: null,
-        phoneNumber: action.payload.phoneNumber,
+        phoneNumberToVerify: action.payload,
       };
     }
 

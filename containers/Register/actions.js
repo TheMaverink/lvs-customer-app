@@ -55,10 +55,10 @@ export const sendSmsSuccess = (phoneNumber) => {
 };
 
 //VerifyCode actions
-export const verifyCodeRequest = (code) => {
+export const verifyCodeRequest = (phoneNumber,verificationCode) => {
   return {
     type: VERIFY_CODE_REQUEST, 
-    payload: code,
+    payload: {phoneNumber,verificationCode}
   };
 };
 
