@@ -45,6 +45,7 @@ function* verifyCodeWorker(action) {
     if (apiResult.data['valid']) {
       yield put(verifyCodeSuccess(verificationCode));
       yield put(registerRequest(phoneNumber));
+      
     } else {
       yield put(verifyCodeFailure('verifiction code does not match!'));
     }
@@ -63,10 +64,12 @@ function* registerWorker(action) {
     const apiResult = yield call(apiRegister, action.payload);
     console.log(apiResult)
     yield put(registerSuccess(apiResult.data));
+    RootNavigation.navigate('Register Step 3');
 
     yield AsyncStorage.setItem('token', apiResult.data.token);
 
-    // yield AsyncStorage.getItem('token').then((res) => console.log(res))
+    console.log('from async storage')
+    yield AsyncStorage.getItem('token').then((res) => console.log(res))
     // to be changed
     // RootNavigation.navigate('Login');
   } catch (error) {
