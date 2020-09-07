@@ -2,7 +2,7 @@ import React from 'react';
 import { View, TextInput, TouchableOpacity } from 'react-native';
 import { compose } from 'recompose';
 import { Field, formValueSelector, reduxForm } from 'redux-form';
-import RegisterContainer from 'containers/Register';
+import LoginContainer from 'containers/Login';
 import AuthQuestion from 'components/AuthQuestion';
 import BaseButton from 'components/BaseButton';
 
@@ -29,7 +29,8 @@ const TextInputField = ({ placeholder, input: { onChange, ...restInput } }) => {
 };
 
 const Step2 = (props) => {
-  const { handleSubmit, verifyCodeRequest, phoneNumberToVerify } = props;
+  const { handleSubmit, loginVerifyRequest, phoneNumberToVerify } = props;
+
   
  
   return (
@@ -50,7 +51,7 @@ const Step2 = (props) => {
         bgColor="grey"
         textColor="black"
         action={handleSubmit((values) =>
-          verifyCodeRequest(phoneNumberToVerify, values.verificationCode)
+          loginVerifyRequest(phoneNumberToVerify, values.verificationCode)
         )}
       />
     </View>
@@ -58,6 +59,6 @@ const Step2 = (props) => {
 };
 
 export default compose(
-  reduxForm({ form: 'registerVerify' }),
-  RegisterContainer
+  reduxForm({ form: 'loginVerify' }),
+  LoginContainer
 )(Step2);

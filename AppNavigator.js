@@ -10,6 +10,10 @@ import RegisterStep1View from "views/Register/Steps/Step1"
 import RegisterStep2View from "views/Register/Steps/Step2"
 import RegisterStep3View from "views/Register/Steps/Step3"
 
+import LoginStep1View from "views/Login/Steps/Step1"
+import LoginStep2View from "views/Login/Steps/Step2"
+
+
 import SplashView from 'views/Splash';
 import AuthView from 'views/Auth'
 import CalendarView from 'views/Calendar';
@@ -35,11 +39,10 @@ const Stack = createStackNavigator();
 
 export function CarSpaStack() {
   return (
-    <Stack.Navigator initialRouteName="Register">
+    <Stack.Navigator initialRouteName="Auth">
       <Stack.Screen name="Auth" component={AuthView} />
       <Stack.Screen name="Register" component={RegisterStack} />
-      <Stack.Screen name="Sign Up" component={RegisterView} />
-      <Stack.Screen name="Login" component={LoginView} />
+      <Stack.Screen name="Login" component={LoginStack} />
       <Stack.Screen name="Select Wash" component={SelectWashView} />
       <Stack.Screen name="Calendar" component={CalendarView} />
       <Stack.Screen name="Splash" component={SplashView} />
@@ -57,6 +60,17 @@ export function RegisterStack() {
     </Stack.Navigator>
   );
 }
+
+export function LoginStack() {
+  return (
+    <Stack.Navigator initialRouteName="Login Step 1">
+      <Stack.Screen name="Login Step 1" component={LoginStep1View} />
+      <Stack.Screen name="Login Step 2" component={LoginStep2View} />
+     
+    </Stack.Navigator>
+  );
+}
+
 
 export function BookingsStack() {
   return (

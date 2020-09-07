@@ -5,34 +5,34 @@ import { FORM_NAME } from './consts';
 import * as RootNavigation from '../../RootNavigation';
 
 import {
-  REGISTER_REQUEST,
-  SEND_SMS_REQUEST,
-  VERIFY_CODE_REQUEST,
-  registerRequest,
-  registerFailure,
-  registerSuccess,
-  sendSmsFailure,
-  sendSmsSuccess,
-  verifyCodeFailure,
-  verifyCodeSuccess,
+  LOGIN_REQUEST,
+  LOGIN_SEND_SMS_REQUEST ,
+  LOGIN_VERIFY_REQUEST,
+  loginRequest,
+  loginFailure,
+  loginSuccess,
+  loginSendSmsFailure,
+  loginSendSmsSuccess,
+  loginVerifyFailure,
+  loginVerifySuccess,
 } from './actions';
 
-import { apiRegister, apiSendSms, apiVerifyCode } from './api';
+import { apiLogin, apiSendSms, apiVerifyLogin } from './api';
 
 function* sendSmsWorker(action) {
   try {
     const apiResult = yield call(apiSendSms, action.payload);
     // const phonetoVerify = apiResult.data["to"]
 
-    yield put(sendSmsSuccess(action.payload));
+    yield put(loginSendSmsSuccess(action.payload));
 
-    RootNavigation.navigate('Register', { screen: 'Register Step 2' });
+    RootNavigation.navigate('Login Step 2');
     // RootNavigation.navigate('Register Step 2', {
     //   phonetoVerify
     // });
   } catch (error) {
     console.log(error.message);
-    yield put(sendSmsFailure(error));
+    yield put(loginSendSmsFailure(error));
   }
 }
 
@@ -40,14 +40,14 @@ function* verifyCodeWorker(action) {
   try {
     const { phoneNumber, verificationCode } = action.payload;
 
-    const apiResult = yield call(apiVerifyCode, phoneNumber, verificationCode);
+    const apiResult = yield call(apiVerifyLogin, phoneNumber, verificationCode);
 
     if (apiResult.data['valid']) {
-      yield put(verifyCodeSuccess(verificationCode));
-      yield put(registerRequest(phoneNumber));
+      yield put(loginVerifySuccess(verificationCode));
+      yield put(loginRequest(phoneNumber));
       
     } else {
-      yield put(verifyCodeFailure('verifiction code does not match!'));
+      yield put( loginVerifyFailure('verification code does not match!'));
     }
     // console.log('apiResult')
     // console.log(apiResult.data['valid'])
@@ -55,16 +55,16 @@ function* verifyCodeWorker(action) {
     // yield put(registerRequest(phoneNumber));
   } catch (error) {
     console.log(error);
-    yield put(verifyCodeFailure(error));
+    yield put( loginVerifyFailure(error));
   }
 }
 
-function* registerWorker(action) {
+function* loginWorker(action) {
   try {
-    const apiResult = yield call(apiRegister, action.payload);
+    const apiResult = yield call(apiLogin, action.payload);
     console.log(apiResult)
-    yield put(registerSuccess(apiResult.data));
-    RootNavigation.navigate('Register Step 3');
+    yield put(loginSuccess(apiResult.data));
+    // RootNavigation.navigate('Register Step 3');
 
     yield AsyncStorage.setItem('token', apiResult.data.token);
 
@@ -74,12 +74,13 @@ function* registerWorker(action) {
     // RootNavigation.navigate('Login');
   } catch (error) {
     const errorMessage = yield error.toJSON().message;
-    yield put(registerFailure(errorMessage));
+    yield put(loginFailure(errorMessage));
   }
 }
 
 export default function* watcher() {
-  yield takeLatest(REGISTER_REQUEST, registerWorker);
-  yield takeLatest(SEND_SMS_REQUEST, sendSmsWorker);
-  yield takeLatest(VERIFY_CODE_REQUEST, verifyCodeWorker);
+  yield takeLatest(LOGIN_REQUEST, loginWorker);
+  yield takeLatest(LOGIN_SEND_SMS_REQUEST , sendSmsWorker);
+  yield takeLatest(LOGIN_VERIFY_REQUEST, verifyCodeWorker);
 }
+

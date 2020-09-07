@@ -4,7 +4,7 @@ axios.defaults.baseURL = 'http://localhost:8080/api';
 
 export const apiSendSms = (phoneNumber) => {
   try {
-    return axios.get(`/customer/send-sms/${phoneNumber}`);
+    return axios.get(`/customer/register-send-sms/${phoneNumber}`);
   } catch (error) {
     return error;
   }

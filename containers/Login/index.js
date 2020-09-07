@@ -1,20 +1,19 @@
 import { connect, useStore } from 'react-redux';
 import { compose, lifecycle } from 'recompose';
 import { bindActionCreators } from 'redux';
-import { Field, formValueSelector, reduxForm } from 'redux-form';
 import { createStructuredSelector } from 'reselect';
 import reducer from './reducer';
 
 import {
-  registerRequest,
-  registerFailure,
-  registerSuccess,
-  sendSmsRequest,
-  sendSmsFailure,
-  sendSmsSuccess,
-  verifyCodeRequest,
-  verifyCodeFailure,
-  verifyCodeSuccess,
+  loginRequest,
+  loginFailure,
+  loginSuccess,
+  loginSendSmsRequest,
+  loginSendSmsFailure,
+  loginSendSmsSuccess,
+  loginVerifyRequest,
+  loginVerifyFailure,
+  loginVerifySuccess,
 } from './actions';
 
 import { FORM_NAME, REDUCER_NAME } from './consts';
@@ -31,15 +30,15 @@ export const mapStateToProps = createStructuredSelector({
 export const mapDispatchToProps = (dispatch) =>
   bindActionCreators(
     {
-      registerRequest,
-      registerFailure,
-      registerSuccess,
-      sendSmsRequest,
-      sendSmsFailure,
-      sendSmsSuccess,
-      verifyCodeRequest,
-      verifyCodeFailure,
-      verifyCodeSuccess,
+      loginRequest,
+      loginFailure,
+      loginSuccess,
+      loginSendSmsRequest,
+      loginSendSmsFailure,
+      loginSendSmsSuccess,
+      loginVerifyRequest,
+      loginVerifyFailure,
+      loginVerifySuccess,
     },
     dispatch
   );
@@ -52,5 +51,5 @@ export default compose(
       store.injectReducer(REDUCER_NAME, reducer);
     },
   }),
+)
 
-);

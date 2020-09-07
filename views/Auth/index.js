@@ -16,7 +16,7 @@ const AuthView = ({navigation}) => {
         bgColor="#FFFFFF"
         textColor="#121314"
         outlineColor="#FFFFFF"
-        action ={()=> navigation.navigate('Sign Up')}
+        action ={()=> navigation.navigate('Register')}
       ></BaseButton>
     </View>
   );
