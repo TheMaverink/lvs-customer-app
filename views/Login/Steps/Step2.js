@@ -31,8 +31,6 @@ const TextInputField = ({ placeholder, input: { onChange, ...restInput } }) => {
 const Step2 = (props) => {
   const { handleSubmit, loginVerifyRequest, phoneNumberToVerify } = props;
 
-  
- 
   return (
     <View
       style={{ backgroundColor: '#121314', flex: 1, justifyContent: 'center' }}

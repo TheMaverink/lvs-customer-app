@@ -11,7 +11,9 @@ export const apiSendSms = (phoneNumber) => {
 };
 
 export const apiVerifyLogin = (phoneNumber, verificationCode) => {
+ 
   try {
+  
     return axios.get(`/customer/login-verify/${phoneNumber}/${verificationCode}`);
   } catch (error) {
     return error;

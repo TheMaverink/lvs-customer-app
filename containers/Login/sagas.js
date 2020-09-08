@@ -43,6 +43,7 @@ function* verifyCodeWorker(action) {
     const apiResult = yield call(apiVerifyLogin, phoneNumber, verificationCode);
 
     if (apiResult.data['valid']) {
+      console.log('great success')
       yield put(loginVerifySuccess(verificationCode));
       yield put(loginRequest(phoneNumber));
       
@@ -72,6 +73,7 @@ function* loginWorker(action) {
     yield AsyncStorage.getItem('token').then((res) => console.log(res))
     // to be changed
     // RootNavigation.navigate('Login');
+    RootNavigation.navigate('Select Wash');
   } catch (error) {
     const errorMessage = yield error.toJSON().message;
     yield put(loginFailure(errorMessage));
