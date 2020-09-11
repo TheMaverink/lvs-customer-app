@@ -28,9 +28,12 @@ export const FONT_SIZES = {
 }
 
 export const COLORS = {
+
+  MID_GRAY: '#D8D8D8',
+  ////
   WHITE: '#FFFFFF',
   LIGHT_GRAY: '#fbfbfb',
-  MID_GRAY: '#d9d9d9',
+  
   DARK_GRAY: '#abb3c0',
   DARKEST_GRAY: '#5b5b5b',
   PURPLE: '#353f8f',

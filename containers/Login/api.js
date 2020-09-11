@@ -3,6 +3,7 @@ import axios from 'axios';
 axios.defaults.baseURL = 'http://localhost:8080/api';
 
 export const apiSendSms = (phoneNumber) => {
+  console.log('api called')
   try {
     return axios.get(`/customer/login-send-sms/${phoneNumber}`);
   } catch (error) {

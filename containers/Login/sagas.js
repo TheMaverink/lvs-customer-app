@@ -75,7 +75,7 @@ function* loginWorker(action) {
     // RootNavigation.navigate('Login');
     RootNavigation.navigate('Select Wash');
   } catch (error) {
-    const errorMessage = yield error.toJSON().message;
+    const errorMessage = yield error.message;
     yield put(loginFailure(errorMessage));
   }
 }

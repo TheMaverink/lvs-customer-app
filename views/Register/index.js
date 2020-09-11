@@ -9,25 +9,6 @@ import Step3 from "./Steps/Step3"
 
 import RegisterContainer from 'containers/Register'
 
-
-
-// const RegisterView = () => {
-//   return (
-//     <View
-//       style={{  }}
-//     >
-//       <BaseButton
-//         title="Sign up"
-//         bgColor="#FFFFFF"
-//         textColor="#121314"
-//         outlineColor="#FFFFFF"
-//         action={() => console.log('cclicked')}
-//       ></BaseButton>
-//     </View>
-//   );
-// };
-
-
 class RegisterView extends React.Component {
   constructor(props) {
     super(props)

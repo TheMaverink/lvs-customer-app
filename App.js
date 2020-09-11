@@ -3,13 +3,14 @@ import { PortalProvider, WhitePortal } from 'react-native-portal';
 import React from 'react';
 import { Provider } from 'react-redux'
 import { StyleSheet, Text, View } from 'react-native';
-
 import { enableScreens } from 'react-native-screens';
+
+enableScreens();
 
 import AppNavigator from './AppNavigator';
 import store from 'store/store'
 
-import AppView from './components/AppView';
+import AppView from 'components/AppView';
 
 export default function App() {
   return (
@@ -24,11 +25,4 @@ export default function App() {
   );
 }
 
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#fff111',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-});
+

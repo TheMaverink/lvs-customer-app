@@ -41,8 +41,7 @@ const TextInputField = ({ placeholder, input: { onChange, ...restInput } }) => {
 
 const Step1 = (props) => {
   const { loginSendSmsRequest, handleSubmit, onSubmit } = props;
-  // console.log(props)
-  console.log('end of props step 1')
+ 
   return (
     <View style={{backgroundColor: '#121314', flex: 1, justifyContent: 'center'}}>
       <AuthQuestion question="Please enter your mobile number to continue." />
