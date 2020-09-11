@@ -7,14 +7,18 @@ export const selectIsLoading = createSelector(
   _get('loading'),
 )
 
-export const selectWashes = createSelector(
+export const selectDay = createSelector(
   (state) => state[REDUCER_NAME],
-  _get('washes'),
+  _get('selectedDay'),
 )
 
+
+export const selectHour = createSelector(
+  (state) => state[REDUCER_NAME],
+  _get('selectedHour'),
+)
 
 export const selectWash = createSelector(
-  (state) => state[REDUCER_NAME],
-  _get('selectedWash'),
+  (state)=> state['WASHES'],
+  _get('selectedWash')
 )
-
