@@ -11,6 +11,7 @@ import { compose } from 'recompose';
 import Header from './components/Header';
 import Calendar from './components/Calendar';
 import CalendarContainer from 'containers/Calendar';
+import HourPicker from "./components/HourPicker"
 
 const styles = StyleSheet.create({
   container: {
@@ -42,7 +43,7 @@ const CalendarView = (props) => {
 
       <Header style={{ flex: 1 }} selectedWash={selectedWash} />
       {isHourMode ? (
-        <Text>Pick hour</Text>
+        <HourPicker/>
       ) : (
         <Calendar {...props} style={{ flex: 1, borderRadius: 25 }} />
       )}
