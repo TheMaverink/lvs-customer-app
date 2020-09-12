@@ -1,7 +1,7 @@
 import React from 'react';
 import { StyleSheet, Text, View, ImageBackground } from 'react-native';
 import BaseButton from 'components/BaseButton';
-import {compose} from 'recompose'
+
 
 import Step1 from "./Steps/Step1"
 import Step2 from "./Steps/Step2"

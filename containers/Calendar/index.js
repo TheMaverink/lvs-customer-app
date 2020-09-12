@@ -16,14 +16,14 @@ import {
 
 import { REDUCER_NAME } from './consts';
 
-import { selectDay,selectHour,selectWash} from './selectors';
+import { selectDay,selectHour,selectWash,selectIsLoading} from './selectors';
 import store from 'store/store';
 
 export const mapStateToProps = createStructuredSelector({
   isLoading: selectIsLoading,
   selectedDay: selectDay,
   selectedHour: selectHour,
-  selectedWas:selectWash
+  selectedWash:selectWash
 });
 
 export const mapDispatchToProps = (dispatch) =>

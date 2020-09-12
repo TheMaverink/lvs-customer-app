@@ -11,15 +11,14 @@ import {
   selectHourSuccess,
 } from './actions';
 
-
-
 function* selectDayWorker(action) {
   try {
-   
-  console.log('saga triggered')
+    const { dateString } = action.payload;
+
+    yield put(selectDaySuccess(dateString));
   } catch (error) {
+    yield put(selectDayFailure(error));
     console.log(error);
-   
   }
 }
 
