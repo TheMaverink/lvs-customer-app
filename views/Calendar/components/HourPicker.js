@@ -1,32 +1,56 @@
 import React, { useState } from 'react';
-import { View, Button, Platform } from 'react-native';
-import DateTimePicker from '@react-native-community/datetimepicker';
+import {
+  Text,
+  View,
+  StyleSheet,
+  FlatList,
+  TouchableOpacity,
+} from 'react-native';
 
-const HourPicker = () => {
-  const [date, setDate] = useState(new Date(1598051730000));
-  const [mode, setMode] = useState('date');
-  const [show, setShow] = useState(false);
+import { Field } from 'redux-form';
+import { compose } from 'recompose';
+import { reduxForm } from 'redux-form';
 
-  const onChange = (event, selectedDate) => {
-    const currentDate = selectedDate || date;
-    setShow(Platform.OS === 'ios');
-    setDate(currentDate);
-  };
+import CalendarContainer from 'containers/Calendar';
+import HourPickerButton from './HourPickerButton';
+import SlotHours from 'consts/SlotHours';
+
+const styles = {
+  container: {},
+};
+
+const HourPicker = (props) => {
+  // return <View>{props.children}</View>;
+  const { change, selectHourRequest, selectedHour, flipAction } = props;
 
   return (
     <View>
-      <DateTimePicker
-        testID="dateTimePicker"
-        value={date}
-        mode="time"
-        is24Hour={true}
-        display="default"
-        onChange={onChange}
-        textColor="white"
-        minuteInterval={30} 
-      />
+      <FlatList
+        columnWrapperStyle={{ justifyContent: 'space-around', padding: 10 }}
+        data={SlotHours}
+        keyExtractor={(item) => item}
+        numColumns={3}
+        renderItem={({ item, index }) => (
+          <HourPickerButton
+            item={item}
+            index={index}
+            selectHourRequest={selectHourRequest}
+            selectedHour={selectedHour}
+          ></HourPickerButton>
+        )}
+      ></FlatList>
+
+      <TouchableOpacity onPress={() => flipAction()}>
+        <Text style={{ color: 'white' }}>Click here to choose day</Text>
+      </TouchableOpacity>
     </View>
   );
+
+  {
+    /* <HourPicker slotHours={SlotHours}/> */
+  }
+  return <HourPickerButton />;
 };
 
 export default HourPicker;
+// export default compose(CalendarContainer)(HourPicker);

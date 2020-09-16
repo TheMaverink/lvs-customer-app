@@ -3,15 +3,19 @@ import {
   StyleSheet,
   Text,
   View,
+  FlatList,
   ImageBackground,
   Button,
+  TouchableOpacity,
   Animated,
 } from 'react-native';
+import CardFlip from 'react-native-card-flip';
 import { compose } from 'recompose';
 import Header from './components/Header';
 import Calendar from './components/Calendar';
 import CalendarContainer from 'containers/Calendar';
-import HourPicker from "./components/HourPicker"
+// import HourPicker from './components/HourPicker';
+import HourPicker from './components/HourPicker';
 
 const styles = StyleSheet.create({
   container: {
@@ -19,41 +23,37 @@ const styles = StyleSheet.create({
     flex: 1,
     justifyContent: 'center',
   },
+  cardContainer: {
+    flex: 1,
+    // width: 320,
+    // height: 470,
+  },
 });
 
-// const Switch = ()=>{
-//   return <Button title="Switch" onPress={changeMode}/>
-// }
+class CalendarView extends React.Component {
+  constructor(props) {
+    super(props);
+    // this.state=({})
+  }
 
-const CalendarView = (props) => {
-  let [isHourMode, changeMode] = useState(false);
-
-  const { selectedWash } = props;
-  const position = new Animated.ValueXY({ x: 0, y: 0 });
-
-  Animated.timing(position, {
-    toValue: { x: 200, y: 500 },
-  }).start();
-  return (
-    <View style={styles.container}>
-
-      <Animated.Text style={{ color: 'white', transform: [{ translateX: position.x }] }}>
-        ANimate Text
-      </Animated.Text>
-
-      <Header style={{ flex: 1 }} selectedWash={selectedWash} />
-      {isHourMode ? (
-        <HourPicker/>
-      ) : (
-        <Calendar {...props} style={{ flex: 1, borderRadius: 25 }} />
-      )}
-
-      <Button
-        title={'Switch'}
-        onPress={() => changeMode((isHourMode = !isHourMode))}
-      />
-    </View>
-  );
-};
+  render() {
+    const { selectedWash } = this.props;
+  
+    return (
+      <View style={styles.container}>
+        <Header style={{ flex: 1 }} selectedWash={selectedWash} />
+        <CardFlip
+          style={styles.cardContainer}
+          ref={(card) => (this.card = card)}
+        >
+          <View style={{ flex: 1 }}>
+            <Calendar {...this.props} flipAction={() => this.card.flip()} />
+          </View>
+          <HourPicker style={{ flex: 1 }} {...this.props}  flipAction={() => this.card.flip()}/>
+        </CardFlip>
+      </View>
+    );
+  }
+}
 
 export default compose(CalendarContainer)(CalendarView);

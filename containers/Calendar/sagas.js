@@ -22,16 +22,17 @@ function* selectDayWorker(action) {
   }
 }
 
-// function* selectWashWorker(action) {
-//   try {
-//     yield put(selectWashSuccess(action.payload));
-//     RootNavigation.navigate('Calendar');
-//   } catch (error) {
-//     yield put(selectWashFailure(error));
-//   }
-// }
+function* selectHourWorker(action) {
+  console.log(action.payload)
+  try {
+    yield put(selectHourSuccess(action.payload));
+
+  } catch (error) {
+    yield put(selectHourFailure(error));
+  }
+}
 
 export default function* watcher() {
   yield takeLatest(SELECT_DAY_REQUEST, selectDayWorker);
-  // yield takeLatest(SELECT_HOUR_REQUEST, selectHourWorker);
+  yield takeLatest(SELECT_HOUR_REQUEST, selectHourWorker);
 }

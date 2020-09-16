@@ -45,8 +45,9 @@ function* verifyCodeWorker(action) {
     if (apiResult.data['valid']) {
       yield put(verifyCodeSuccess(verificationCode));
       yield put(registerRequest(phoneNumber));
-      
+      RootNavigation.navigate('Select Wash');
     } else {
+      console.log('not verified')
       yield put(verifyCodeFailure('verifiction code does not match!'));
     }
     // console.log('apiResult')

@@ -9,6 +9,7 @@ import { useFocusEffect } from '@react-navigation/native';
 const styles = StyleSheet.create({
   background: {
     backgroundColor: '#1A1B1C',
+   
     // alignSelf:'end',
     // alignItems:'flex-end',
     flex: 1,
@@ -16,9 +17,8 @@ const styles = StyleSheet.create({
 });
 
 const SelectWashView = (props) => {
-
   const { washesRequest, washes, selectWashRequest } = props;
-
+console.log(props)
   const scrollX = useRef(new Animated.Value(0)).current;
 
   useEffect(() => {
@@ -35,7 +35,8 @@ const SelectWashView = (props) => {
     <View style={styles.background}>
       <HeaderText>Select yooudrr prefemmrum wash.</HeaderText>
 
-      <Animated.FlatList
+      <FlatList
+        keyExtractor={(item) => item.title}
         data={washes}
         // renderItem={renderItem}
         renderItem={({ item, index }) => (
@@ -44,18 +45,17 @@ const SelectWashView = (props) => {
             description={item.description}
             index={index}
             scrollX={scrollX}
-            key={index}
             selectWashRequest={selectWashRequest}
-            keyExtractor={(item) => item.id}
           />
-        )}
         
+          
+        )}
         showsHorizontalScrollIndicator={false}
         horizontal
-        onScroll={Animated.event(
-          [{ nativeEvent: { contentOffset: { x: scrollX } } }],
-          { useNativeDriver: true }
-        )}
+        // onScroll={Animated.event(
+        //   [{ nativeEvent: { contentOffset: { x: scrollX } } }],
+        //   { useNativeDriver: true }
+        // )}
         scrollEventThrottle={16}
       />
     </View>

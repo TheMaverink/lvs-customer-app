@@ -1,12 +1,6 @@
 import React, { useState } from 'react';
-import {
-  StyleSheet,
-  Text,
-  View,
-  ImageBackground,
-  Animated,
-} from 'react-native';
-import { Calendar, CalendarList, Agenda } from 'react-native-calendars';
+import { StyleSheet, Text, View, TouchableOpacity } from 'react-native';
+import { Calendar } from 'react-native-calendars';
 
 const styles = StyleSheet.create({
   calendar: {
@@ -31,18 +25,13 @@ class CalendarWrapper extends React.Component {
       selectedHour,
       selectDayRequest,
       selectDayHour,
+      flipAction,
     } = this.props;
-    // console.log(this.props)
-    // console.log('inside calendar')
-    const position = new Animated.ValueXY({ x: 0, y: 0 });
 
-    Animated.timing(position, {
-      toValue: { x: 200, y: 500 },
-      duration: 5000,
-    }).start();
-
+    const today = this.state.todayDay
+console.log(selectedDay)
+console.log(today)
     return (
-      // <Animated.View style={{transform: [{ rotateY:'110deg'}]}}>
       <View>
         <Calendar
           style={styles.calendar}
@@ -53,6 +42,7 @@ class CalendarWrapper extends React.Component {
           // Handler which gets executed on day press. Default = undefined
           onDayPress={(day) => {
             // console.log('selected dayyy', day);
+
             selectDayRequest(day);
           }}
           monthFormat={'MMMM'}
@@ -67,11 +57,18 @@ class CalendarWrapper extends React.Component {
           enableSwipeMonths={true}
           markedDates={{
             // '2020-09-16': {selected: true,  selectedColor: 'rgba(255, 213, 0, 1)'},
-            [this.state.todayDay]: {
+            [today]: {
               marked: true,
               dotColor: 'rgba(255, 213, 0, 1)',
               activeOpacity: 0,
             },
+            [selectedDay]:{
+              selected: true, 
+              marked: true,
+              selectedColor: 'rgba(255, 213, 0, 1)',
+              // activeOpacity: 0,
+              
+            }
           }}
           theme={{
             calendarBackground: 'black',
@@ -94,6 +91,10 @@ class CalendarWrapper extends React.Component {
             textDayHeaderFontSize: 16,
           }}
         />
+
+        <TouchableOpacity onPress={() => flipAction()}>
+          <Text style={{ color: 'white' }}>Click here to choose time</Text>
+        </TouchableOpacity>
       </View>
     );
   }
