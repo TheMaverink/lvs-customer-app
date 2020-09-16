@@ -33,7 +33,7 @@ const TextInputField = ({ placeholder, input: { onChange, ...restInput } }) => {
 };
 
 let VehicleForm = (props) => {
-  const { vehicleMake, vehicleReg } = props;
+ 
   console.log(props);
   return (
     <View>
@@ -53,10 +53,12 @@ let VehicleForm = (props) => {
   );
 };
 
-VehicleForm = reduxForm({ form: 'vehicleForm' })(VehicleForm);
+export default VehicleForm
 
-const selector = formValueSelector('vehicleForm'); // <-- same as form name
+// VehicleForm = reduxForm({ form: 'vehicleForm' })(VehicleForm);
 
-export default connect((state) => selector(state, 'vehicleMake', 'vehicleReg'))(
-  VehicleForm
-);
+// const selector = formValueSelector('vehicleForm'); // <-- same as form name
+
+// export default connect((state) => selector(state, 'vehicleMake', 'vehicleReg'))(
+//   VehicleForm
+// );

@@ -34,6 +34,7 @@ const HourPicker = (props) => {
             index={index}
             selectHourRequest={selectHourRequest}
             selectedHour={selectedHour}
+            change={change}
           ></HourPickerButton>
         )}
       ></FlatList>

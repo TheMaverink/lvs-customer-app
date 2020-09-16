@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { Text, View, StyleSheet, TouchableOpacity } from 'react-native';
-import {COLORS} from 'consts'
+import { COLORS } from 'consts';
 
 const styles = StyleSheet.create({
   button: {
@@ -13,7 +13,7 @@ const styles = StyleSheet.create({
     paddingVertical: 10,
     paddingHorizontal: 30,
   },
-  selectedButton:{
+  selectedButton: {
     borderWidth: 1,
     borderRadius: 30,
     height: '100%',
@@ -22,17 +22,16 @@ const styles = StyleSheet.create({
     borderColor: 'white',
     paddingVertical: 10,
     paddingHorizontal: 30,
-
   },
   text: {
     color: 'white',
     fontSize: 18,
   },
-  selectedText:{
+  selectedText: {
     color: 'black',
     fontSize: 18,
-  }
-})
+  },
+});
 
 const HourPickerButton = (props) => {
   const slotHour = props.item;
@@ -40,13 +39,19 @@ const HourPickerButton = (props) => {
   // console.log(slotHour);
   // console.log(props);
 
-  
   return (
     <TouchableOpacity
       style={selectedHour === slotHour ? styles.selectedButton : styles.button}
-      onPress={() => selectHourRequest(slotHour)}
+      onPress={() => {
+        selectHourRequest(slotHour);
+        change('selectedHour', slotHour);
+      }}
     >
-      <Text style={selectedHour === slotHour ? styles.selectedText : styles.text}>{slotHour}</Text>
+      <Text
+        style={selectedHour === slotHour ? styles.selectedText : styles.text}
+      >
+        {slotHour}
+      </Text>
     </TouchableOpacity>
   );
 };

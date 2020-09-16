@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { StyleSheet, Text, View, TouchableOpacity } from 'react-native';
 import { Calendar } from 'react-native-calendars';
+import { change } from 'redux-form';
 
 const styles = StyleSheet.create({
   calendar: {
@@ -26,6 +27,7 @@ class CalendarWrapper extends React.Component {
       selectDayRequest,
       selectDayHour,
       flipAction,
+      change
     } = this.props;
 
     const today = this.state.todayDay
@@ -44,6 +46,7 @@ console.log(today)
             // console.log('selected dayyy', day);
 
             selectDayRequest(day);
+            change('selectedDay', day)
           }}
           monthFormat={'MMMM'}
           onMonthChange={(month) => {

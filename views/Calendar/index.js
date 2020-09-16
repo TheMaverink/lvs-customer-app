@@ -40,9 +40,13 @@ class CalendarView extends React.Component {
     })
   }
 
-  render() {
-    const { selectedWash } = this.props;
+//   areAllFieldsFilled(){
+// let calendarFormValues  = this.props.calendarFormValues 
+//   }
 
+  render() {
+    const { selectedWash,change,calendarFormValues} = this.props;
+// console.log(Object.values(calendarFormValues))
     
     return (
       <View style={styles.container}>
