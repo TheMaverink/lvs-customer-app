@@ -16,6 +16,8 @@ import Calendar from './components/Calendar';
 import CalendarContainer from 'containers/Calendar';
 // import HourPicker from './components/HourPicker';
 import HourPicker from './components/HourPicker';
+import VehicleForm from './components/VehicleForm';
+import BaseButton from 'components/BaseButton';
 
 const styles = StyleSheet.create({
   container: {
@@ -33,12 +35,15 @@ const styles = StyleSheet.create({
 class CalendarView extends React.Component {
   constructor(props) {
     super(props);
-    // this.state=({})
+    this.state=({
+
+    })
   }
 
   render() {
     const { selectedWash } = this.props;
-  
+
+    
     return (
       <View style={styles.container}>
         <Header style={{ flex: 1 }} selectedWash={selectedWash} />
@@ -46,11 +51,21 @@ class CalendarView extends React.Component {
           style={styles.cardContainer}
           ref={(card) => (this.card = card)}
         >
-          <View style={{ flex: 1 }}>
-            <Calendar {...this.props} flipAction={() => this.card.flip()} />
-          </View>
-          <HourPicker style={{ flex: 1 }} {...this.props}  flipAction={() => this.card.flip()}/>
+          <Calendar {...this.props} flipAction={() => this.card.flip()} />
+
+          <HourPicker
+            style={{ flex: 1 }}
+            {...this.props}
+            flipAction={() => this.card.flip()}
+          />
         </CardFlip>
+        <VehicleForm />
+        <BaseButton
+          title="Book"
+          bgColor="grey"
+          textColor="black"
+          action={() => console.log('cllicked')}
+        />
       </View>
     );
   }

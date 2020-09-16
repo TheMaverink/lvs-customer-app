@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { Text, View, StyleSheet, TouchableOpacity } from 'react-native';
 import {COLORS} from 'consts'
 
-const styles = {
+const styles = StyleSheet.create({
   button: {
     borderWidth: 1,
     borderRadius: 30,
@@ -32,7 +32,7 @@ const styles = {
     color: 'black',
     fontSize: 18,
   }
-};
+})
 
 const HourPickerButton = (props) => {
   const slotHour = props.item;

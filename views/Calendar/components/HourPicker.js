@@ -15,9 +15,7 @@ import CalendarContainer from 'containers/Calendar';
 import HourPickerButton from './HourPickerButton';
 import SlotHours from 'consts/SlotHours';
 
-const styles = {
-  container: {},
-};
+
 
 const HourPicker = (props) => {
   // return <View>{props.children}</View>;
