@@ -1,19 +1,22 @@
-// import axios from 'axios';
-// import { AsyncStorage } from 'react-native';
+import axios from 'axios';
+import { AsyncStorage } from 'react-native';
 
-// axios.defaults.baseURL = 'http://localhost:8080/api';
+axios.defaults.baseURL = 'http://localhost:8080/api';
 
-// export const  apiGetWashes = async () => {
+// eslint-disable-next-line import/prefer-default-export
+export const apiBooking = async (bookingData) => {
+  // const token = await loadToken()
+  // setAuthToken(token)
 
-//   const token = await AsyncStorage.getItem('token')
-//   const config = {
-//     headers: { Authorization: `Bearer ${ token }` },
-//   }
- 
-//   try {
-//     return axios.get(`/services` );
-//   } catch (error) {
-//     return error;
-//   }
-// };
-
+  // const config = {
+  //   headers: { Authorization: `Bearer ${ token }` },
+  // }
+  axios({
+    method: 'post',
+    url: '/bookings/new',
+    data: {
+      bookingData,
+      // token: await token,
+    },
+  });
+};

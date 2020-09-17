@@ -7,6 +7,9 @@ import {
   SELECT_HOUR_REQUEST,
   SELECT_HOUR_FAILURE,
   SELECT_HOUR_SUCCESS,
+  BOOKING_REQUEST,
+  BOOKING_FAILURE,
+  BOOKING_SUCCESS,
 } from './actions';
 
 const initialState = {
@@ -14,6 +17,7 @@ const initialState = {
   errorMessage: null,
   selectedDay: null,
   selectedHour: null,
+  bookingData:null
 };
 
 export default function reducer(state = initialState, action) {
@@ -67,6 +71,32 @@ export default function reducer(state = initialState, action) {
         ...state,
         loading: false,
         selectedHour: action.payload,
+      };
+    }
+
+    //
+
+    case BOOKING_REQUEST: {
+      return {
+        ...state,
+        loading: true,
+        bookingData:null
+      };
+    }
+
+    case BOOKING_FAILURE: {
+      return {
+        ...state,
+        loading: false,
+        bookingData:null
+      };
+    }
+
+    case BOOKING_SUCCESS: {
+      return {
+        ...state,
+        loading: false,
+        bookingData: action.payload,
       };
     }
     default:

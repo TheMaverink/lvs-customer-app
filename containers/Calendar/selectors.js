@@ -22,3 +22,8 @@ export const selectWash = createSelector(
   (state)=> state['WASHES'],
   _get('selectedWash')
 )
+
+// export const bookingData = createSelector(
+//   (state) => state[REDUCER_NAME],
+//   _get('bookingData')
+// )

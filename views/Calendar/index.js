@@ -35,19 +35,22 @@ const styles = StyleSheet.create({
 class CalendarView extends React.Component {
   constructor(props) {
     super(props);
-    this.state=({
-
-    })
+    this.state = {};
   }
 
-//   areAllFieldsFilled(){
-// let calendarFormValues  = this.props.calendarFormValues 
-//   }
+  //   areAllFieldsFilled(){
+  // let calendarFormValues  = this.props.calendarFormValues
+  //   }
 
   render() {
-    const { selectedWash,change,calendarFormValues} = this.props;
-// console.log(Object.values(calendarFormValues))
-    
+    const {
+      selectedWash,
+      change,
+      calendarFormValues,
+      handleSubmit,
+    } = this.props;
+    // console.log(Object.values(calendarFormValues))
+
     return (
       <View style={styles.container}>
         <Header style={{ flex: 1 }} selectedWash={selectedWash} />
@@ -68,7 +71,10 @@ class CalendarView extends React.Component {
           title="Book"
           bgColor="grey"
           textColor="black"
-          action={() => console.log('cllicked')}
+          action={async (values) => {
+            change('service', selectedWash);
+            handleSubmit(values);
+          }}
         />
       </View>
     );

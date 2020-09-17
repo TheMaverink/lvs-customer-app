@@ -1,14 +1,18 @@
 import { takeLatest, call, put } from 'redux-saga/effects';
 import { AsyncStorage } from 'react-native';
 import * as RootNavigation from '../../RootNavigation';
+import {apiBooking} from './api'
 
 import {
   SELECT_DAY_REQUEST,
   SELECT_HOUR_REQUEST,
+  BOOKING_REQUEST,
   selectDayFailure,
   selectDaySuccess,
   selectHourFailure,
   selectHourSuccess,
+ bookingFailure,
+ bookingSuccess,
 } from './actions';
 
 function* selectDayWorker(action) {
@@ -32,7 +36,20 @@ function* selectHourWorker(action) {
   }
 }
 
+function* bookingWorker(action) {
+ 
+  try {
+
+    const apiResult = yield call(apiBooking, action.payload);
+    // yield put(selectHourSuccess(action.payload));
+
+  } catch (error) {
+    yield put(bookingFailure(error));
+  }
+}
+
 export default function* watcher() {
   yield takeLatest(SELECT_DAY_REQUEST, selectDayWorker);
   yield takeLatest(SELECT_HOUR_REQUEST, selectHourWorker);
+  yield takeLatest(BOOKING_REQUEST, bookingWorker);
 }

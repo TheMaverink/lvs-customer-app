@@ -13,6 +13,9 @@ import {
   selectHourRequest,
   selectHourFailure,
   selectHourSuccess,
+  bookingRequest,
+  bookingFailure,
+  bookingSuccess,
 } from './actions';
 
 import { REDUCER_NAME } from './consts';
@@ -44,6 +47,9 @@ export const mapDispatchToProps = (dispatch) =>
       selectHourRequest,
       selectHourFailure,
       selectHourSuccess,
+      bookingRequest,
+      bookingFailure,
+      bookingSuccess,
     },
     dispatch
   );
@@ -62,5 +68,6 @@ export default compose(
     form: 'CALENDAR_FORM',
     submitAsSideEffect: true,
     destroyOnUnmount: false,
+    onSubmit: (values) => (bookingRequest(values)),
   })
 );
