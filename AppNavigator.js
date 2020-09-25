@@ -40,7 +40,7 @@ const Stack = createStackNavigator();
 
 export function CarSpaStack() {
   return (
-    <Stack.Navigator  headerMode='none' initialRouteName="Select Wash">
+    <Stack.Navigator  headerMode='none' initialRouteName="Auth">
       <Stack.Screen name="Auth" component={AuthView} />
       <Stack.Screen name="Register" component={RegisterStack} />
       <Stack.Screen name="Login" component={LoginStack} />

@@ -8,6 +8,7 @@ const BaseButton = (props)=>{
  const {title,bgColor,outlineColor,textColor,action} = props
   const styles = StyleSheet.create({
     button:{
+      marginVertical:5,
       alignSelf:'center',
       justifyContent:'center',
       height:50,

@@ -3,6 +3,8 @@ import { AsyncStorage } from 'react-native';
 import * as RootNavigation from '../../RootNavigation';
 import {apiBooking} from './api'
 
+
+
 import {
   SELECT_DAY_REQUEST,
   SELECT_HOUR_REQUEST,
@@ -41,7 +43,8 @@ function* bookingWorker(action) {
   try {
 
     const apiResult = yield call(apiBooking, action.payload);
-    // yield put(selectHourSuccess(action.payload));
+    yield put(bookingSuccess(apiResult));
+    RootNavigation.navigate('Bookings', { screen: 'Booking Confirmation' });
 
   } catch (error) {
     yield put(bookingFailure(error));

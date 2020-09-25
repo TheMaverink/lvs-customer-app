@@ -29,18 +29,23 @@ export const FONT_SIZES = {
 
 export const COLORS = {
 
-  MID_GRAY: '#D8D8D8',
-  ////
-  WHITE: '#FFFFFF',
-  LIGHT_GRAY: '#fbfbfb',
+
+  YELLOW:'#FFD500',
+  BLACK:'#1A1B1C',
+  ///
+
+  // MID_GRAY: '#D8D8D8',
+  // ////
+  // WHITE: '#FFFFFF',
+  // LIGHT_GRAY: '#fbfbfb',
   
-  DARK_GRAY: '#abb3c0',
-  DARKEST_GRAY: '#5b5b5b',
-  PURPLE: '#353f8f',
-  GREEN: '#00ffab',
-  RED: '#d95b5d',
-  LIGHT_BLUE: '#497e93',
-  BLUE: '#0e427f',
+  // DARK_GRAY: '#abb3c0',
+  // DARKEST_GRAY: '#5b5b5b',
+  // PURPLE: '#353f8f',
+  // GREEN: '#00ffab',
+  // RED: '#d95b5d',
+  // LIGHT_BLUE: '#497e93',
+  // BLUE: '#0e427f',
 
 }
 
