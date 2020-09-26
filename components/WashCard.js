@@ -21,15 +21,13 @@ const deviceWidth = Dimensions.get('window').width;
 const styles = StyleSheet.create({
   container: {
     alignSelf: 'center',
-    margin: deviceWidth * 0.08,
+
     borderRadius: 30,
-    // borderColor: 'red',
-    // borderWidth: 5,
-    
   },
   gradientContainer: {
-    width: deviceWidth * 0.67,
+    width: deviceWidth * 0.68,
     height: deviceHeight * 0.58,
+    marginHorizontal: deviceWidth * 0.16,
     alignSelf: 'center',
     margin: 5,
     overflow: 'visible',
@@ -48,6 +46,7 @@ const styles = StyleSheet.create({
     justifyContent: 'flex-start',
     flexWrap: 'wrap',
     paddingHorizontal: '10%',
+    // width:'100%'
   },
 
   title: {
@@ -55,7 +54,7 @@ const styles = StyleSheet.create({
     color: '#FFFFFF',
     lineHeight: 48,
     fontFamily: 'DMSerifDisplay-Regular',
-    paddingHorizontal: '10%',
+    paddingHorizontal: '5%',
   },
   description: {
     opacity: 0.6,
@@ -64,7 +63,7 @@ const styles = StyleSheet.create({
     letterSpacing: -0.01,
     lineHeight: 20,
     paddingTop: '3%',
-    paddingHorizontal: '10%',
+    paddingHorizontal: '5%',
     fontFamily: 'DMSans-Regular',
   },
 
@@ -87,7 +86,7 @@ const styles = StyleSheet.create({
   },
   iconContainer: {
     width: '100%',
-    paddingHorizontal: '10%',
+    paddingHorizontal: '5%',
     paddingTop: '10%',
   },
   icon: {},
@@ -101,9 +100,14 @@ const WashCard = (props) => {
 
   const inputRange = [(index - 1) * width, index * width, (index + 1) * width];
 
-  const scale = scrollX.interpolate({
+  const cardScale = scrollX.interpolate({
     inputRange,
-    outputRange: [0.7, 1, 0.7],
+    outputRange: [0.75, 1.1, 0.75],
+  });
+
+  const imageScale = scrollX.interpolate({
+    inputRange,
+    outputRange: [0.85, 1, 0.85],
   });
 
   const inputRangeOpacity = [
@@ -114,7 +118,7 @@ const WashCard = (props) => {
 
   const translateXHeading = scrollX.interpolate({
     inputRange,
-    outputRange: [width * 0.2, 0, -width * 0.2],
+    outputRange: [-width * 0.03, 0, width * 0.03],
   });
 
   const opacity = scrollX.interpolate({
@@ -127,7 +131,15 @@ const WashCard = (props) => {
   const carWashType = props.title;
 
   return (
-    <Animated.View style={styles.container}>
+    <Animated.View
+      style={[
+        styles.container,
+        {
+          opacity,
+          transform: [{ scale: cardScale }],
+        },
+      ]}
+    >
       <LinearGradient
         start={{ x: 0, y: 0 }}
         end={{ x: 0, y: 1 }}
@@ -139,13 +151,21 @@ const WashCard = (props) => {
           style={
             (styles.image,
             {
-              transform: [{ scale }],
+              transform: [{ scale: imageScale }],
+              transform: [{ translateX: translateXHeading }],
             })
           }
         ></Animated.Image>
 
         <View style={styles.titleContainer}>
-          <Animated.Text style={styles.title}>{title}</Animated.Text>
+          <Animated.Text
+            style={[
+              styles.title,
+              
+            ]}
+          >
+            {title}
+          </Animated.Text>
           <Animated.Text style={styles.description}>
             {description}
           </Animated.Text>

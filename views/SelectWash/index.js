@@ -1,16 +1,21 @@
 import React, { useEffect, useRef } from 'react';
-import { StyleSheet, Animated, Text, View, FlatList,StatusBar } from 'react-native';
+import {
+  StyleSheet,
+  Animated,
+  Text,
+  View,
+  FlatList,
+  StatusBar,
+} from 'react-native';
 import WashCard from 'components/WashCard';
 import WashesContainer from 'containers/Washes';
 import { compose, lifecycle } from 'recompose';
 import { useFocusEffect } from '@react-navigation/native';
-import HeaderMessage from "../../components/HeaderMessage"
+import HeaderMessage from '../../components/HeaderMessage';
 const styles = StyleSheet.create({
   background: {
-    flex:1,
+    flex: 1,
     backgroundColor: '#1A1B1C',
- 
-  
   },
 });
 
@@ -23,17 +28,14 @@ const SelectWashView = (props) => {
     washesRequest();
   }, []);
 
-
   return (
     <View style={styles.background}>
       <StatusBar barStyle="light-content" backgroundColor="black" />
-      <HeaderMessage title={"Select your premium car wash."}/>
-    
+      <HeaderMessage title={'Select your premium car wash.'} />
 
       <Animated.FlatList
         keyExtractor={(item) => item.title}
         data={washes}
-       
         renderItem={({ item, index }) => (
           <WashCard
             title={item.title}
@@ -41,10 +43,7 @@ const SelectWashView = (props) => {
             index={index}
             scrollX={scrollX}
             selectWashRequest={selectWashRequest}
-            
           />
-        
-          
         )}
         pagingEnabled
         showsHorizontalScrollIndicator={false}
