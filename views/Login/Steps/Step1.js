@@ -43,7 +43,7 @@ const Step1 = (props) => {
   const { loginSendSmsRequest, handleSubmit, onSubmit } = props;
  
   return (
-    <View style={{backgroundColor: '#121314', flex: 1, justifyContent: 'center'}}>
+    <View style={{backgroundColor: '#1A1B1C', flex: 1, justifyContent: 'center'}}>
       <AuthQuestion question="Please enter your mobile number to continue." />
       {/* <Field name="phoneNumber" component={ TextInputField } props={ { placeholder: 'Mobile number...' } } onChange={test}/> */}
       <Field

@@ -11,10 +11,10 @@ const BaseButton = (props)=>{
       marginVertical:5,
       alignSelf:'center',
       justifyContent:'center',
-      height:50,
+      height:45,
       borderRadius:15,
       width:'90%',
-      borderWidth:3,
+      borderWidth:2,
       borderColor:outlineColor,
       fontSize:16,
       backgroundColor:bgColor

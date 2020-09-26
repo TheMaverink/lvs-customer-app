@@ -1,80 +1,95 @@
 import React from 'react';
-import { StyleSheet, Text, View, Image } from 'react-native';
+import {
+  StyleSheet,
+  Text,
+  View,
+  Image,
+  StatusBar,
+  Dimensions,
+} from 'react-native';
 import BaseButton from 'components/BaseButton';
 import backgroundCar from '../../assets/images/car-bckgd.png';
 
 import { WhitePortal } from 'react-native-portal';
 import { COLORS } from 'consts/';
 import img from '../../assets/logos/logo.png';
+import RootNavigation from '../../RootNavigation';
+
+const deviceHeight = Dimensions.get('window').height;
+const deviceWidth = Dimensions.get('window').width;
 
 const styles = StyleSheet.create({
   container: {
-    flex: 1,
-
     backgroundColor: 'black',
-    justifyContent: 'flex-end',
+    justifyContent: 'space-around',
     alignItems: 'center',
-    width: '100%',
+    width: deviceWidth,
     height: '100%',
- 
+  },
+  logoContainer: {
+    width: deviceWidth,
+    height: deviceHeight * 0.27,
+    transform: [{ translateY: deviceHeight * 0.1 }],
   },
   logo: {
-   
-    flex: 1,
-     marginTop: 50,
-     width:100
-   
+    height: '40%',
+    width: undefined,
   },
   logoText: {
-    fontSize: 32,
+    fontSize: 40,
     color: 'white',
-    width: '200%',
     textAlign: 'center',
     marginTop: 10,
   },
   text: {
-    // flex: 1,
-    padding:30,
     color: 'white',
-    width: '80%',
+    width: '100%',
+    height: deviceHeight * 0.12,
     textAlign: 'center',
-    fontSize: 16,
+    fontSize: 18,
     lineHeight: 24,
     fontFamily: 'DMSans-Regular',
-  
+    opacity: 0.9,
+
+    transform: [{ translateY: deviceHeight * -0.06 }],
   },
   image: {
-    flex: 2,
-    width: '100%',
-    opacity: 0.4,
-   
+    height: deviceHeight * 0.3,
+    width: deviceWidth,
+    opacity: 0.5,
+    transform: [{ scale: 1.1 }],
   },
   buttonsContainer: {
-    flex: 1,
     width: '100%',
-  
+    height: deviceHeight * 0.13,
+    
   },
   membersText: {
-    // flex: 1,
     color: 'white',
+    width: '100%',
     fontFamily: 'DMSans-Bold',
     fontSize: 14,
-
+    padding: 40,
+    textAlign: 'center',
+    height: deviceHeight * 0.08,
   },
 });
 
 const AuthView = ({ navigation }) => {
   return (
     <View style={styles.container}>
-    
-      <Image
-        resizeMode="contain"
-        source={img}
-        style={styles.logo}
-      ></Image>
+      <StatusBar barStyle="light-content" backgroundColor="black" />
 
-      <Text style={styles.logoText}>Car Spa</Text>
-      <Image source={backgroundCar} resizeMode={'cover'} style={styles.image} />
+      <View style={styles.logoContainer}>
+        <Image resizeMode="contain" source={img} style={styles.logo}></Image>
+        <Text style={styles.logoText}>Car Spa</Text>
+      </View>
+
+      <Image
+        source={backgroundCar}
+        resizeMode={'cover'}
+        style={styles.image}
+      />
 
       <Text style={styles.text}>
         Taking extraordinary to new heights.{'\n'}

@@ -1,21 +1,21 @@
 import React from 'react';
 import { NavigationContainer } from '@react-navigation/native';
+import { TouchableHighlight, Image } from 'react-native';
 
 import { createStackNavigator } from '@react-navigation/stack';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 
 // import { SCREENS, COLORS } from './consts'
 
-import RegisterStep1View from "views/Register/Steps/Step1"
-import RegisterStep2View from "views/Register/Steps/Step2"
-import RegisterStep3View from "views/Register/Steps/Step3"
+import RegisterStep1View from 'views/Register/Steps/Step1';
+import RegisterStep2View from 'views/Register/Steps/Step2';
+import RegisterStep3View from 'views/Register/Steps/Step3';
 
-import LoginStep1View from "views/Login/Steps/Step1"
-import LoginStep2View from "views/Login/Steps/Step2"
-
+import LoginStep1View from 'views/Login/Steps/Step1';
+import LoginStep2View from 'views/Login/Steps/Step2';
 
 import SplashView from 'views/Splash';
-import AuthView from 'views/Auth'
+import AuthView from 'views/Auth';
 import CalendarView from 'views/Calendar';
 import ConfirmationView from 'views/Confirmation';
 import LoginView from 'views/Login';
@@ -29,7 +29,6 @@ const stackNavigationConfig = {
   screenOptions: {
     headerTitleStyle: {
       fontWeight: 'bold',
-     
     },
   },
 };
@@ -40,13 +39,10 @@ const Stack = createStackNavigator();
 
 export function CarSpaStack() {
   return (
-    <Stack.Navigator  headerMode='none' initialRouteName="Auth">
-      <Stack.Screen name="Auth" component={AuthView} />
-      <Stack.Screen name="Register" component={RegisterStack} />
-      <Stack.Screen name="Login" component={LoginStack} />
+    <Stack.Navigator headerMode="none" initialRouteName="Select Wash">
       <Stack.Screen name="Select Wash" component={SelectWashView} />
       <Stack.Screen name="Calendar" component={CalendarView} />
-      <Stack.Screen name="Splash" component={SplashView} />
+
       <Stack.Screen name="Wash Description" component={WashDescriptionView} />
     </Stack.Navigator>
   );
@@ -62,16 +58,37 @@ export function RegisterStack() {
   );
 }
 
+const Left = ({ onPress }) => (
+  <TouchableHighlight onPress={onPress}>
+    <Image source={require('./assets/Icons/check-circle.png')} />
+  </TouchableHighlight>
+);
+
 export function LoginStack() {
   return (
-    <Stack.Navigator initialRouteName="Login Step 1">
+    <Stack.Navigator
+      screenOptions={{
+        title: 'LOGIN',
+        headerStyle: {
+          backgroundColor: 'black',
+        },
+        headerTintColor: '#fff',
+        headerTitleStyle: {
+          fontFamily: 'DMSans-Bold',
+        },
+        headerBackTitleStyle:{
+          opacity:0
+        }
+
+       
+      }}
+      initialRouteName="Login Step 1"
+    >
       <Stack.Screen name="Login Step 1" component={LoginStep1View} />
       <Stack.Screen name="Login Step 2" component={LoginStep2View} />
-     
     </Stack.Navigator>
   );
 }
-
 
 export function BookingsStack() {
   return (
@@ -81,19 +98,32 @@ export function BookingsStack() {
   );
 }
 
+export function MainTab() {
+  return (
+    <Tab.Navigator initialRouteName="Car Spa" tabBarVisible={false}>
+      <Tab.Screen name="Car Spa" component={CarSpaStack} />
+      <Tab.Screen name="Bookings" component={BookingsStack} />
+    </Tab.Navigator>
+  );
+}
+
 class AppNavigator extends React.Component {
   render() {
     const { onNavChange } = this.props;
+
     return (
       <NavigationContainer
         ref={navigationRef}
         onNavigationStateChange={onNavChange}
         screenOptions={{ stackNavigationConfig }}
       >
-        <Tab.Navigator initialRouteName="Car Spa">
-          <Tab.Screen name="Car Spa" component={CarSpaStack} />
-          <Tab.Screen name="Bookings" component={BookingsStack} />
-        </Tab.Navigator>
+        <Stack.Navigator initialRouteName="Auth" headerMode="none">
+          <Stack.Screen name="Splash" component={SplashView} />
+          <Stack.Screen name="Auth" component={AuthView} />
+          <Stack.Screen name="Login" component={LoginStack} />
+          <Stack.Screen name="Register" component={RegisterStack} />
+          <Stack.Screen name="Select Wash" component={MainTab} />
+        </Stack.Navigator>
       </NavigationContainer>
     );
   }

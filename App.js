@@ -2,7 +2,7 @@ import { PortalProvider, WhitePortal } from 'react-native-portal';
 
 import React from 'react';
 import { Provider } from 'react-redux';
-import { StyleSheet, Text, View } from 'react-native';
+import { StyleSheet, Text, View, StatusBar } from 'react-native';
 import { enableScreens } from 'react-native-screens';
 import * as Font from 'expo-font';
 
@@ -39,6 +39,7 @@ class App extends React.Component {
 
     return (
       <PortalProvider>
+     
         <Provider store={store}>
           <AppView>
             <AppNavigator />
@@ -50,7 +51,7 @@ class App extends React.Component {
   }
 }
 
-export default App
+export default App;
 
 // export default function App() {
 //   return (
