@@ -1,7 +1,8 @@
 import React from 'react'
-import {View,Text,TouchableOpacity,StyleSheet} from "react-native"
+import {View,Text,TouchableOpacity,StyleSheet,Dimensions} from "react-native"
 
-
+const deviceHeight = Dimensions.get('window').height;
+const deviceWidth = Dimensions.get('window').width;
 
 const BaseButton = (props)=>{
 
@@ -13,7 +14,7 @@ const BaseButton = (props)=>{
       justifyContent:'center',
       height:45,
       borderRadius:15,
-      width:'90%',
+      width:deviceWidth * 0.9 ,
       borderWidth:2,
       borderColor:outlineColor,
       fontSize:16,

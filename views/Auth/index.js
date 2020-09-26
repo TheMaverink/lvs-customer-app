@@ -13,7 +13,6 @@ import backgroundCar from '../../assets/images/car-bckgd.png';
 import { WhitePortal } from 'react-native-portal';
 import { COLORS } from 'consts/';
 import img from '../../assets/logos/logo.png';
-import RootNavigation from '../../RootNavigation';
 
 const deviceHeight = Dimensions.get('window').height;
 const deviceWidth = Dimensions.get('window').width;
@@ -69,9 +68,9 @@ const styles = StyleSheet.create({
     width: '100%',
     fontFamily: 'DMSans-Bold',
     fontSize: 14,
-    padding: 40,
+    padding: 30,
     textAlign: 'center',
-    height: deviceHeight * 0.08,
+    height: deviceHeight * 0.13,
   },
 });
 

@@ -45,7 +45,7 @@ function* verifyCodeWorker(action) {
     if (apiResult.data['valid']) {
       yield put(verifyCodeSuccess(verificationCode));
       yield put(registerRequest(phoneNumber));
-      RootNavigation.navigate('Select Wash');
+      // RootNavigation.navigate('Select Wash');
     } else {
       console.log('not verified')
       yield put(verifyCodeFailure('verifiction code does not match!'));
@@ -80,7 +80,8 @@ function* registerWorker(action) {
 }
 
 export default function* watcher() {
-  yield takeLatest(REGISTER_REQUEST, registerWorker);
+  
   yield takeLatest(SEND_SMS_REQUEST, sendSmsWorker);
   yield takeLatest(VERIFY_CODE_REQUEST, verifyCodeWorker);
+  yield takeLatest(REGISTER_REQUEST, registerWorker);
 }

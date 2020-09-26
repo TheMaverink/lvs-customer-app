@@ -50,19 +50,39 @@ export function CarSpaStack() {
 
 export function RegisterStack() {
   return (
-    <Stack.Navigator initialRouteName="Register Step 1">
+    <Stack.Navigator
+      screenOptions={{
+        title: 'SIGN UP',
+        headerStyle: {
+          backgroundColor: 'black',
+        },
+        headerTintColor: '#fff',
+        headerTitleStyle: {
+          fontFamily: 'DMSans-Bold',
+        },
+        headerBackTitleStyle: {
+          opacity: 0,
+        },
+      }}
+      initialRouteName="Register Step 1"
+    >
       <Stack.Screen name="Register Step 1" component={RegisterStep1View} />
       <Stack.Screen name="Register Step 2" component={RegisterStep2View} />
-      <Stack.Screen name="Register Step 3" component={RegisterStep3View} />
+      <Stack.Screen
+        options={{
+          title: 'WELCOME',
+          headerTitleStyle: {
+            fontFamily: 'DMSans-Bold',
+          },
+        }}
+        name="Register Step 3"
+        component={RegisterStep3View}
+      />
     </Stack.Navigator>
   );
 }
 
-const Left = ({ onPress }) => (
-  <TouchableHighlight onPress={onPress}>
-    <Image source={require('./assets/Icons/check-circle.png')} />
-  </TouchableHighlight>
-);
+
 
 export function LoginStack() {
   return (
@@ -76,11 +96,9 @@ export function LoginStack() {
         headerTitleStyle: {
           fontFamily: 'DMSans-Bold',
         },
-        headerBackTitleStyle:{
-          opacity:0
-        }
-
-       
+        headerBackTitleStyle: {
+          opacity: 0,
+        },
       }}
       initialRouteName="Login Step 1"
     >

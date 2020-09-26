@@ -3,19 +3,21 @@ import { View, Text, StyleSheet } from 'react-native';
 
 const styles = StyleSheet.create({
   container: {
-    width: '90%',
-    padding: 5,
+    width: '100%',
+    paddingTop: 30,
+    paddingLeft: 20,
   },
   question: {
-    fontFamily: 'Helvetica',
+    fontFamily: 'DMSans-Regular',
     fontSize: 20,
     letterSpacing: 0.01,
     lineHeight: 28,
     opacity: 0.8,
     color: '#FFFFFF',
+    width: '60%',
   },
   notes: {
-    fontFamily: 'Helvetica',
+    fontFamily: 'DMSans-Regular',
     fontSize: 16,
     letterSpacing: 0.01,
     lineHeight: 24,
@@ -27,10 +29,14 @@ const styles = StyleSheet.create({
 const AuthQuestion = (props) => {
   const { question, notes } = props;
   return (
-    <View style={styles.container}>
-      <Text style={styles.question}>{question}</Text>
-      <Text style={styles.notes}>{notes}</Text>
-    </View>
+    <React.Fragment>
+      <View style={styles.container}>
+        <Text style={styles.question}>{question}</Text>
+        <Text style={styles.notes}>{notes}</Text>
+      </View>
+
+     
+    </React.Fragment>
   );
 };
 

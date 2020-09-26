@@ -4,87 +4,68 @@ import {
   Text,
   TextInput,
   Image,
+  Dimensions,
   TouchableOpacity,
   StyleSheet,
 } from 'react-native';
-import { Field, formValueSelector,  reduxForm  } from 'redux-form';
+import { Field, formValueSelector, reduxForm } from 'redux-form';
 
 import AuthQuestion from 'components/AuthQuestion';
-import {compose} from 'recompose'
+import { compose } from 'recompose';
 import CheckCircle from 'assets/Icons/check-circle.png';
 
-import RegisterContainer from 'containers/Register'
+import TextInputField from '../../../components/TextInputField';
 
-// const renderInput = ({ input: { onChange} }) => (
-//   <TextInput style={{flex:1, borderBottomWidth:1,borderBottomColor:'grey'}}
-//     placeholderTextColor='#ffffff'
-//     onChangeText={ onChange }
-
-//     selectionColor='#ffffff'
-
-//   />
-// )
+import RegisterContainer from 'containers/Register';
+import SwitchAuth from "../../../components/SwitchAuth"
+const deviceHeight = Dimensions.get('window').height;
+const deviceWidth = Dimensions.get('window').width;
 
 const styles = StyleSheet.create({
-  absoluteView: {
-    flex: 1,
+  container: {
+    backgroundColor: '#1A1B1C',
+    height: deviceHeight,
+    width: deviceWidth,
+    position: 'relative',
+  },
+  field: {
     position: 'absolute',
-    alignItems: 'center',
-    justifyContent: 'center',
-    backgroundColor: 'transparent',
+    top: '40%',
+    left: '5%',
+    width: '85%',
+  },
+  button: {
+    position: 'absolute',
+    right: 5,
+    top: 5,
   },
 });
 
-const TextInputField = ({ placeholder, input: { onChange, ...restInput } }) => {
-  return (
-    <View>
-      <TextInput
-        style={{
-          borderBottomWidth: 1,
-          borderBottomColor: '#ffffff',
-          color: '#ffffff',
-        }}
-        onChangeText={onChange}
-        placeholderTextColor="#ffffff"
-        selectionColor="#ffffff"
-        placeholder={placeholder}
-      ></TextInput>
-      {/* <Image source={CheckCircle} onPress={()=>console.log('licked')} /> */}
-    </View>
-  );
-  {
-    /* <IconWrapper source={ PencilIcon } /> */
-  }
-};
-
-
-
-
 const Step1 = (props) => {
   const { sendSmsRequest, handleSubmit, onSubmit } = props;
-  // console.log(props)
-  console.log('end of props step 1')
+
   return (
-    <View style={{backgroundColor: '#121314', flex: 1, justifyContent: 'center'}}>
+    <View style={styles.container}>
       <AuthQuestion question="Please enter your mobile number to continue." />
-      {/* <Field name="phoneNumber" component={ TextInputField } props={ { placeholder: 'Mobile number...' } } onChange={test}/> */}
-      <Field
-        name="phoneNumber"
-        component={TextInputField}
-        props={{ placeholder: 'Mobile number...' }}
-      />
-      <TouchableOpacity onPress={handleSubmit((values)=> sendSmsRequest(values.phoneNumber))}>
-        <Image source={CheckCircle} />
-      </TouchableOpacity>
+      <View style={styles.field}>
+        <Field
+          name="phoneNumber"
+          component={TextInputField}
+          props={{ placeholder: 'Mobile number...' }}
+        />
+        <TouchableOpacity
+          style={styles.button}
+          onPress={handleSubmit((values) => sendSmsRequest(values.phoneNumber))}
+        >
+          <Image source={CheckCircle} />
+        </TouchableOpacity>
+        <SwitchAuth switchTo="login" />
+      </View>
     </View>
   );
 };
 
-
-
-
-
 export default compose(
-  reduxForm({ form:'sendSmsForm'}),
-  RegisterContainer)(Step1)
-  
+  reduxForm({ form: 'sendSmsForm' }),
+  RegisterContainer
+)(Step1);

@@ -6,8 +6,13 @@ import BaseButton from 'components/BaseButton';
 import Step1 from "./Steps/Step1"
 import Step2 from "./Steps/Step2"
 
-
-
+const styles= StyleSheet.create({
+  container:{
+    backgroundColor: '#1A1B1C',
+    height:'100%',
+    width:'100%'
+  }
+})
 
 class LoginView extends React.Component {
   constructor(props) {
@@ -32,7 +37,7 @@ class LoginView extends React.Component {
     const { page } = this.state
    
     return (
-      <View style={{backgroundColor: '#1A1B1C', flex: 1, justifyContent: 'center'}}>
+      <View style={styles.container}>
 
         {page === 1 && <Step1 { ...this.props } goToNext={ this.nextPage } />}
         {page === 2 && (
@@ -43,7 +48,6 @@ class LoginView extends React.Component {
           />
         )}
       
-        
       </View>
     )
   }
@@ -51,4 +55,3 @@ class LoginView extends React.Component {
 
 export default LoginView
 
-// export default compose(RegisterContainer)(RegisterView);
