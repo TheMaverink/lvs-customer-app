@@ -1,6 +1,6 @@
 import React from 'react';
 import { StyleSheet, Text, View, ImageBackground } from 'react-native';
-import HeaderText from 'components/HeaderText';
+
 import ConfirmedBookingItem from './components/ConfirmedBookingItem'
 
 const styles = StyleSheet.create({
@@ -20,7 +20,7 @@ const styles = StyleSheet.create({
 const ConfirmationView = () => {
   return (
     <View style={styles.container}>
-      <HeaderText>Booking Confirmed</HeaderText>
+    
 
       <View style={styles.bookingContainer}>
 

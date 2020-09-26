@@ -12,7 +12,7 @@ const BaseButton = (props)=>{
       marginVertical:5,
       alignSelf:'center',
       justifyContent:'center',
-      height:45,
+      height:48,
       borderRadius:15,
       width:deviceWidth * 0.9 ,
       borderWidth:2,

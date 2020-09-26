@@ -1,44 +1,39 @@
 import React, { useEffect, useRef } from 'react';
-import { StyleSheet, Animated, Text, View, FlatList } from 'react-native';
-import HeaderText from 'components/HeaderText';
+import { StyleSheet, Animated, Text, View, FlatList,StatusBar } from 'react-native';
 import WashCard from 'components/WashCard';
 import WashesContainer from 'containers/Washes';
 import { compose, lifecycle } from 'recompose';
 import { useFocusEffect } from '@react-navigation/native';
-
+import HeaderMessage from "../../components/HeaderMessage"
 const styles = StyleSheet.create({
   background: {
+    flex:1,
     backgroundColor: '#1A1B1C',
-   
-    // alignSelf:'end',
-    // alignItems:'flex-end',
-    flex: 1,
+ 
+  
   },
 });
 
 const SelectWashView = (props) => {
   const { washesRequest, washes, selectWashRequest } = props;
-console.log(props)
+
   const scrollX = useRef(new Animated.Value(0)).current;
 
   useEffect(() => {
     washesRequest();
   }, []);
 
-  // const renderItem = (wash) => {
-  //   return (
-  //     <WashCard title={wash.item.title} description={wash.item.description} />
-  //   );
-  // };
 
   return (
     <View style={styles.background}>
-      <HeaderText>Select yooudrr prefemmrum wash.</HeaderText>
+      <StatusBar barStyle="light-content" backgroundColor="black" />
+      <HeaderMessage title={"Select your premium car wash."}/>
+    
 
-      <FlatList
+      <Animated.FlatList
         keyExtractor={(item) => item.title}
         data={washes}
-        // renderItem={renderItem}
+       
         renderItem={({ item, index }) => (
           <WashCard
             title={item.title}
@@ -46,16 +41,18 @@ console.log(props)
             index={index}
             scrollX={scrollX}
             selectWashRequest={selectWashRequest}
+            
           />
         
           
         )}
+        pagingEnabled
         showsHorizontalScrollIndicator={false}
         horizontal
-        // onScroll={Animated.event(
-        //   [{ nativeEvent: { contentOffset: { x: scrollX } } }],
-        //   { useNativeDriver: true }
-        // )}
+        onScroll={Animated.event(
+          [{ nativeEvent: { contentOffset: { x: scrollX } } }],
+          { useNativeDriver: true }
+        )}
         scrollEventThrottle={16}
       />
     </View>

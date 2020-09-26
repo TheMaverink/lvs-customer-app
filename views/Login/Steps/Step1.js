@@ -11,7 +11,7 @@ import { Field, formValueSelector, reduxForm } from 'redux-form';
 
 import AuthQuestion from 'components/AuthQuestion';
 import { compose } from 'recompose';
-import CheckCircle from 'assets/Icons/check-circle.png';
+import CheckCircle from 'assets/icons/check-circle.png';
 
 import LoginContainer from 'containers/Login';
 import TextInputField from '../../../components/TextInputField';

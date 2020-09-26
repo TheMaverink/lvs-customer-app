@@ -53,15 +53,4 @@ class App extends React.Component {
 
 export default App;
 
-// export default function App() {
-//   return (
-//     <PortalProvider>
-//       <Provider store={store}>
-//         <AppView>
-//           <AppNavigator />
-//         </AppView>
-//         <WhitePortal name="portal" />
-//       </Provider>
-//     </PortalProvider>
-//   );
-// }
+
