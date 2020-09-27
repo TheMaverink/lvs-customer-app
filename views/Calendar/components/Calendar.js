@@ -1,13 +1,24 @@
 import React, { useState } from 'react';
-import { StyleSheet, Text, View, TouchableOpacity } from 'react-native';
+import {
+  StyleSheet,
+  Text,
+  View,
+  TouchableOpacity,
+  Dimensions,
+  Image,
+} from 'react-native';
 import { Calendar } from 'react-native-calendars';
 import { change } from 'redux-form';
+
+import SwitchCalendar from "./SwitchCalendar"
+
+const { width, height } = Dimensions.get('window');
 
 const styles = StyleSheet.create({
   calendar: {
     borderWidth: 1,
     borderRadius: 25,
-    height: '80%',
+    height: '100%',
   },
 });
 
@@ -16,7 +27,6 @@ class CalendarWrapper extends React.Component {
     super(props);
     this.state = {
       todayDay: new Date().toISOString().substring(0, 10),
-      //maxDate -> Calculate 6 months ahead
     };
   }
 
@@ -27,12 +37,12 @@ class CalendarWrapper extends React.Component {
       selectDayRequest,
       selectDayHour,
       flipAction,
-      change
+      change,
     } = this.props;
 
-    const today = this.state.todayDay
-console.log(selectedDay)
-console.log(today)
+    const today = this.state.todayDay;
+    console.log(selectedDay);
+    console.log(today);
     return (
       <View>
         <Calendar
@@ -46,7 +56,7 @@ console.log(today)
             // console.log('selected dayyy', day);
 
             selectDayRequest(day);
-            change('selectedDay', day)
+            change('selectedDay', day);
           }}
           monthFormat={'MMMM'}
           onMonthChange={(month) => {
@@ -65,16 +75,15 @@ console.log(today)
               dotColor: 'rgba(255, 213, 0, 1)',
               activeOpacity: 0,
             },
-            [selectedDay]:{
-              selected: true, 
+            [selectedDay]: {
+              selected: true,
               marked: true,
               selectedColor: 'rgba(255, 213, 0, 1)',
               // activeOpacity: 0,
-              
-            }
+            },
           }}
           theme={{
-            calendarBackground: 'black',
+            calendarBackground: '#121213',
             textSectionTitleColor: 'white',
             selectedDayTextColor: 'black',
             todayTextColor: 'white',
@@ -95,9 +104,7 @@ console.log(today)
           }}
         />
 
-        <TouchableOpacity onPress={() => flipAction()}>
-          <Text style={{ color: 'white' }}>Click here to choose time</Text>
-        </TouchableOpacity>
+        <SwitchCalendar action ={flipAction} title="Click here to chose time."/>
       </View>
     );
   }

@@ -1,50 +1,54 @@
 import React, { useState }  from 'react';
 import { connect } from 'react-redux';
-import { View, Text, StyleSheet, TextInput } from 'react-native';
+import { View, Text, StyleSheet, TextInput,Dimensions } from 'react-native';
 import { Field, reduxForm, formValueSelector } from 'redux-form';
 import { compose } from 'recompose';
+import TextInputField from '../../../components/TextInputField'
+
+const { width, height } = Dimensions.get('window');
 
 const styles = StyleSheet.create({
-  container: {},
+  container: {
+    marginTop:height * 0.12,
+    paddingHorizontal: '5%',
+    height: height * 0.12
+  },
   formTitle: {
     color: 'white',
+    opacity:.6,
     textTransform: 'uppercase',
+    fontSize:12,
+    fontFamily:'DMSans-Regular',
+    marginBottom:20
+   
   },
+  formField:{
+    color: 'white',
+    opacity:.6,
+    textTransform: 'uppercase',
+    fontSize:12,
+    fontFamily:'DMSans-Regular',
+    
+  }
 });
 
-const TextInputField = ({ placeholder, input: { onChange, ...restInput } }) => {
-  return (
-    <View>
-      <TextInput
-        style={{
-          borderBottomWidth: 1,
-          borderBottomColor: '#ffffff',
-          color: '#ffffff',
-        }}
-        onChangeText={onChange}
-        placeholderTextColor="#ffffff"
-        selectionColor="#ffffff"
-        placeholder={placeholder}
-      ></TextInput>
-    </View>
-  );
-  {
-  }
-};
+
 
 let VehicleForm = (props) => {
  
   console.log(props);
   return (
-    <View>
+    <View style={styles.container}>
       <Text style={styles.formTitle}>Add booking information</Text>
    
       <Field
+     
         name="vehicleMake"
         component={TextInputField}
         props={{ placeholder: 'Vehicle Make' }}
       />
       <Field
+     
         name="vehicleReg"
         component={TextInputField}
         props={{ placeholder: 'Vehicle Reg' }}

@@ -8,10 +8,11 @@ import {
   Button,
   TouchableOpacity,
   Animated,
+  Dimensions,
 } from 'react-native';
 import CardFlip from 'react-native-card-flip';
 import { compose } from 'recompose';
-import Header from './components/Header';
+
 import Calendar from './components/Calendar';
 import CalendarContainer from 'containers/Calendar';
 // import HourPicker from './components/HourPicker';
@@ -19,16 +20,52 @@ import HourPicker from './components/HourPicker';
 import VehicleForm from './components/VehicleForm';
 import BaseButton from 'components/BaseButton';
 
+const { width, height } = Dimensions.get('window');
+
 const styles = StyleSheet.create({
   container: {
-    backgroundColor: '#121314',
     flex: 1,
-    justifyContent: 'center',
+    backgroundColor: '#1A1B1C',
+    width: width,
   },
-  cardContainer: {
-    flex: 1,
-    // width: 320,
-    // height: 470,
+  headerContainer: {
+    height: height * 0.1,
+    justifyContent: 'center',
+    marginBottom: height * 0.06,
+  },
+  headerService: {
+    fontSize: 40,
+    color: '#FFFFFF',
+    lineHeight: 48,
+    fontFamily: 'DMSerifDisplay-Regular',
+    paddingTop: '7%',
+    paddingHorizontal: '7%',
+    color: 'white',
+  },
+  headerMessage: {
+    opacity: 0.8,
+    fontSize: 16,
+    color: 'white',
+    letterSpacing: -0.01,
+    lineHeight: 24,
+    paddingHorizontal: '7%',
+    // paddingTop: '3%',
+    fontFamily: 'DMSans-Regular',
+  },
+  calendarContainer: {
+    height: height * 0.35,
+    width: width * 0.95,
+    marginHorizontal: width * 0.025,
+    // overflow:'hidden'
+  },
+  buttonContainer: {
+    position: 'absolute',
+    
+    left: 0,
+    right: 0,
+    bottom: height * 0.03,
+    justifyContent: 'center',
+    alignItems: 'center',
   },
 });
 
@@ -38,10 +75,6 @@ class CalendarView extends React.Component {
     this.state = {};
   }
 
-  //   areAllFieldsFilled(){
-  // let calendarFormValues  = this.props.calendarFormValues
-  //   }
-
   render() {
     const {
       selectedWash,
@@ -49,13 +82,16 @@ class CalendarView extends React.Component {
       calendarFormValues,
       handleSubmit,
     } = this.props;
-    // console.log(Object.values(calendarFormValues))
 
     return (
       <View style={styles.container}>
-        <Header style={{ flex: 1 }} selectedWash={selectedWash} />
+        <View style={styles.headerContainer}>
+          <Text style={styles.headerService}>{selectedWash}</Text>
+          <Text style={styles.headerMessage}>Select a booking date.</Text>
+        </View>
+
         <CardFlip
-          style={styles.cardContainer}
+          style={styles.calendarContainer}
           ref={(card) => (this.card = card)}
         >
           <Calendar {...this.props} flipAction={() => this.card.flip()} />
@@ -66,16 +102,19 @@ class CalendarView extends React.Component {
             flipAction={() => this.card.flip()}
           />
         </CardFlip>
+
         <VehicleForm />
-        <BaseButton
-          title="Book"
-          bgColor="grey"
-          textColor="black"
-          action={async (values) => {
-            change('service', selectedWash);
-            handleSubmit(values);
-          }}
-        />
+        <View style={styles.buttonContainer}>
+          <BaseButton
+            title="Book"
+            bgColor="grey"
+            textColor="black"
+            action={async (values) => {
+              change('service', selectedWash);
+              handleSubmit(values);
+            }}
+          />
+        </View>
       </View>
     );
   }
