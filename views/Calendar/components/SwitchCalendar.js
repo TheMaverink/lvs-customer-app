@@ -16,11 +16,11 @@ const styles = StyleSheet.create({
   switchCalendar: {
     marginHorizontal: width * 0.025,
     // paddingHorizontal: '7%',
-    // paddingTop: '3%',
-
+    paddingTop: '3%',
+// position:'absolute',
     flexDirection: 'row',
     justifyContent: 'space-between',
-    transform: [{ translateY: '15%' }],
+    // transform: [{ translateY: '15%' }], -> dont work on android
   },
   switchCalendarText: {
     opacity: 0.8,

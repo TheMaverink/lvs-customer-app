@@ -30,7 +30,7 @@ const SelectWashView = (props) => {
 
   return (
     <View style={styles.background}>
-      <StatusBar barStyle="light-content" backgroundColor="black" />
+      <StatusBar barStyle="light-content" backgroundColor="#1A1B1C"/>
       <HeaderMessage title={'Select your premium car wash.'} />
 
       <Animated.FlatList

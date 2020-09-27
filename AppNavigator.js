@@ -110,7 +110,7 @@ export function LoginStack() {
 
 export function BookingsStack() {
   return (
-    <Stack.Navigator initialRouteName="Bookings">
+    <Stack.Navigator  headerMode="none"  initialRouteName="Bookings">
       <Tab.Screen name="Booking Confirmation" component={ConfirmationView} />
     </Stack.Navigator>
   );
@@ -118,7 +118,7 @@ export function BookingsStack() {
 
 export function MainTab() {
   return (
-    <Tab.Navigator initialRouteName="Car Spa" tabBarVisible={false}>
+    <Tab.Navigator initialRouteName="Bookings" >
       <Tab.Screen name="Car Spa" component={CarSpaStack} />
       <Tab.Screen name="Bookings" component={BookingsStack} />
     </Tab.Navigator>

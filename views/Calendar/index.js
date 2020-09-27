@@ -53,7 +53,7 @@ const styles = StyleSheet.create({
     fontFamily: 'DMSans-Regular',
   },
   calendarContainer: {
-    height: height * 0.35,
+    height: height * 0.34,
     width: width * 0.95,
     marginHorizontal: width * 0.025,
     // overflow:'hidden'
@@ -63,7 +63,7 @@ const styles = StyleSheet.create({
     
     left: 0,
     right: 0,
-    bottom: height * 0.03,
+    bottom: height * 0.01,
     justifyContent: 'center',
     alignItems: 'center',
   },

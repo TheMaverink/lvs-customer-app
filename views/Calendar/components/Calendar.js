@@ -19,6 +19,7 @@ const styles = StyleSheet.create({
     borderWidth: 1,
     borderRadius: 25,
     height: '100%',
+  
   },
 });
 
@@ -59,9 +60,7 @@ class CalendarWrapper extends React.Component {
             change('selectedDay', day);
           }}
           monthFormat={'MMMM'}
-          onMonthChange={(month) => {
-            console.log('month changed', month);
-          }}
+        
           hideExtraDays={true}
           firstDay={1}
           onPressArrowLeft={(subtractMonth) => subtractMonth()}
@@ -98,9 +97,9 @@ class CalendarWrapper extends React.Component {
             textDayFontWeight: '300',
             textMonthFontWeight: 'bold',
             textDayHeaderFontWeight: '300',
-            textDayFontSize: 16,
+            textDayFontSize: 14,
             textMonthFontSize: 16,
-            textDayHeaderFontSize: 16,
+            textDayHeaderFontSize: 14,
           }}
         />
 

@@ -77,7 +77,7 @@ const styles = StyleSheet.create({
 const AuthView = ({ navigation }) => {
   return (
     <View style={styles.container}>
-      <StatusBar barStyle="light-content" backgroundColor="black" />
+      <StatusBar barStyle="light-content" backgroundColor="#1A1B1C" />
 
       <View style={styles.logoContainer}>
         <Image resizeMode="contain" source={img} style={styles.logo}></Image>
