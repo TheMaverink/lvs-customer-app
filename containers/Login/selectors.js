@@ -16,3 +16,4 @@ export const selectPhoneNumberToVerify = createSelector(
   (state) => state[REDUCER_NAME],
   _get('phoneNumberToVerify'),
 )
+

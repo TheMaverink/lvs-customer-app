@@ -4,7 +4,7 @@ import { AsyncStorage } from 'react-native';
 // axios.defaults.baseURL = 'http://localhost:8080/api';
 // axios.defaults.baseURL = 'http://lvsapi-env.eba-wfujhaxe.eu-west-2.elasticbeanstalk.com/api';
 
-export const  apiGetWashes = async () => {
+export const  apiGetServices = async () => {
 
   const token = await AsyncStorage.getItem('token')
   const config = {
@@ -12,7 +12,7 @@ export const  apiGetWashes = async () => {
   }
  
   try {
-    return axios.get(`/services` );
+    return axios.get(`/services/` );
   } catch (error) {
     return error;
   }

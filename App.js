@@ -1,10 +1,11 @@
 import { PortalProvider, WhitePortal } from 'react-native-portal';
-
+import axios from 'axios'
 import React from 'react';
 import { Provider } from 'react-redux';
-import { StyleSheet, Text, View, StatusBar } from 'react-native';
 import { enableScreens } from 'react-native-screens';
 import * as Font from 'expo-font';
+import { API_URL } from 'consts'
+
 
 enableScreens();
 
@@ -35,6 +36,7 @@ class App extends React.Component {
   }
 
   render() {
+   
     if (!this.state.fontsLoaded) return null;
 
     return (

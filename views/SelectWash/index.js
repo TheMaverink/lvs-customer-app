@@ -30,21 +30,25 @@ const SelectWashView = (props) => {
 
   return (
     <View style={styles.background}>
-      <StatusBar barStyle="light-content" backgroundColor="#1A1B1C"/>
+      <StatusBar barStyle="light-content" backgroundColor="#1A1B1C" />
       <HeaderMessage title={'Select your premium car wash.'} />
 
       <Animated.FlatList
         keyExtractor={(item) => item.title}
         data={washes}
-        renderItem={({ item, index }) => (
-          <WashCard
-            title={item.title}
-            description={item.description}
-            index={index}
-            scrollX={scrollX}
-            selectWashRequest={selectWashRequest}
-          />
-        )}
+        renderItem={({ item, index }) => {
+       
+          return (
+            <WashCard
+              title={item.title}
+              description={item.description}
+              index={index}
+              scrollX={scrollX}
+              selectWashRequest={selectWashRequest}
+              subServices={item.subServices}
+            />
+          );
+        }}
         pagingEnabled
         showsHorizontalScrollIndicator={false}
         horizontal

@@ -4,6 +4,7 @@ import loginSaga from 'containers/Login/sagas';
 import updateCustomerSaga from 'containers/UpdateCustomer/sagas';
 import washesSaga from 'containers/Washes/sagas'
 import calendarSaga from 'containers/Calendar/sagas'
+import servicesSaga from "containers/Services/sagas"
 
 export default function* rootSaga() {
   yield all([
@@ -11,6 +12,7 @@ export default function* rootSaga() {
     fork(loginSaga),
     fork(updateCustomerSaga),
     fork(washesSaga),
-    fork(calendarSaga)
+    fork(calendarSaga),
+    fork(servicesSaga)
   ]);
 }

@@ -1,6 +1,8 @@
 import axios from 'axios';
 
-axios.defaults.baseURL = 'http://localhost:8080/api';
+
+// axios.defaults.baseURL = 'http://localhost:8080/api';
+// axios.defaults.baseURL = 'http://lvsapi-env.eba-wfujhaxe.eu-west-2.elasticbeanstalk.com/api';
 
 export const apiSendSms = (phoneNumber) => {
   try {

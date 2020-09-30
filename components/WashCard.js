@@ -9,6 +9,7 @@ import {
   Text,
   Image,
 } from 'react-native';
+import * as RootNavigation from '../RootNavigation';
 import { LinearGradient } from 'expo-linear-gradient';
 import BaseButton from 'components/BaseButton';
 
@@ -21,7 +22,6 @@ const deviceWidth = Dimensions.get('window').width;
 const styles = StyleSheet.create({
   container: {
     alignSelf: 'center',
-
     borderRadius: 30,
   },
   gradientContainer: {
@@ -96,7 +96,9 @@ const { width, height } = Dimensions.get('window');
 const adaptedWidth = width * 0.7;
 
 const WashCard = (props) => {
-  const { title, description, index, scrollX, selectWashRequest } = props;
+
+  const { title, description, index, scrollX, selectWashRequest,subServices } = props;
+
 
   const inputRange = [(index - 1) * width, index * width, (index + 1) * width];
 
@@ -158,21 +160,15 @@ const WashCard = (props) => {
         ></Animated.Image>
 
         <View style={styles.titleContainer}>
-          <Animated.Text
-            style={[
-              styles.title,
-              
-            ]}
-          >
-            {title}
-          </Animated.Text>
+          <Animated.Text style={[styles.title]}>{title}</Animated.Text>
           <Animated.Text style={styles.description}>
             {description}
           </Animated.Text>
           <View style={styles.iconContainer}>
             <TouchableHighlight
-              onPress={() => console.log('go to description')}
+              onPress={() => RootNavigation.navigate('Wash Description' , {subServices:subServices})}
             >
+         
               <Image style={styles.icon} source={InfoIcon}></Image>
             </TouchableHighlight>
           </View>

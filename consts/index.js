@@ -1,3 +1,4 @@
+import getEnvVars from '../config/environment'
 export const SPLASH_TIMEOUT = 1500
 
 export const FONTS = {
@@ -50,3 +51,4 @@ export const COLORS = {
 }
 
 
+export const { API_URL } = getEnvVars()

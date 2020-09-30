@@ -2,7 +2,10 @@ import React from 'react';
 import { NavigationContainer } from '@react-navigation/native';
 import { TouchableHighlight, Image } from 'react-native';
 
-import { createStackNavigator } from '@react-navigation/stack';
+import {
+  createStackNavigator,
+  TransitionPresets,
+} from '@react-navigation/stack';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 
 // import { SCREENS, COLORS } from './consts'
@@ -37,13 +40,20 @@ const Tab = createBottomTabNavigator();
 
 const Stack = createStackNavigator();
 
+
+
 export function CarSpaStack() {
   return (
     <Stack.Navigator headerMode="none" initialRouteName="Select Wash">
       <Stack.Screen name="Select Wash" component={SelectWashView} />
       <Stack.Screen name="Calendar" component={CalendarView} />
-
-      <Stack.Screen name="Wash Description" component={WashDescriptionView} />
+      <Stack.Screen
+        options={{
+          ...TransitionPresets.ModalSlideFromBottomIOS,
+        }}
+        name="Wash Description"
+        component={WashDescriptionView}
+      />
     </Stack.Navigator>
   );
 }
@@ -82,8 +92,6 @@ export function RegisterStack() {
   );
 }
 
-
-
 export function LoginStack() {
   return (
     <Stack.Navigator
@@ -110,7 +118,7 @@ export function LoginStack() {
 
 export function BookingsStack() {
   return (
-    <Stack.Navigator  headerMode="none"  initialRouteName="Bookings">
+    <Stack.Navigator headerMode="none" initialRouteName="Bookings">
       <Tab.Screen name="Booking Confirmation" component={ConfirmationView} />
     </Stack.Navigator>
   );
@@ -118,7 +126,7 @@ export function BookingsStack() {
 
 export function MainTab() {
   return (
-    <Tab.Navigator initialRouteName="Bookings" >
+    <Tab.Navigator initialRouteName="Car Spa">
       <Tab.Screen name="Car Spa" component={CarSpaStack} />
       <Tab.Screen name="Bookings" component={BookingsStack} />
     </Tab.Navigator>
