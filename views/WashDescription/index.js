@@ -124,7 +124,7 @@ const styles = StyleSheet.create({
 });
 
 const WashDescription = (props) => {
-  const { subServices } = props.route.params;
+  const { subServices,price,title,description } = props.route.params;
 
   return (
     <View style={styles.container}>
@@ -143,8 +143,8 @@ const WashDescription = (props) => {
         )}
         <StatusBar barStyle="dark-content" backgroundColor="white" />
         <View style={styles.titleContainer}>
-          <Text style={styles.serviceTitle}>Signature Wash</Text>
-          <Text style={styles.serviceDescription}>Interior & Exterior</Text>
+          <Text style={styles.serviceTitle}>{title}</Text>
+          <Text style={styles.serviceDescription}>{description}</Text>
         </View>
         <View style={styles.listContainer}>
           <View style={styles.cornerLeftContainer}>
@@ -157,7 +157,7 @@ const WashDescription = (props) => {
             <Image style={styles.image} source={CarImg}></Image>
           </View>
           <View style={styles.contentContainer}>
-            <Text style={styles.price}>£100</Text>
+            <Text style={styles.price}>£{price}</Text>
 
             <FlatList
               keyExtractor={(item) => item.title}

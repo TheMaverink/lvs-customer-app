@@ -60,7 +60,7 @@ const styles = StyleSheet.create({
   },
   buttonContainer: {
     position: 'absolute',
-    
+
     left: 0,
     right: 0,
     bottom: height * 0.01,
@@ -74,6 +74,12 @@ class CalendarView extends React.Component {
     super(props);
     this.state = {};
   }
+  
+componentDidMount(){
+  this.props.change('service', this.props.selectedWash);
+  console.log('didmount')
+  console.log(this.props)
+}
 
   render() {
     const {
@@ -110,9 +116,11 @@ class CalendarView extends React.Component {
             bgColor="grey"
             textColor="black"
             action={async (values) => {
-              change('service', selectedWash);
-              handleSubmit(values);
+              // await change('service', selectedWash);
+              await handleSubmit(values);
             }}
+
+          
           />
         </View>
       </View>

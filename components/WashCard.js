@@ -96,9 +96,16 @@ const { width, height } = Dimensions.get('window');
 const adaptedWidth = width * 0.7;
 
 const WashCard = (props) => {
-
-  const { title, description, index, scrollX, selectWashRequest,subServices } = props;
-
+  const {
+    title,
+    description,
+    index,
+    scrollX,
+    selectWashRequest,
+    subServices,
+    duration,
+    price,
+  } = props;
 
   const inputRange = [(index - 1) * width, index * width, (index + 1) * width];
 
@@ -166,9 +173,15 @@ const WashCard = (props) => {
           </Animated.Text>
           <View style={styles.iconContainer}>
             <TouchableHighlight
-              onPress={() => RootNavigation.navigate('Wash Description' , {subServices:subServices})}
+              onPress={() =>
+                RootNavigation.navigate('Wash Description', {
+                  price: price,
+                  title: title,
+                  description: description,
+                  subServices: subServices,
+                })
+              }
             >
-         
               <Image style={styles.icon} source={InfoIcon}></Image>
             </TouchableHighlight>
           </View>

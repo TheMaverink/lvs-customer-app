@@ -6,18 +6,14 @@ import { AsyncStorage } from 'react-native';
 
 // eslint-disable-next-line import/prefer-default-export
 export const apiBooking = async (bookingData) => {
+  console.log('from api');
+  console.log(bookingData);
   // const token = await loadToken()
   // setAuthToken(token)
 
   // const config = {
   //   headers: { Authorization: `Bearer ${ token }` },
   // }
-  axios({
-    method: 'post',
-    url: '/bookings/new',
-    data: {
-      bookingData,
-      // token: await token,
-    },
-  });
+
+  return axios.post(`/bookings/new`, bookingData);
 };

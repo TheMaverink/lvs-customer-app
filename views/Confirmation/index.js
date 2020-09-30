@@ -13,6 +13,8 @@ import ConfirmedBookingItem from './components/ConfirmedBookingItem';
 import carImg from '../../assets/images/cars/car1.png';
 import BaseButton from '../../components/BaseButton';
 import * as RootNavigation from '../../RootNavigation';
+import minutesConverter from 'utils/minutesConverter'
+import moment from 'moment'
 
 const { width, height } = Dimensions.get('window');
 
@@ -80,7 +82,14 @@ const styles = StyleSheet.create({
     alignItems: 'center',
   },
 });
-const ConfirmationView = () => {
+const ConfirmationView = (props) => {
+
+
+  const { service, date, hour,duration, vehicleMake,vehicleReg} =props.route.params.bookingData.booking
+
+
+  const formattedDuration = minutesConverter(duration)
+  const formattedDay = moment(date).format('dddd Do MMMM').toString()
   return (
     <View style={styles.container}>
       <StatusBar barStyle="light-content" backgroundColor="#1A1B1C" />
@@ -90,21 +99,21 @@ const ConfirmationView = () => {
 
       <View style={styles.bookingContainer}>
         <View style={styles.washTitleContainer}>
-          <Text style={styles.washTitle}>Signature Wash</Text>
-          <Text style={styles.washSubtitle}>Interior & Exterior</Text>
+          <Text style={styles.washTitle}>{service}</Text>
+        
         </View>
 
         <ConfirmedBookingItem
-          firstText="Monday 15th February"
+          firstText={formattedDay}
           secText="LVS Car Spa"
         />
 
         <ConfirmedBookingItem
-          firstText="2:30pm"
-          secText="Duration 1 Hour 15 Mins"
+          firstText={hour}
+          secText={'Duration ' + formattedDuration}
         />
 
-        <ConfirmedBookingItem firstText="G Wagon 2020" secText="L019 GHB" />
+        <ConfirmedBookingItem firstText={vehicleMake} secText={vehicleReg.toUpperCase()}/>
 
         <View style={styles.imageContainer}>
           <Image

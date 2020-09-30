@@ -116,19 +116,13 @@ export function LoginStack() {
   );
 }
 
-export function BookingsStack() {
-  return (
-    <Stack.Navigator headerMode="none" initialRouteName="Bookings">
-      <Tab.Screen name="Booking Confirmation" component={ConfirmationView} />
-    </Stack.Navigator>
-  );
-}
+
 
 export function MainTab() {
   return (
     <Tab.Navigator initialRouteName="Car Spa">
       <Tab.Screen name="Car Spa" component={CarSpaStack} />
-      <Tab.Screen name="Bookings" component={BookingsStack} />
+      <Tab.Screen name="Bookings" component={ConfirmationView} />
     </Tab.Navigator>
   );
 }

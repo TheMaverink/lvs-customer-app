@@ -1,9 +1,7 @@
 import { takeLatest, call, put } from 'redux-saga/effects';
 import { AsyncStorage } from 'react-native';
 import * as RootNavigation from '../../RootNavigation';
-import {apiBooking} from './api'
-
-
+import { apiBooking } from './api';
 
 import {
   SELECT_DAY_REQUEST,
@@ -13,8 +11,8 @@ import {
   selectDaySuccess,
   selectHourFailure,
   selectHourSuccess,
- bookingFailure,
- bookingSuccess,
+  bookingFailure,
+  bookingSuccess,
 } from './actions';
 
 function* selectDayWorker(action) {
@@ -29,24 +27,24 @@ function* selectDayWorker(action) {
 }
 
 function* selectHourWorker(action) {
-  console.log(action.payload)
+  console.log(action.payload);
   try {
     yield put(selectHourSuccess(action.payload));
-
   } catch (error) {
     yield put(selectHourFailure(error));
   }
 }
 
 function* bookingWorker(action) {
- 
-  try {
 
+  try {
     const apiResult = yield call(apiBooking, action.payload);
     yield put(bookingSuccess(apiResult));
-    RootNavigation.navigate('Bookings', { screen: 'Booking Confirmation' });
-
+    // console.log('from saga')
+    // console.log(apiResult.data);
+    RootNavigation.navigate('Bookings',{bookingData:apiResult.data } );
   } catch (error) {
+    console.log(error);
     yield put(bookingFailure(error));
   }
 }
