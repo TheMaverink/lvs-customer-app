@@ -22,7 +22,7 @@ const getEnvVars = (env = Constants.manifest.releaseChannel) => {
     axios.defaults.baseURL = ENV.dev.API_URL
     return ENV.dev
   }else{
-    xios.defaults.baseURL = ENV.production.API_URL
+    axios.defaults.baseURL = ENV.production.API_URL
     return ENV.production
     // throw new Error(`Production env vars is not configured yet.
     // Please, set it in config/environment/index.js file`);

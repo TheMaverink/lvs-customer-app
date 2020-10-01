@@ -85,6 +85,8 @@ const styles = StyleSheet.create({
 const ConfirmationView = (props) => {
 
 
+
+
   const { service, date, hour,duration, vehicleMake,vehicleReg} =props.route.params.bookingData.booking
 
 

@@ -32,6 +32,8 @@ const stackNavigationConfig = {
   screenOptions: {
     headerTitleStyle: {
       fontWeight: 'bold',
+      headerShown: false
+  
     },
   },
 };
@@ -40,11 +42,18 @@ const Tab = createBottomTabNavigator();
 
 const Stack = createStackNavigator();
 
-
-
 export function CarSpaStack() {
   return (
-    <Stack.Navigator headerMode="none" initialRouteName="Select Wash">
+    // <Stack.Navigator headerMode="none" initialRouteName="Select Wash">
+    <Stack.Navigator
+    screenOptions={{
+      headerTintColor: 'white',
+      headerStyle: { backgroundColor: '#1A1B1C' },
+
+      headerBackTitleVisible:false
+    }}
+      initialRouteName="Select Wash"
+    >
       <Stack.Screen name="Select Wash" component={SelectWashView} />
       <Stack.Screen name="Calendar" component={CalendarView} />
       <Stack.Screen
@@ -116,14 +125,40 @@ export function LoginStack() {
   );
 }
 
-
-
 export function MainTab() {
   return (
-    <Tab.Navigator initialRouteName="Car Spa">
-      <Tab.Screen name="Car Spa" component={CarSpaStack} />
-      <Tab.Screen name="Bookings" component={ConfirmationView} />
-    </Tab.Navigator>
+    <Tab.Navigator initialRouteName="Car Spa" tabBarOptions={{
+      style:{
+        backgroundColor:'#121314',
+        
+      },
+      showLabel:false
+    }}
+    screenOptions={({ route }) => ({
+      tabBarIcon: ({ focused, color, size }) => {
+        if (route.name === 'Car Spa') {
+          return (
+            <Image 
+            
+            source={require('./assets/icons/carspa.png')}
+            style={focused?{opacity:1}:{opacity:0.4}}
+           />
+          );
+        } else if (route.name === 'Bookings') {
+          return (
+            <Image 
+             source={require('./assets/icons/booking.png')}
+             style={focused?{opacity:1}:{opacity:0.4}}
+
+            />
+          );
+        }
+      },
+    })}
+  >
+    <Tab.Screen name="Car Spa" component={CarSpaStack}  />
+    <Tab.Screen name="Bookings" component={ConfirmationView} />
+  </Tab.Navigator>
   );
 }
 
@@ -137,7 +172,7 @@ class AppNavigator extends React.Component {
         onNavigationStateChange={onNavChange}
         screenOptions={{ stackNavigationConfig }}
       >
-        <Stack.Navigator initialRouteName="Select Wash" headerMode="none">
+        <Stack.Navigator initialRouteName="Auth"  headerMode="none">
           <Stack.Screen name="Splash" component={SplashView} />
           <Stack.Screen name="Auth" component={AuthView} />
           <Stack.Screen name="Login" component={LoginStack} />
