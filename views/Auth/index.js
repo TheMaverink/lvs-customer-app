@@ -8,7 +8,7 @@ import {
   Dimensions,
 } from 'react-native';
 import BaseButton from 'components/BaseButton';
-import backgroundCar from '../../assets/images/car-bckgd.png';
+import backgroundCar from '../../assets/images/initial_screen_bckgd3.png';
 
 import { WhitePortal } from 'react-native-portal';
 import { COLORS } from 'consts/';
@@ -20,57 +20,88 @@ const deviceWidth = Dimensions.get('window').width;
 const styles = StyleSheet.create({
   container: {
     backgroundColor: 'black',
-    justifyContent: 'space-around',
+    justifyContent: 'center',
     alignItems: 'center',
     width: deviceWidth,
     height: '100%',
   },
   logoContainer: {
     width: deviceWidth,
-    height: deviceHeight * 0.27,
-    transform: [{ translateY: deviceHeight * 0.1 }],
+    position: 'absolute',
+    top: deviceHeight * 0.08,
+    // height: deviceHeight * 0.27,
+    // transform: [{ translateY: deviceHeight * 0.1 }],
+    zIndex: 3, // works on ios
   },
   logo: {
-    height: '40%',
+    height: 65,
+
     width: undefined,
+
+    // elevation: 3, // works on android
   },
   logoText: {
     fontSize: 40,
     color: 'white',
     textAlign: 'center',
     marginTop: 10,
+    fontFamily: 'DMSerifDisplay-Regular',
+    zIndex: 3, // works on ios
+    // elevation: 3, // works on android
+  },
+  imageContainer: {
+    // flex: 0,
+    width: '100%',
+    // height: 'auto',
+    position: 'relative',
+    //   borderColor:'red',
+    // borderWidth:2,
+    marginTop: deviceHeight * 0.11,
+    justifyContent: 'center',
+    alignItems: 'center',
+    // borderColor: 'red',
+    // borderWidth: 5,
+  },
+  image: {
+    // height: deviceHeight * 0.5,
+     
+    // marginTop: deviceHeight * 0.18,
+    width: deviceWidth,
+    opacity: 0.65,
+    transform: [{ scale: 1 }],
+    zIndex: 0,
+    // borderColor: 'green',
+    // borderWidth: 2,
   },
   text: {
     color: 'white',
     width: '100%',
-    height: deviceHeight * 0.12,
     textAlign: 'center',
-    fontSize: 18,
+    fontSize: 16,
     lineHeight: 24,
     fontFamily: 'DMSans-Regular',
-    opacity: 0.9,
-
-    transform: [{ translateY: deviceHeight * -0.06 }],
+    opacity: 0.8,
+    position: 'absolute',
+    bottom: '18%',
   },
-  image: {
-    height: deviceHeight * 0.3,
-    width: deviceWidth,
-    opacity: 0.5,
-    transform: [{ scale: 1.1 }],
-  },
+ 
   buttonsContainer: {
     width: '100%',
-    height: deviceHeight * 0.13,
-    
+  
+    // height: deviceHeight * 0.13,
+
+    transform: [{ translateY: -deviceHeight * 0.05 }],
   },
   membersText: {
     color: 'white',
     width: '100%',
     fontFamily: 'DMSans-Bold',
     fontSize: 14,
-    padding: 30,
+    // padding: 5,
     textAlign: 'center',
-    height: deviceHeight * 0.13,
+    // height: deviceHeight * 0.12,
+    borderColor: 'red',
+    borderWidth: 1,
   },
 });
 
@@ -84,16 +115,20 @@ const AuthView = ({ navigation }) => {
         <Text style={styles.logoText}>Car Spa</Text>
       </View>
 
-      <Image
-        source={backgroundCar}
-        resizeMode={'cover'}
-        style={styles.image}
-      />
+      <View style={styles.imageContainer}>
+        <Image
+          source={backgroundCar}
+          resizeMode={'cover'}
+          style={styles.image}
+        />
 
-      <Text style={styles.text}>
-        Taking extraordinary to new heights.{'\n'}
-        Private member's car wash
-      </Text>
+        <Text style={styles.text}>
+          Taking extraordinary to new heights.{'\n'}
+          Private member's car wash
+        </Text>
+      </View>
+
+     
 
       <View style={styles.buttonsContainer}>
         <BaseButton

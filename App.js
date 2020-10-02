@@ -55,4 +55,19 @@ class App extends React.Component {
 
 export default App;
 
-
+// Issues:
+// replace bottom tab pngs
+// improve spacing on the booking information form
+// improve spacing on hours input component
+// Vehicle data input so display as capitals
+// export all assets to higher quality
+// turn booking page into a scrollable view
+// double check all fonts
+// verify button should go white (auth)
+// space in the bottom nav bar
+// select wash screen to match sketch
+// buttons look old
+// car pcture blurry
+// confirm border radius
+// space around button should be 16px
+// convert all icons to svgs
