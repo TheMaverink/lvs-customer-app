@@ -18,7 +18,7 @@ const styles = StyleSheet.create({
     color: 'white',
     fontSize: 24,
     fontFamily: 'DMSans-Regular',
-    width: '70%',
+    width: '100%',
     letterSpacing: -0.33,
     lineHeight: 32,
   },
