@@ -3,23 +3,23 @@ import { View, TextInput, StyleSheet } from 'react-native';
 
 const styles = ({
   inputText:{
-    borderBottomWidth: 1,
+    borderBottomWidth: 0.7,
     borderBottomColor: '#ffffff',
     color: '#ffffff',
-    paddingBottom:5,
-    fontSize:20,
+    paddingBottom:10,
+    fontSize:16,
     fontFamily: 'DMSans-Regular',
-    opacity:.8
+    // opacity:.6
   }
 })
 const TextInputField = ({ placeholder, input: { onChange, ...restInput } }) => {
   return (
-    <View>
+    <View style={{marginBottom:20}}>
       <TextInput
         style={styles.inputText}
         onChangeText={onChange}
         placeholderStyle={styles.placeholder}
-        placeholderTextColor="#ffffff"
+        placeholderTextColor="#A3A3A4"
         selectionColor="#ffffff"
         placeholder={placeholder}
       ></TextInput>

@@ -27,16 +27,30 @@ const styles = StyleSheet.create({
     width: deviceWidth,
     position: 'relative',
   },
-  field: {
-    position: 'absolute',
-    top: '40%',
-    left: '5%',
-    width: '85%',
+  fieldContainer: {
+    position:'absolute',
+    width: '90%',
+    top:'30%',
+    position: 'relative',
+    justifyContent: 'center',
+    alignSelf: 'center',
+      // transform: [{ translateY: deviceHeight * 0.3 }],
   },
+  field: {
+    // position: 'absolute',
+    // top: '40%',
+    // left: '5%',
+    // width: '85%',
+  },
+buttomContainer:{
+  // marginTop:20,
+  // marginBottom:10
+
+},
   button: {
-    position: 'absolute',
-    right: 5,
-    top: 5,
+    // position: 'absolute',
+    // right: 5,
+    // top: 5,
   },
 });
 
@@ -46,19 +60,20 @@ const Step2 = (props) => {
 
   return (
     <View style={styles.container}>
-      <AuthQuestion question="Please enter your 6 digit verification code." />
-      <View style={styles.field}>
+      <AuthQuestion question={"Please enter your 6 digit \nverification code."} />
+      <View style={styles.fieldContainer}>
         <Field
           name="verificationCode"
           component={TextInputField}
           props={{ placeholder: '6 digit verification...' }}
         />
 
-        <View style={{marginTop:30}}>
+        <View style={styles.buttomContainer}>
           <BaseButton
             title="Verify"
             bgColor="grey"
             textColor="black"
+            margin={ 10}
             action={handleSubmit((values) =>
               loginVerifyRequest(phoneNumberToVerify, values.verificationCode)
             )}

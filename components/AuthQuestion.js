@@ -5,7 +5,7 @@ const styles = StyleSheet.create({
   container: {
     width: '100%',
     paddingTop: 30,
-    paddingLeft: 20,
+    paddingHorizontal: 20,
   },
   question: {
     fontFamily: 'DMSans-Regular',
@@ -14,7 +14,7 @@ const styles = StyleSheet.create({
     lineHeight: 28,
     opacity: 0.8,
     color: '#FFFFFF',
-    width: '60%',
+    width: '100%',
   },
   notes: {
     fontFamily: 'DMSans-Regular',
@@ -23,6 +23,7 @@ const styles = StyleSheet.create({
     lineHeight: 24,
     opacity: 0.6,
     color: '#FFFFFF',
+    marginTop:10
   },
 });
 

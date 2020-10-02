@@ -6,10 +6,10 @@ const deviceWidth = Dimensions.get('window').width;
 
 const BaseButton = (props)=>{
 
- const {title,bgColor,outlineColor,textColor,action} = props
+ const {title,bgColor,outlineColor,textColor,action,margin} = props
   const styles = StyleSheet.create({
     button:{
-      marginVertical:4,
+      // marginVertical:4,
       alignSelf:'center',
       justifyContent:'center',
       height:48,
@@ -18,7 +18,8 @@ const BaseButton = (props)=>{
       borderWidth:1.3,
       borderColor:outlineColor,
       fontSize:16,
-      backgroundColor:bgColor
+      backgroundColor:bgColor,
+      margin:margin
 
     },
     text:{

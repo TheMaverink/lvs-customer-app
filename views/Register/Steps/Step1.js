@@ -28,6 +28,15 @@ const styles = StyleSheet.create({
     width: deviceWidth,
     position: 'relative',
   },
+  fieldContainer: {
+    position:'absolute',
+    width: '90%',
+    top:'30%',
+    position: 'relative',
+    justifyContent: 'center',
+    alignSelf: 'center',
+      // transform: [{ translateY: deviceHeight * 0.3 }],
+  },
   field: {
     position: 'absolute',
     top: '40%',
@@ -47,7 +56,7 @@ const Step1 = (props) => {
   return (
     <View style={styles.container}>
       <AuthQuestion question="Please enter your mobile number to continue." />
-      <View style={styles.field}>
+      <View style={styles.fieldContainer}>
         <Field
           name="phoneNumber"
           component={TextInputField}

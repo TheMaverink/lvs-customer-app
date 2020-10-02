@@ -29,11 +29,24 @@ const styles = StyleSheet.create({
     width: deviceWidth,
     position: 'relative',
   },
-  field: {
+  fieldContainer: {
     position: 'absolute',
-    top: '40%',
-    left: '5%',
-    width: '85%',
+    width: '90%',
+    top: '20%',
+    position: 'relative',
+    justifyContent: 'center',
+    alignSelf: 'center',
+    // transform: [{ translateY: deviceHeight * 0.3 }],
+  },
+  // field: {
+  //   position: 'absolute',
+  //   top: '40%',
+  //   left: '5%',
+  //   width: '85%',
+  // },
+  buttomContainer: {
+    // marginTop: 20,
+    // marginBottom: 10,
   },
   button: {
     position: 'absolute',
@@ -48,10 +61,10 @@ const Step3 = (props) => {
   return (
     <View style={styles.container}>
       <AuthQuestion
-        question="Your one step closer to becoming a private member?"
+        question={'You are one step closer to\n becoming a private member'}
         notes="We don’t do spam, promise."
       />
-      <View style={styles.field}>
+      <View style={styles.fieldContainer}>
         <Field
           name="name"
           component={TextInputField}
@@ -63,17 +76,18 @@ const Step3 = (props) => {
           props={{ placeholder: 'Email address...' }}
         />
 
-        <View style={{ marginTop: 30 }}>
+        <View style={styles.buttomContainer}>
           <BaseButton
             title="Proceed"
             bgColor="grey"
             textColor="black"
+            margin={10}
             action={handleSubmit((values) =>
               updateCustomerRequest(phoneNumber, values.name, values.email)
             )}
           />
 
-          <SwithAuth swithTo="login" />
+          <SwithAuth marginV={40} switchTo="login" />
         </View>
       </View>
     </View>

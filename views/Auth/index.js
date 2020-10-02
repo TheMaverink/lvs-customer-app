@@ -20,7 +20,7 @@ const deviceWidth = Dimensions.get('window').width;
 const styles = StyleSheet.create({
   container: {
     backgroundColor: 'black',
-    justifyContent: 'center',
+    justifyContent: 'space-around',
     alignItems: 'center',
     width: deviceWidth,
     height: '100%',
@@ -56,7 +56,7 @@ const styles = StyleSheet.create({
     position: 'relative',
     //   borderColor:'red',
     // borderWidth:2,
-    marginTop: deviceHeight * 0.11,
+    marginTop: deviceHeight * 0.1,
     justifyContent: 'center',
     alignItems: 'center',
     // borderColor: 'red',
@@ -64,7 +64,7 @@ const styles = StyleSheet.create({
   },
   image: {
     // height: deviceHeight * 0.5,
-     
+
     // marginTop: deviceHeight * 0.18,
     width: deviceWidth,
     opacity: 0.65,
@@ -82,12 +82,12 @@ const styles = StyleSheet.create({
     fontFamily: 'DMSans-Regular',
     opacity: 0.8,
     position: 'absolute',
-    bottom: '18%',
+    bottom: '15%',
   },
- 
+
   buttonsContainer: {
     width: '100%',
-  
+
     // height: deviceHeight * 0.13,
 
     transform: [{ translateY: -deviceHeight * 0.05 }],
@@ -99,9 +99,11 @@ const styles = StyleSheet.create({
     fontSize: 14,
     // padding: 5,
     textAlign: 'center',
+    marginTop: 20,
+    // transform: [{ translateY: -deviceHeight * 0.02 }],
     // height: deviceHeight * 0.12,
-    borderColor: 'red',
-    borderWidth: 1,
+    // borderColor: 'red',
+    // borderWidth: 1,
   },
 });
 
@@ -128,14 +130,13 @@ const AuthView = ({ navigation }) => {
         </Text>
       </View>
 
-     
-
       <View style={styles.buttonsContainer}>
         <BaseButton
           title="Login"
           textColor="'rgba(255, 213, 0, 1)'"
           outlineColor="rgba(255, 213, 0, .7)"
           action={() => navigation.navigate('Login')}
+          margin={10}
         ></BaseButton>
 
         <BaseButton
@@ -145,9 +146,8 @@ const AuthView = ({ navigation }) => {
           outlineColor="#FFFFFF"
           action={() => navigation.navigate('Register')}
         ></BaseButton>
+        <Text style={styles.membersText}>MEMBERS ONLY</Text>
       </View>
-
-      <Text style={styles.membersText}>MEMBERS ONLY</Text>
     </View>
   );
 };
