@@ -22,18 +22,26 @@ const { width, height } = Dimensions.get('window');
 const styles = StyleSheet.create({
   pickerContainer: {
     backgroundColor: '#121213',
-    height: height * 0.35,
+    height: '100%',
     width: width * 0.95,
-    marginHorizontal: width * 0.025,
+    // marginHorizontal: width * 0.025,
+    justifyContent: 'center',
+    overflow:'visible',
     position:'relative',
     borderRadius:25
   },
   hourButtonsWrapper:{
-    position: 'absolute',
-    top:'15%',
-    left: 0,
-    right: 0,
-    bottom: 0,
+
+// borderColor:'red',
+// borderWidth:3,
+marginVertical:'22%',
+overflow:'visible',
+  
+    // position: 'absolute',
+  
+    // left: 0,
+    // right: 0,
+    // bottom: 0,
 
 
   }

@@ -3,15 +3,16 @@ import { connect } from 'react-redux';
 import { View, Text, StyleSheet, TextInput,Dimensions } from 'react-native';
 import { Field, reduxForm, formValueSelector } from 'redux-form';
 import { compose } from 'recompose';
-import TextInputField from '../../../components/TextInputField'
+import TextInputField from './TextInputField'
 
 const { width, height } = Dimensions.get('window');
 
 const styles = StyleSheet.create({
   container: {
-    marginTop:height * 0.12,
+    marginTop:150,
+    marginBottom:20,
     paddingHorizontal: '5%',
-    height: height * 0.12
+    // height: height * 0.12
   },
   formTitle: {
     color: 'white',

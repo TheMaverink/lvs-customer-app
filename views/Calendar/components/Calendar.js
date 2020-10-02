@@ -10,16 +10,18 @@ import {
 import { Calendar } from 'react-native-calendars';
 import { change } from 'redux-form';
 
-import SwitchCalendar from "./SwitchCalendar"
+import SwitchCalendar from './SwitchCalendar';
 
 const { width, height } = Dimensions.get('window');
 
 const styles = StyleSheet.create({
+  calendarContainer: {
+    flex: 1,
+  },
   calendar: {
-    borderWidth: 1,
+    // borderWidth: 1,
     borderRadius: 25,
     height: '100%',
-  
   },
 });
 
@@ -60,7 +62,6 @@ class CalendarWrapper extends React.Component {
             change('selectedDay', day);
           }}
           monthFormat={'MMMM'}
-        
           hideExtraDays={true}
           firstDay={1}
           onPressArrowLeft={(subtractMonth) => subtractMonth()}
@@ -103,7 +104,7 @@ class CalendarWrapper extends React.Component {
           }}
         />
 
-        <SwitchCalendar action ={flipAction} title="Click here to chose time."/>
+        <SwitchCalendar action={flipAction} title="Click here to chose time." />
       </View>
     );
   }

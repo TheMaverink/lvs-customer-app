@@ -25,15 +25,18 @@ import LoginView from 'views/Login';
 import RegisterView from 'views/Register';
 import SelectWashView from 'views/SelectWash';
 import WashDescriptionView from 'views/WashDescription';
+import CarSpaIcon from './assets/icons/carspaIcon.svg';
+import BookingsIcon from './assets/icons/bookingsIcon.svg';
 
 import { navigationRef } from './RootNavigation';
+
+import { SvgUri } from 'react-native-svg';
 
 const stackNavigationConfig = {
   screenOptions: {
     headerTitleStyle: {
       fontWeight: 'bold',
-      headerShown: false
-  
+      headerShown: false,
     },
   },
 };
@@ -46,12 +49,12 @@ export function CarSpaStack() {
   return (
     // <Stack.Navigator headerMode="none" initialRouteName="Select Wash">
     <Stack.Navigator
-    screenOptions={{
-      headerTintColor: 'white',
-      headerStyle: { backgroundColor: '#1A1B1C' },
+      screenOptions={{
+        headerTintColor: 'white',
+        headerStyle: { backgroundColor: '#1A1B1C' },
 
-      headerBackTitleVisible:false
-    }}
+        headerBackTitleVisible: false,
+      }}
       initialRouteName="Select Wash"
     >
       <Stack.Screen name="Select Wash" component={SelectWashView} />
@@ -127,38 +130,42 @@ export function LoginStack() {
 
 export function MainTab() {
   return (
-    <Tab.Navigator initialRouteName="Car Spa" tabBarOptions={{
-      style:{
-        backgroundColor:'#121314',
-        
-      },
-      showLabel:false
-    }}
-    screenOptions={({ route }) => ({
-      tabBarIcon: ({ focused, color, size }) => {
-        if (route.name === 'Car Spa') {
-          return (
-            <Image 
-            
-            source={require('./assets/icons/carspa.png')}
-            style={focused?{opacity:1}:{opacity:0.4}}
-           />
-          );
-        } else if (route.name === 'Bookings') {
-          return (
-            <Image 
-             source={require('./assets/icons/booking.png')}
-             style={focused?{opacity:1}:{opacity:0.4}}
-
-            />
-          );
-        }
-      },
-    })}
-  >
-    <Tab.Screen name="Car Spa" component={CarSpaStack}  />
-    <Tab.Screen name="Bookings" component={ConfirmationView} />
-  </Tab.Navigator>
+    <Tab.Navigator
+      initialRouteName="Car Spa"
+      tabBarOptions={{
+        style: {
+          backgroundColor: '#121314',
+          height: 60,
+        },
+        showLabel: false,
+      }}
+      screenOptions={({ route }) => ({
+        tabBarIcon: ({ focused, color, size }) => {
+          if (route.name === 'Car Spa') {
+            return (
+              <CarSpaIcon
+                style={
+                  ([focused ? { opacity: 1 } : { opacity: 0.4 }, { transform: [{ translateX: 30 }] }]
+                 )
+                }
+              />
+            );
+          } else if (route.name === 'Bookings') {
+            return (
+              <BookingsIcon
+                style={
+                  ([focused ? { opacity: 1 } : { opacity: 0.4 }, { transform: [{ translateX: -30 }] }]
+                 )
+                }
+              />
+            );
+          }
+        },
+      })}
+    >
+      <Tab.Screen name="Car Spa" component={CarSpaStack} />
+      <Tab.Screen name="Bookings" component={ConfirmationView} />
+    </Tab.Navigator>
   );
 }
 
@@ -172,7 +179,7 @@ class AppNavigator extends React.Component {
         onNavigationStateChange={onNavChange}
         screenOptions={{ stackNavigationConfig }}
       >
-        <Stack.Navigator initialRouteName="Select Wash"  headerMode="none">
+        <Stack.Navigator initialRouteName="Select Wash" headerMode="none">
           <Stack.Screen name="Splash" component={SplashView} />
           <Stack.Screen name="Auth" component={AuthView} />
           <Stack.Screen name="Login" component={LoginStack} />

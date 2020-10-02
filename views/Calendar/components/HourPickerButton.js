@@ -8,10 +8,10 @@ const styles = StyleSheet.create({
     borderRadius: 30,
     height: '100%',
     backgroundColor: 'black',
-    borderWidth: 1,
+    borderWidth: 1.8,
     borderColor: 'white',
-    paddingVertical: 10,
-    paddingHorizontal: 30,
+    paddingVertical: 7,
+    paddingHorizontal: 18,
   },
   selectedButton: {
     borderWidth: 1,
@@ -20,16 +20,16 @@ const styles = StyleSheet.create({
     backgroundColor: "'rgba(255, 213, 0, 1)'",
     borderWidth: 1,
     borderColor: 'white',
-    paddingVertical: 10,
-    paddingHorizontal: 30,
+    paddingVertical: 7,
+    paddingHorizontal: 18,
   },
   text: {
     color: 'white',
-    fontSize: 18,
+    fontSize: 16,
   },
   selectedText: {
     color: 'black',
-    fontSize: 18,
+    fontSize: 16,
   },
 });
 

@@ -14,7 +14,7 @@ const styles = ({
 })
 const TextInputField = ({ placeholder, input: { onChange, ...restInput } }) => {
   return (
-    <View style={{marginBottom:20}}>
+    <View>
       <TextInput
         style={styles.inputText}
         onChangeText={onChange}
@@ -22,7 +22,7 @@ const TextInputField = ({ placeholder, input: { onChange, ...restInput } }) => {
         placeholderTextColor="#A3A3A4"
         selectionColor="#ffffff"
         placeholder={placeholder}
-        // autoCapitalize="characters"
+        autoCapitalize="characters"
       ></TextInput>
     </View>
   );

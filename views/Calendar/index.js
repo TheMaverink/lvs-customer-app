@@ -8,6 +8,7 @@ import {
   Button,
   TouchableOpacity,
   Animated,
+  ScrollView,
   Dimensions,
 } from 'react-native';
 import CardFlip from 'react-native-card-flip';
@@ -24,7 +25,7 @@ const { width, height } = Dimensions.get('window');
 
 const styles = StyleSheet.create({
   container: {
-    flex: 1,
+    // flex: 1,
     backgroundColor: '#1A1B1C',
     width: width,
   },
@@ -59,13 +60,13 @@ const styles = StyleSheet.create({
     // overflow:'hidden'
   },
   buttonContainer: {
-    position: 'absolute',
+    // position: 'absolute',
 
-    left: 0,
-    right: 0,
-    bottom: height * 0.01,
-    justifyContent: 'center',
-    alignItems: 'center',
+    // left: 0,
+    // right: 0,
+    // bottom: height * 0.01,
+    // justifyContent: 'center',
+    // alignItems: 'center',
   },
 });
 
@@ -90,7 +91,7 @@ componentDidMount(){
     } = this.props;
 
     return (
-      <View style={styles.container}>
+      <ScrollView style={styles.container}>
         <View style={styles.headerContainer}>
           <Text style={styles.headerService}>{selectedWash}</Text>
           <Text style={styles.headerMessage}>Select a booking date.</Text>
@@ -113,7 +114,7 @@ componentDidMount(){
         <View style={styles.buttonContainer}>
           <BaseButton
             title="Book"
-            bgColor="grey"
+            bgColor="white"
             textColor="black"
             action={async (values) => {
               // await change('service', selectedWash);
@@ -123,7 +124,7 @@ componentDidMount(){
           
           />
         </View>
-      </View>
+      </ScrollView>
     );
   }
 }

@@ -52,7 +52,7 @@ const styles = StyleSheet.create({
     top:50,
     width: '100%',
     overflow: 'visible',
-    transform: [{ translateX: -deviceHeight * 0.02 }],
+    transform: [{ translateX: -deviceHeight * 0.02 },{ scale:0.9}],
   },
   titleContainer: {
     flexDirection: 'row',
@@ -68,6 +68,7 @@ const styles = StyleSheet.create({
     lineHeight: 48,
     fontFamily: 'DMSerifDisplay-Regular',
     paddingHorizontal: '5%',
+    marginTop:'5%'
     
   },
   description: {
