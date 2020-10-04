@@ -1,8 +1,9 @@
 import React from 'react'
 import {View,Text,TouchableOpacity,StyleSheet,Dimensions} from "react-native"
-
+import { create, PREDEF_RES } from 'react-native-pixel-perfect';
 const deviceHeight = Dimensions.get('window').height;
 const deviceWidth = Dimensions.get('window').width;
+const perfectSize = create(PREDEF_RES.iphoneX.dp);
 
 const BaseButton = (props)=>{
 
@@ -15,6 +16,7 @@ const BaseButton = (props)=>{
       height:48,
       borderRadius:16,
       width: width ? width : deviceWidth * 0.9 ,
+     
       borderWidth:1.3,
       borderColor:outlineColor,
       fontSize:16,

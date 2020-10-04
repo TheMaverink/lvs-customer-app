@@ -7,20 +7,26 @@ import {
   StatusBar,
   Dimensions,
 } from 'react-native';
+
 import BaseButton from 'components/BaseButton';
 import backgroundCar from '../../assets/images/initial_screen_bckgd3.png';
-
+import {
+  widthPercentageToDP as wp,
+  heightPercentageToDP as hp,
+} from 'react-native-responsive-screen';
+import { create, PREDEF_RES } from 'react-native-pixel-perfect';
 import { WhitePortal } from 'react-native-portal';
 import { COLORS } from 'consts/';
 import img from '../../assets/logos/logo.png';
 
 const deviceHeight = Dimensions.get('window').height;
 const deviceWidth = Dimensions.get('window').width;
+const perfectSize = create(PREDEF_RES.iphoneX.dp);
 
 const styles = StyleSheet.create({
   container: {
     backgroundColor: 'black',
-    justifyContent: 'space-around',
+    justifyContent: 'flex-start',
     alignItems: 'center',
     width: deviceWidth,
     height: '100%',
@@ -28,50 +34,35 @@ const styles = StyleSheet.create({
   logoContainer: {
     width: deviceWidth,
     position: 'absolute',
-    top: deviceHeight * 0.08,
-    // height: deviceHeight * 0.27,
-    // transform: [{ translateY: deviceHeight * 0.1 }],
-    zIndex: 3, // works on ios
+    top: perfectSize(65),
+    zIndex: 3,
   },
   logo: {
-    height: 65,
-
+    height: perfectSize(75),
     width: undefined,
-
-    // elevation: 3, // works on android
   },
   logoText: {
     fontSize: 40,
     color: 'white',
     textAlign: 'center',
-    marginTop: 10,
+    marginTop: perfectSize(20),
     fontFamily: 'DMSerifDisplay-Regular',
-    zIndex: 3, // works on ios
-    // elevation: 3, // works on android
+    zIndex: 3,
   },
   imageContainer: {
-    // flex: 0,
     width: '100%',
-    // height: 'auto',
     position: 'relative',
-    //   borderColor:'red',
-    // borderWidth:2,
-    marginTop: deviceHeight * 0.1,
+    marginTop: perfectSize(130),
+    height:perfectSize(400),
     justifyContent: 'center',
     alignItems: 'center',
-    // borderColor: 'red',
-    // borderWidth: 5,
+ 
   },
   image: {
-    // height: deviceHeight * 0.5,
-
-    // marginTop: deviceHeight * 0.18,
     width: deviceWidth,
     opacity: 0.65,
-    transform: [{ scale: 1 }],
     zIndex: 0,
-    // borderColor: 'green',
-    // borderWidth: 2,
+  
   },
   text: {
     color: 'white',
@@ -82,28 +73,22 @@ const styles = StyleSheet.create({
     fontFamily: 'DMSans-Regular',
     opacity: 0.8,
     position: 'absolute',
-    bottom: '15%',
+    bottom: perfectSize(30),
+
   },
 
   buttonsContainer: {
     width: '100%',
-
-    // height: deviceHeight * 0.13,
-
-    transform: [{ translateY: -deviceHeight * 0.05 }],
+    // transform: [{ translateY: -deviceHeight * 0.05 }],
+    // transform: [{ translateY: -perfectSize(50) }],
   },
   membersText: {
     color: 'white',
     width: '100%',
     fontFamily: 'DMSans-Bold',
     fontSize: 14,
-    // padding: 5,
     textAlign: 'center',
-    marginTop: 20,
-    // transform: [{ translateY: -deviceHeight * 0.02 }],
-    // height: deviceHeight * 0.12,
-    // borderColor: 'red',
-    // borderWidth: 1,
+    marginTop: perfectSize(20),
   },
 });
 

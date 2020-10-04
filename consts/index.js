@@ -50,5 +50,10 @@ export const COLORS = {
 
 }
 
+export const DESIGN_RESOLUTION={
+  width:812,
+  HEIGHT:375
+}
+
 
 export const { API_URL } = getEnvVars()
