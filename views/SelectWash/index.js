@@ -49,7 +49,7 @@ const SelectWashView = (props) => {
           keyExtractor={(item) => item.title}
           data={washes}
           renderItem={({ item, index }) => {
-            console.log(item);
+          
             return (
               <WashCard
                 duration={item.duration}

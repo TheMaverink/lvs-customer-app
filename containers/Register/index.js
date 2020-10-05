@@ -25,7 +25,13 @@ import store from 'store/store';
 export const mapStateToProps = createStructuredSelector({
   isLoading: selectIsLoading,
   userData: selectUserData,
-  phoneNumberToVerify: selectPhoneNumberToVerify
+  phoneNumberToVerify: selectPhoneNumberToVerify,
+  sendSmsFormValues: (state) =>
+  formValueSelector('registerSendSmsForm')(state, 'phoneNumber'),
+verificationCodeValues: (state) =>
+  formValueSelector('registerVerify')(state, 'verificationCode'),
+  userDetailsValues: (state) =>
+  formValueSelector('addDetailsForm')(state, 'name','email'),
 });
 
 export const mapDispatchToProps = (dispatch) =>

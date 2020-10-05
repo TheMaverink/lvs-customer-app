@@ -140,6 +140,8 @@ export function MainTab() {
         showLabel: false,
       }}
       screenOptions={({ route }) => ({
+
+        
         tabBarIcon: ({ focused, color, size }) => {
           if (route.name === 'Car Spa') {
             return (
@@ -151,6 +153,8 @@ export function MainTab() {
               />
             );
           } else if (route.name === 'Bookings') {
+            console.log('ROUTE BOOKIN ICON')
+            console.log(route)
             return (
               <BookingsIcon
                 style={
@@ -179,7 +183,7 @@ class AppNavigator extends React.Component {
         onNavigationStateChange={onNavChange}
         screenOptions={{ stackNavigationConfig }}
       >
-        <Stack.Navigator initialRouteName="Auth" headerMode="none">
+        <Stack.Navigator initialRouteName="Select Wash" headerMode="none">
           <Stack.Screen name="Splash" component={SplashView} />
           <Stack.Screen name="Auth" component={AuthView} />
           <Stack.Screen name="Login" component={LoginStack} />

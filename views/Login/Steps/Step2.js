@@ -12,6 +12,8 @@ import LoginContainer from 'containers/Login';
 import AuthQuestion from 'components/AuthQuestion';
 import BaseButton from 'components/BaseButton';
 
+import {codeValidation} from "utils/validations"
+
 import ResendCode from '../../../components/ResendCode';
 
 import TextInputField from '../../../components/TextInputField';
@@ -55,8 +57,33 @@ buttomContainer:{
 });
 
 
-const Step2 = (props) => {
-  const { handleSubmit, loginVerifyRequest, phoneNumberToVerify } = props;
+class Step2 extends React.Component {
+
+  constructor(props) {
+    super(props);
+
+    this.state = {
+      // verificationCode: ' ',
+      codeStatus: "wrong"
+      
+    };
+  }
+
+  componentDidUpdate(prevProps) {
+    if (this.props !== prevProps) {
+      this.setState({
+        // verificationCode: this.props.verificationCodeValues,
+        codeStatus: codeValidation(this.props.verificationCodeValues)
+      });
+
+      console.log(this.state.codeStatus)
+    }
+  }
+
+render(){
+
+  const { handleSubmit, loginVerifyRequest, phoneNumberToVerify } = this.props;
+
 
   return (
     <View style={styles.container}>
@@ -71,7 +98,9 @@ const Step2 = (props) => {
         <View style={styles.buttomContainer}>
           <BaseButton
             title="Verify"
-            bgColor="grey"
+            bgColor = {this.state.codeStatus === "wrong" ? "rgba(216,216,216,.6)" : "rgba(216,216,216,1)" }
+
+          
             textColor="black"
             margin={ 10}
             action={handleSubmit((values) =>
@@ -84,6 +113,9 @@ const Step2 = (props) => {
       </View>
     </View>
   );
+
+}
+  
 };
 
 export default compose(

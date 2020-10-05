@@ -12,7 +12,10 @@ const styles = ({
     // opacity:.6
   }
 })
-const TextInputField = ({ placeholder, input: { onChange, ...restInput } }) => {
+const TextInputField = ({ keyboardType,placeholder, input: { onChange, ...restInput } }) => {
+
+ 
+  console.log(keyboardType)
   return (
     <View style={{marginBottom:20}}>
       <TextInput
@@ -22,6 +25,7 @@ const TextInputField = ({ placeholder, input: { onChange, ...restInput } }) => {
         placeholderTextColor="#A3A3A4"
         selectionColor="#ffffff"
         placeholder={placeholder}
+        keyboardType={keyboardType}
         // autoCapitalize="characters"
       ></TextInput>
     </View>

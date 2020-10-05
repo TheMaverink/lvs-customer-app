@@ -10,10 +10,7 @@ import {
 
 import BaseButton from 'components/BaseButton';
 import backgroundCar from '../../assets/images/initial_screen_bckgd3.png';
-import {
-  widthPercentageToDP as wp,
-  heightPercentageToDP as hp,
-} from 'react-native-responsive-screen';
+
 import { create, PREDEF_RES } from 'react-native-pixel-perfect';
 import { WhitePortal } from 'react-native-portal';
 import { COLORS } from 'consts/';
@@ -93,6 +90,7 @@ const styles = StyleSheet.create({
 });
 
 const AuthView = ({ navigation }) => {
+  console.log(perfectSize(65))
   return (
     <View style={styles.container}>
       <StatusBar barStyle="light-content" backgroundColor="#1A1B1C" />

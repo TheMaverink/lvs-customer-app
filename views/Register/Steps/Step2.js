@@ -6,6 +6,7 @@ import RegisterContainer from 'containers/Register';
 import AuthQuestion from 'components/AuthQuestion';
 import BaseButton from 'components/BaseButton';
 import TextInputField from '../../../components/TextInputField';
+import { codeValidation } from 'utils/validations';
 
 const deviceHeight = Dimensions.get('window').height;
 const deviceWidth = Dimensions.get('window').width;
@@ -26,18 +27,17 @@ const styles = StyleSheet.create({
     width: '85%',
   },
   fieldContainer: {
-    position:'absolute',
+    position: 'absolute',
     width: '90%',
-    top:'30%',
+    top: '30%',
     position: 'relative',
     justifyContent: 'center',
     alignSelf: 'center',
-      // transform: [{ translateY: deviceHeight * 0.3 }],
+    // transform: [{ translateY: deviceHeight * 0.3 }],
   },
-  buttomContainer:{
+  buttomContainer: {
     // marginTop:20,
     // marginBottom:10
-  
   },
   button: {
     position: 'absolute',
@@ -46,35 +46,61 @@ const styles = StyleSheet.create({
   },
 });
 
-const Step2 = (props) => {
-  const { handleSubmit, verifyCodeRequest, phoneNumberToVerify } = props;
+class Step2 extends React.Component {
+  constructor(props) {
+    super(props);
 
-  return (
-    <View style={styles.container}>
-      <AuthQuestion question={"Next, enter your 6 digit \nverification code."} />
-      <View style={styles.fieldContainer}>
-        <Field
-          name="verificationCode"
-          component={TextInputField}
-          props={{ placeholder: '6 digit verification...' }}
+    this.state = {
+      // verificationCode: ' ',
+      codeStatus: 'wrong',
+    };
+  }
+
+  componentDidUpdate(prevProps) {
+    if (this.props !== prevProps) {
+      this.setState({
+        // verificationCode: this.props.verificationCodeValues,
+        codeStatus: codeValidation(this.props.verificationCodeValues),
+      });
+    }
+  }
+
+  render() {
+    const { handleSubmit, verifyCodeRequest, phoneNumberToVerify } = this.props;
+
+    return (
+      <View style={styles.container}>
+        <AuthQuestion
+          question={'Next, enter your 6 digit \nverification code.'}
         />
-
-<View style={styles.buttomContainer}>
-          <BaseButton
-            title="Verify"
-            bgColor="grey"
-            textColor="black"
-            margin={10}
-            action={handleSubmit((values) =>
-              verifyCodeRequest(phoneNumberToVerify, values.verificationCode)
-            )}
+        <View style={styles.fieldContainer}>
+          <Field
+            name="verificationCode"
+            component={TextInputField}
+            props={{ placeholder: '6 digit verification...' }}
           />
+
+          <View style={styles.buttomContainer}>
+            <BaseButton
+              title="Verify"
+              bgColor={
+                this.state.codeStatus === 'wrong'
+                  ? 'rgba(216,216,216,.6)'
+                  : 'rgba(216,216,216,1)'
+              }
+              textColor="black"
+              margin={10}
+              action={handleSubmit((values) =>
+                verifyCodeRequest(phoneNumberToVerify, values.verificationCode)
+              )}
+            />
+          </View>
+          <ResendCode />
         </View>
-        <ResendCode />
       </View>
-    </View>
-  );
-};
+    );
+  }
+}
 
 export default compose(
   reduxForm({ form: 'registerVerify' }),
