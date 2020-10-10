@@ -26,6 +26,7 @@ const TextInputField = ({ keyboardType,placeholder, input: { onChange, ...restIn
         selectionColor="#ffffff"
         placeholder={placeholder}
         keyboardType={keyboardType}
+        keyboardAppearance={'dark'}
         // autoCapitalize="characters"
       ></TextInput>
     </View>

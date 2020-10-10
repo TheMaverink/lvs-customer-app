@@ -1,8 +1,7 @@
 import React from 'react';
 import {
   View,
-  TextInput,
-  TouchableOpacity,
+  KeyboardAvoidingView,
   StyleSheet,
   Dimensions,
 } from 'react-native';
@@ -88,11 +87,17 @@ render(){
   return (
     <View style={styles.container}>
       <AuthQuestion question={"Please enter your 6 digit \nverification code."} />
+
+      <KeyboardAvoidingView
+          behavior={Platform.OS == 'ios' ? 'padding' : 'height'}
+          style={styles.container}
+        >
       <View style={styles.fieldContainer}>
         <Field
           name="verificationCode"
           component={TextInputField}
-          props={{ placeholder: '6 digit verification...' }}
+          props={{ placeholder: '6 digit verification...' ,keyboardType: 'phone-pad'}}
+          
         />
 
         <View style={styles.buttomContainer}>
@@ -111,6 +116,8 @@ render(){
 
         <ResendCode />
       </View>
+
+      </KeyboardAvoidingView>
     </View>
   );
 

@@ -1,5 +1,11 @@
 import React from 'react';
-import { View, TextInput, StyleSheet, Dimensions } from 'react-native';
+import {
+  View,
+  TextInput,
+  StyleSheet,
+  Dimensions,
+  KeyboardAvoidingView,
+} from 'react-native';
 import { compose } from 'recompose';
 import { Field, formValueSelector, reduxForm } from 'redux-form';
 import RegisterContainer from 'containers/Register';
@@ -73,30 +79,41 @@ class Step2 extends React.Component {
         <AuthQuestion
           question={'Next, enter your 6 digit \nverification code.'}
         />
-        <View style={styles.fieldContainer}>
-          <Field
-            name="verificationCode"
-            component={TextInputField}
-            props={{ placeholder: '6 digit verification...' }}
-          />
-
-          <View style={styles.buttomContainer}>
-            <BaseButton
-              title="Verify"
-              bgColor={
-                this.state.codeStatus === 'wrong'
-                  ? 'rgba(216,216,216,.6)'
-                  : 'rgba(216,216,216,1)'
-              }
-              textColor="black"
-              margin={10}
-              action={handleSubmit((values) =>
-                verifyCodeRequest(phoneNumberToVerify, values.verificationCode)
-              )}
+        <KeyboardAvoidingView
+          behavior={Platform.OS == 'ios' ? 'padding' : 'height'}
+          style={styles.container}
+        >
+          <View style={styles.fieldContainer}>
+            <Field
+              name="verificationCode"
+              component={TextInputField}
+              props={{
+                placeholder: '6 digit verification...',
+                keyboardType: 'phone-pad',
+              }}
             />
+
+            <View style={styles.buttomContainer}>
+              <BaseButton
+                title="Verify"
+                bgColor={
+                  this.state.codeStatus === 'wrong'
+                    ? 'rgba(216,216,216,.6)'
+                    : 'rgba(216,216,216,1)'
+                }
+                textColor="black"
+                margin={10}
+                action={handleSubmit((values) =>
+                  verifyCodeRequest(
+                    phoneNumberToVerify,
+                    values.verificationCode
+                  )
+                )}
+              />
+            </View>
+            <ResendCode />
           </View>
-          <ResendCode />
-        </View>
+        </KeyboardAvoidingView>
       </View>
     );
   }

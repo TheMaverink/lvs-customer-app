@@ -4,7 +4,7 @@ import {
   Text,
   TextInput,
   Image,
-  TouchableOpacity,
+  KeyboardAvoidingView,
   Dimensions,
   StyleSheet,
 } from 'react-native';
@@ -64,32 +64,37 @@ const Step3 = (props) => {
         question={'You are one step closer to\n becoming a private member'}
         notes="We don’t do spam, promise."
       />
-      <View style={styles.fieldContainer}>
-        <Field
-          name="name"
-          component={TextInputField}
-          props={{ placeholder: 'Name...' }}
-        />
-        <Field
-          name="email"
-          component={TextInputField}
-          props={{ placeholder: 'Email address...' }}
-        />
-
-        <View style={styles.buttomContainer}>
-          <BaseButton
-            title="Proceed"
-            bgColor="grey"
-            textColor="black"
-            margin={10}
-            action={handleSubmit((values) =>
-              updateCustomerRequest(phoneNumber, values.name, values.email)
-            )}
+      <KeyboardAvoidingView
+        behavior={Platform.OS == 'ios' ? 'padding' : 'height'}
+        style={styles.container}
+      >
+        <View style={styles.fieldContainer}>
+          <Field
+            name="name"
+            component={TextInputField}
+            props={{ placeholder: 'Name...' }}
+          />
+          <Field
+            name="email"
+            component={TextInputField}
+            props={{ placeholder: 'Email address...' }}
           />
 
-          <SwithAuth marginV={40} switchTo="login" />
+          <View style={styles.buttomContainer}>
+            <BaseButton
+              title="Proceed"
+              bgColor="grey"
+              textColor="black"
+              margin={10}
+              action={handleSubmit((values) =>
+                updateCustomerRequest(phoneNumber, values.name, values.email)
+              )}
+            />
+
+            <SwithAuth marginV={40} switchTo="login" />
+          </View>
         </View>
-      </View>
+      </KeyboardAvoidingView>
     </View>
   );
 };

@@ -1,10 +1,8 @@
 import React from 'react';
 import {
   View,
-  Text,
-  TextInput,
-  Image,
   Dimensions,
+  KeyboardAvoidingView,
   TouchableOpacity,
   StyleSheet,
 } from 'react-native';
@@ -76,11 +74,18 @@ class Step1 extends React.Component {
     return (
       <View style={styles.container}>
         <AuthQuestion question="Please enter your mobile number to continue." />
+
+
+
+      <KeyboardAvoidingView
+          behavior={Platform.OS == 'ios' ? 'padding' : 'height'}
+          style={styles.container}
+        >
         <View style={styles.fieldContainer}>
           <Field
             name="phoneNumber"
             component={TextInputField}
-            props={{ placeholder: 'Mobile number...' }}
+            props={{ placeholder: 'Mobile number...' ,keyboardType: 'phone-pad'}}
           />
 
           <FormIcon
@@ -102,6 +107,8 @@ class Step1 extends React.Component {
             <SwitchAuth marginV={10} switchTo="login" />
           )}
         </View>
+
+        </KeyboardAvoidingView>
       </View>
     );
   }

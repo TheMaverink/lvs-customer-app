@@ -9,6 +9,7 @@ const styles = ({
     paddingBottom:10,
     fontSize:16,
     fontFamily: 'DMSans-Regular',
+    marginBottom:20
     // opacity:.6
   }
 })
@@ -23,6 +24,7 @@ const TextInputField = ({ placeholder, input: { onChange, ...restInput } }) => {
         selectionColor="#ffffff"
         placeholder={placeholder}
         autoCapitalize="characters"
+        keyboardAppearance={'dark'}
       ></TextInput>
     </View>
   );

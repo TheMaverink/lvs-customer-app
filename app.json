@@ -3,7 +3,7 @@
     "name": "lvs-customer-frontend",
     "slug": "lvs-customer-frontend",
     "privacy": "public",
-    "version": "6.0.0",
+    "version": "7.0.0",
     "platforms": [
       "ios",
       "android"
@@ -11,10 +11,7 @@
     "orientation": "portrait",
     "icon": "./assets/icons/icon.png",
     "splash": {
-      "image": "./assets/images/splash.png",
-      "resizeMode": "cover",
       "backgroundColor": "#000000"
-  
     },
     "updates": {
       "fallbackToCacheTimeout": 0

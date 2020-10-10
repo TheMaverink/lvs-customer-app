@@ -1,12 +1,11 @@
 import React from 'react';
 import {
   View,
-  Text,
   Dimensions,
-  Image,
-  TouchableOpacity,
   StyleSheet,
+  KeyboardAvoidingView,
 } from 'react-native';
+
 import { Field, formValueSelector, reduxForm } from 'redux-form';
 
 import FormIcon from '../components/FormIcon';
@@ -84,35 +83,41 @@ class Step1 extends React.Component {
         <AuthQuestion
           question={'Please enter your mobile \nnumber to continue.'}
         />
-        <View style={styles.fieldContainer}>
-          {/* <Text style={{color:'white'}}>{perfectSize(220)}</Text> */}
-          {/* <Text style={{ color: 'white' }}>
+
+        <KeyboardAvoidingView
+          behavior={Platform.OS == 'ios' ? 'padding' : 'height'}
+          style={styles.container}
+        >
+          <View style={styles.fieldContainer}>
+            {/* <Text style={{color:'white'}}>{perfectSize(220)}</Text> */}
+            {/* <Text style={{ color: 'white' }}>
             {phoneNumberValidation(this.state.phoneNumberValue)}
           </Text> */}
-          <Field
-            style={styles.field}
-            name="phoneNumber"
-            component={TextInputField}
-            props={{
-              placeholder: 'Mobile number...',
-              keyboardType: 'phone-pad',
-            }}
-          />
+            <Field
+              style={styles.field}
+              name="phoneNumber"
+              component={TextInputField}
+              props={{
+                placeholder: 'Mobile number...',
+                keyboardType: 'phone-pad',
+              }}
+            />
 
-          <FormIcon
-            // validation={phoneNumberValidation(this.state.phoneNumberValue)}
-            validation={this.state.phoneNumberStatus}
-            action={handleSubmit((values) =>
-              loginSendSmsRequest(values.phoneNumber)
+            <FormIcon
+              // validation={phoneNumberValidation(this.state.phoneNumberValue)}
+              validation={this.state.phoneNumberStatus}
+              action={handleSubmit((values) =>
+                loginSendSmsRequest(values.phoneNumber)
+              )}
+            />
+
+            {this.state.phoneNumberStatus === 'wrong' ? (
+              <FormWarningMessage />
+            ) : (
+              <SwitchAuth marginV={10} switchTo="register" />
             )}
-          />
-
-          {this.state.phoneNumberStatus === 'wrong' ? (
-            <FormWarningMessage />
-          ) : (
-            <SwitchAuth marginV={10} switchTo="register" />
-          )}
-        </View>
+          </View>
+        </KeyboardAvoidingView>
       </View>
     );
   }

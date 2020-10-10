@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="18px" height="17px" viewBox="0 0 18 17" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <title>check-circle</title>
+    <g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd" stroke-linecap="square">
+        <g id="Sign-Up-2" transform="translate(-338.000000, -416.000000)" stroke="#FFFFFF" stroke-width="1.5">
+            <g id="Form" transform="translate(20.000000, 400.000000)">
+                <g id="check-circle" transform="translate(319.000000, 16.000000)">
+                    <path d="M15.2380952,7.67238095 L15.2380952,8.38095238 C15.236166,11.7551892 13.0150811,14.7262575 9.77931612,15.6829722 C6.54355113,16.6396868 3.06391889,15.3541426 1.22739435,12.5234791 C-0.609130191,9.69281566 -0.365056422,5.99134398 1.82725653,3.42634068 C4.01956948,0.86133738 7.6378763,0.043828788 10.72,1.41714286" id="Path"></path>
+                    <polyline id="Path" points="16 1.52380952 7.61904762 9.9047619 5.33333333 7.61904762"></polyline>
+                </g>
+            </g>
+        </g>
+    </g>
+</svg>

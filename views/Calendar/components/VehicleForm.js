@@ -9,9 +9,10 @@ const { width, height } = Dimensions.get('window');
 
 const styles = StyleSheet.create({
   container: {
-    marginTop:150,
+    marginTop:120,
     marginBottom:20,
     paddingHorizontal: '5%',
+
     // height: height * 0.12
   },
   formTitle: {
@@ -47,6 +48,7 @@ let VehicleForm = (props) => {
         name="vehicleMake"
         component={TextInputField}
         props={{ placeholder: 'Vehicle Make' }}
+   
       />
       <Field
      

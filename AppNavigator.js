@@ -183,7 +183,7 @@ class AppNavigator extends React.Component {
         onNavigationStateChange={onNavChange}
         screenOptions={{ stackNavigationConfig }}
       >
-        <Stack.Navigator initialRouteName="Select Wash" headerMode="none">
+        <Stack.Navigator initialRouteName="Auth" headerMode="none">
           <Stack.Screen name="Splash" component={SplashView} />
           <Stack.Screen name="Auth" component={AuthView} />
           <Stack.Screen name="Login" component={LoginStack} />

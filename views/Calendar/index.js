@@ -10,6 +10,7 @@ import {
   Animated,
   ScrollView,
   Dimensions,
+  KeyboardAvoidingView,
 } from 'react-native';
 import CardFlip from 'react-native-card-flip';
 import { compose } from 'recompose';
@@ -25,7 +26,7 @@ const { width, height } = Dimensions.get('window');
 
 const styles = StyleSheet.create({
   container: {
-    // flex: 1,
+    flex: 1,
     backgroundColor: '#1A1B1C',
     width: width,
   },
@@ -61,7 +62,6 @@ const styles = StyleSheet.create({
   },
   buttonContainer: {
     // position: 'absolute',
-
     // left: 0,
     // right: 0,
     // bottom: height * 0.01,
@@ -75,12 +75,12 @@ class CalendarView extends React.Component {
     super(props);
     this.state = {};
   }
-  
-componentDidMount(){
-  this.props.change('service', this.props.selectedWash);
-  console.log('didmount')
-  console.log(this.props)
-}
+
+  componentDidMount() {
+    this.props.change('service', this.props.selectedWash);
+    console.log('didmount');
+    console.log(this.props);
+  }
 
   render() {
     const {
@@ -92,25 +92,33 @@ componentDidMount(){
 
     return (
       <ScrollView style={styles.container}>
-        <View style={styles.headerContainer}>
-          <Text style={styles.headerService}>{selectedWash}</Text>
-          <Text style={styles.headerMessage}>Select a booking date.</Text>
-        </View>
+      
+          <View style={styles.headerContainer}>
+            <Text style={styles.headerService}>{selectedWash}</Text>
+            <Text style={styles.headerMessage}>Select a booking date.</Text>
+          </View>
 
-        <CardFlip
-          style={styles.calendarContainer}
-          ref={(card) => (this.card = card)}
-        >
-          <Calendar {...this.props} flipAction={() => this.card.flip()} />
+          <CardFlip
+            style={styles.calendarContainer}
+            ref={(card) => (this.card = card)}
+          >
+            <Calendar {...this.props} flipAction={() => this.card.flip()} />
 
-          <HourPicker
-            style={{ flex: 1 }}
-            {...this.props}
-            flipAction={() => this.card.flip()}
-          />
-        </CardFlip>
+            <HourPicker
+              style={{ flex: 1 }}
+              {...this.props}
+              flipAction={() => this.card.flip()}
+            />
+          </CardFlip>
+  
+          {/* <KeyboardAvoidingView
+          behavior={Platform.OS == 'ios' ? 'padding' : 'height'}
+          style={styles.container}
+        > */}
+          <VehicleForm />
 
-        <VehicleForm />
+          {/* </KeyboardAvoidingView> */}
+      
         <View style={styles.buttonContainer}>
           <BaseButton
             title="Book"
@@ -120,10 +128,9 @@ componentDidMount(){
               // await change('service', selectedWash);
               await handleSubmit(values);
             }}
-
-          
           />
         </View>
+       
       </ScrollView>
     );
   }

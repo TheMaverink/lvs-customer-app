@@ -1,10 +1,11 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import {
   StyleSheet,
   Text,
   View,
   Image,
   StatusBar,
+  Animated,
   Dimensions,
 } from 'react-native';
 
@@ -21,6 +22,11 @@ const deviceWidth = Dimensions.get('window').width;
 const perfectSize = create(PREDEF_RES.iphoneX.dp);
 
 const styles = StyleSheet.create({
+  opacityAnim: {
+    flex: 1,
+    width: '100%',
+    height: '100%',
+  },
   container: {
     backgroundColor: 'black',
     justifyContent: 'flex-start',
@@ -50,16 +56,14 @@ const styles = StyleSheet.create({
     width: '100%',
     position: 'relative',
     marginTop: perfectSize(130),
-    height:perfectSize(400),
+    height: perfectSize(400),
     justifyContent: 'center',
     alignItems: 'center',
- 
   },
   image: {
     width: deviceWidth,
     opacity: 0.65,
     zIndex: 0,
-  
   },
   text: {
     color: 'white',
@@ -71,7 +75,6 @@ const styles = StyleSheet.create({
     opacity: 0.8,
     position: 'absolute',
     bottom: perfectSize(30),
-
   },
 
   buttonsContainer: {
@@ -90,47 +93,68 @@ const styles = StyleSheet.create({
 });
 
 const AuthView = ({ navigation }) => {
-  console.log(perfectSize(65))
+  const opacity = useState(new Animated.Value(0))[0];
+
+  function fadeIn() {
+    Animated.timing(opacity, {
+      toValue: 1,
+      duration: 1500,
+      useNativeDriver: true,
+    }).start();
+  }
+
+  useEffect(() => {
+    fadeIn();
+  }, []);
+
   return (
-    <View style={styles.container}>
-      <StatusBar barStyle="light-content" backgroundColor="#1A1B1C" />
+    <View style={{ backgroundColor: 'black' }}>
+      <Animated.View style={{ width: '100%', height: '100%', opacity }}>
+        <View style={styles.container}>
+          <StatusBar barStyle="light-content" backgroundColor="#1A1B1C" />
 
-      <View style={styles.logoContainer}>
-        <Image resizeMode="contain" source={img} style={styles.logo}></Image>
-        <Text style={styles.logoText}>Car Spa</Text>
-      </View>
+          <View style={styles.logoContainer}>
+            <Image
+              resizeMode="contain"
+              source={img}
+              style={styles.logo}
+            ></Image>
+            <Text style={styles.logoText}>Car Spa</Text>
+          </View>
 
-      <View style={styles.imageContainer}>
-        <Image
-          source={backgroundCar}
-          resizeMode={'cover'}
-          style={styles.image}
-        />
+          <View style={styles.imageContainer}>
+            <Image
+              source={backgroundCar}
+              resizeMode={'cover'}
+              style={styles.image}
+            />
 
-        <Text style={styles.text}>
-          Taking extraordinary to new heights.{'\n'}
-          Private member's car wash
-        </Text>
-      </View>
+            <Text style={styles.text}>
+              Taking extraordinary to new heights.{'\n'}
+              Private member's car wash
+            </Text>
+          </View>
 
-      <View style={styles.buttonsContainer}>
-        <BaseButton
-          title="Login"
-          textColor="'rgba(255, 213, 0, 1)'"
-          outlineColor="rgba(255, 213, 0, .7)"
-          action={() => navigation.navigate('Login')}
-          margin={10}
-        ></BaseButton>
+          <View style={styles.buttonsContainer}>
+            <BaseButton
+              title="Login"
+              textColor="'rgba(255, 213, 0, 1)'"
+              outlineColor="rgba(255, 213, 0, .7)"
+              action={() => navigation.navigate('Login')}
+              margin={10}
+            ></BaseButton>
 
-        <BaseButton
-          title="Sign up"
-          bgColor="#FFFFFF"
-          textColor="#121314"
-          outlineColor="#FFFFFF"
-          action={() => navigation.navigate('Register')}
-        ></BaseButton>
-        <Text style={styles.membersText}>MEMBERS ONLY</Text>
-      </View>
+            <BaseButton
+              title="Sign up"
+              bgColor="#FFFFFF"
+              textColor="#121314"
+              outlineColor="#FFFFFF"
+              action={() => navigation.navigate('Register')}
+            ></BaseButton>
+            <Text style={styles.membersText}>MEMBERS ONLY</Text>
+          </View>
+        </View>
+      </Animated.View>
     </View>
   );
 };
