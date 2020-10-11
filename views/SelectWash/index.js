@@ -6,12 +6,13 @@ import {
   View,
   FlatList,
   StatusBar,
-  Dimensions
+  Dimensions,
 } from 'react-native';
 import WashCard from 'components/WashCard';
 import WashesContainer from 'containers/Washes';
 import { compose, lifecycle } from 'recompose';
-
+import { useFocusEffect ,useIsFocused} from '@react-navigation/native';
+import { StatusColorContext } from 'components/AppView';
 const deviceHeight = Dimensions.get('window').height;
 const deviceWidth = Dimensions.get('window').width;
 
@@ -25,8 +26,7 @@ const styles = StyleSheet.create({
   },
   animWrapper: {
     width: '90%',
-    overflow:'visible',
-    
+    overflow: 'visible',
   },
 });
 
@@ -39,17 +39,30 @@ const SelectWashView = (props) => {
     washesRequest();
   }, []);
 
+  const colorContext = React.useContext(StatusColorContext);
+  useFocusEffect(
+    React.useCallback(() => {
+      colorContext.changeAppViewColour('#1a1b1c');
+      console.log(colorContext);
+    }, [])
+  );
+
+  const isFocused = useIsFocused();
+
   return (
     <View style={styles.background}>
+        {isFocused ? <StatusBar barStyle="light-content" /> : null}
       <HeaderMessage title={'Select your premium\ncar wash.'} />
       <View style={styles.animWrapper}>
         <Animated.FlatList
-          style={{ transform: [{ translateX:-deviceWidth*0.05 }], overflow:'visible',}}
+          style={{
+            transform: [{ translateX: -deviceWidth * 0.05 }],
+            overflow: 'visible',
+          }}
           // style={{ overflow:'visible'}}
           keyExtractor={(item) => item.title}
           data={washes}
           renderItem={({ item, index }) => {
-          
             return (
               <WashCard
                 duration={item.duration}
@@ -60,7 +73,6 @@ const SelectWashView = (props) => {
                 scrollX={scrollX}
                 selectWashRequest={selectWashRequest}
                 subServices={item.subServices}
-               
               />
             );
           }}

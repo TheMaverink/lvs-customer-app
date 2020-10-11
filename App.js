@@ -1,5 +1,5 @@
 import { PortalProvider, WhitePortal } from 'react-native-portal';
-import { View, Text, Image } from 'react-native';
+import { View, Text, Image,StatusBar } from 'react-native';
 import axios from 'axios';
 import React from 'react';
 import { Provider } from 'react-redux';
@@ -60,6 +60,7 @@ class App extends React.Component {
     if (!this.state.canAppRun) {
       return (
         <View style={{ flex: 1 }}>
+              
           <Image
             
             source={require('./assets/images/splash.gif')}
@@ -75,6 +76,7 @@ class App extends React.Component {
       <PortalProvider>
         <Provider store={store}>
           <AppView>
+          <StatusBar barStyle="light-content" backgroundColor="#1A1B1C" translucent={false} />
             <AppNavigator />
           </AppView>
           <WhitePortal name="portal" />

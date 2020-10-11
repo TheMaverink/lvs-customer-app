@@ -111,7 +111,7 @@ const AuthView = ({ navigation }) => {
     <View style={{ backgroundColor: 'black' }}>
       <Animated.View style={{ width: '100%', height: '100%', opacity }}>
         <View style={styles.container}>
-          <StatusBar barStyle="light-content" backgroundColor="#1A1B1C" />
+      
 
           <View style={styles.logoContainer}>
             <Image

@@ -13,8 +13,11 @@ import ConfirmedBookingItem from './components/ConfirmedBookingItem';
 import carImg from '../../assets/images/cars/car1.png';
 import BaseButton from '../../components/BaseButton';
 import * as RootNavigation from '../../RootNavigation';
-import minutesConverter from 'utils/minutesConverter'
-import moment from 'moment'
+import minutesConverter from 'utils/minutesConverter';
+import moment from 'moment';
+
+import { useFocusEffect,useIsFocused } from '@react-navigation/native';
+import { StatusColorContext } from 'components/AppView';
 
 const { width, height } = Dimensions.get('window');
 
@@ -74,7 +77,7 @@ const styles = StyleSheet.create({
   },
   buttonContainer: {
     position: 'absolute',
-    
+
     left: 0,
     right: 0,
     bottom: height * 0.01,
@@ -83,18 +86,33 @@ const styles = StyleSheet.create({
   },
 });
 const ConfirmationView = (props) => {
+  const {
+    service,
+    date,
+    hour,
+    duration,
+    vehicleMake,
+    vehicleReg,
+  } = props.route.params.bookingData.booking;
 
+  const formattedDuration = minutesConverter(duration);
+  const formattedDay = moment(date).format('dddd Do MMMM').toString();
 
+  const colorContext = React.useContext(StatusColorContext);
+  useFocusEffect(
+    React.useCallback(() => {
+      colorContext.changeAppViewColour('#1a1b1c');
+      console.log(colorContext);
+    }, [])
+  );
 
+  const isFocused = useIsFocused();
 
-  const { service, date, hour,duration, vehicleMake,vehicleReg} =props.route.params.bookingData.booking
+  //  isFocused ? <StatusBar {...props} /> : null;
 
-
-  const formattedDuration = minutesConverter(duration)
-  const formattedDay = moment(date).format('dddd Do MMMM').toString()
   return (
     <View style={styles.container}>
-      <StatusBar barStyle="light-content" backgroundColor="#1A1B1C" />
+      {isFocused ? <StatusBar barStyle="light-content" /> : null}
       <View style={styles.headerContainer}>
         <Text style={styles.header}>Booking Confirmed</Text>
       </View>
@@ -102,20 +120,19 @@ const ConfirmationView = (props) => {
       <View style={styles.bookingContainer}>
         <View style={styles.washTitleContainer}>
           <Text style={styles.washTitle}>{service}</Text>
-        
         </View>
 
-        <ConfirmedBookingItem
-          firstText={formattedDay}
-          secText="LVS Car Spa"
-        />
+        <ConfirmedBookingItem firstText={formattedDay} secText="LVS Car Spa" />
 
         <ConfirmedBookingItem
           firstText={hour}
           secText={'Duration ' + formattedDuration}
         />
 
-        <ConfirmedBookingItem firstText={vehicleMake} secText={vehicleReg.toUpperCase()}/>
+        <ConfirmedBookingItem
+          firstText={vehicleMake}
+          secText={vehicleReg.toUpperCase()}
+        />
 
         <View style={styles.imageContainer}>
           <Image

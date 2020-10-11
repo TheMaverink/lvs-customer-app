@@ -4,13 +4,15 @@ import {
   Text,
   View,
   ImageBackground,
-  StatusBar,
   Dimensions,
   ScrollView,
   Image,
   FlatList,
+  StatusBar,
 } from 'react-native';
+import {StatusColorContext} from "components/AppView"
 const { width, height } = Dimensions.get('window');
+import { useFocusEffect } from '@react-navigation/native';
 
 import { compose, lifecycle } from 'recompose';
 
@@ -124,10 +126,26 @@ const styles = StyleSheet.create({
 });
 
 const WashDescription = (props) => {
-  const { subServices,price,title,description } = props.route.params;
+  const { subServices, price, title, description } = props.route.params;
+
+  const colorContext = React.useContext(StatusColorContext);
+  useFocusEffect(
+    React.useCallback(() => {
+
+    colorContext.changeAppViewColour('#ffffff')
+      console.log(colorContext);
+      
+    }, [])
+  );
 
   return (
     <View style={styles.container}>
+      <StatusBar
+        barStyle="dark-content"
+        // backgroundColor="#e33445"
+        // translucent={false}
+      />
+
       <ScrollView style={styles.scrollViewContainer}>
         {Platform.OS === 'ios' && (
           <View
@@ -141,7 +159,7 @@ const WashDescription = (props) => {
             }}
           />
         )}
-        <StatusBar barStyle="dark-content" backgroundColor="white" />
+        {/* <StatusBar barStyle="dark-content" backgroundColor="white" /> */}
         <View style={styles.titleContainer}>
           <Text style={styles.serviceTitle}>{title}</Text>
           <Text style={styles.serviceDescription}>{description}</Text>
