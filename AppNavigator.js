@@ -30,8 +30,6 @@ import BookingsIcon from './assets/icons/bookingsIcon.svg';
 
 import { navigationRef } from './RootNavigation';
 
-import { SvgUri } from 'react-native-svg';
-
 const stackNavigationConfig = {
   screenOptions: {
     headerTitleStyle: {
@@ -50,18 +48,66 @@ export function CarSpaStack() {
     // <Stack.Navigator headerMode="none" initialRouteName="Select Wash">
     <Stack.Navigator
       screenOptions={{
-        headerTintColor: 'white',
-        headerStyle: { backgroundColor: '#1A1B1C' },
+        headerStyle: {
+          backgroundColor: 'black',
+          shadowRadius: 0,
+          height: 55,
+          shadowOffset: {
+            height: 0,
+          },
+        },
+        headerTintColor: '#fff',
 
-        headerBackTitleVisible: false,
+        headerBackTitleStyle: {
+          opacity: 0,
+        },
       }}
+      // screenOptions={{
+      //   headerTintColor: 'white',
+      //   headerStyle: { backgroundColor: '#1A1B1C' },
+
+      //   headerBackTitleVisible: false,
+      // }}
       initialRouteName="Select Wash"
     >
-      <Stack.Screen name="Select Wash" component={SelectWashView} />
-      <Stack.Screen name="Calendar" component={CalendarView} />
+      <Stack.Screen
+        name="Select Wash"
+        options={{ headerShown: false }}
+        component={SelectWashView}
+      />
+      <Stack.Screen
+        name="Calendar"
+        options={{
+          headerStyle: {
+            backgroundColor: '#1a1b1c',
+            marginLeft: 20,
+            shadowRadius: 0,
+            height: 45,
+            shadowOffset: {
+              height: 0,
+            },
+          },
+          title: '',
+        }}
+        component={CalendarView}
+      />
       <Stack.Screen
         options={{
           ...TransitionPresets.ModalSlideFromBottomIOS,
+          headerTintColor:'#1a1b1c',
+          
+            headerStyle: {
+              backgroundColor: '#ffffff',
+             headerTintColor:'red',
+             tintColor:'red',
+              shadowRadius: 0,
+              height: 45,
+              shadowOffset: {
+                height: 0,
+              },
+            },
+            title:''
+        
         }}
         name="Wash Description"
         component={WashDescriptionView}
@@ -77,6 +123,11 @@ export function RegisterStack() {
         title: 'SIGN UP',
         headerStyle: {
           backgroundColor: 'black',
+          height: 55,
+          shadowRadius: 0,
+          shadowOffset: {
+            height: 0,
+          },
         },
         headerTintColor: '#fff',
         headerTitleStyle: {
@@ -111,6 +162,11 @@ export function LoginStack() {
         title: 'LOGIN',
         headerStyle: {
           backgroundColor: 'black',
+          shadowRadius: 0,
+          height: 55,
+          shadowOffset: {
+            height: 0,
+          },
         },
         headerTintColor: '#fff',
         headerTitleStyle: {
@@ -132,6 +188,21 @@ export function MainTab() {
   return (
     <Tab.Navigator
       initialRouteName="Car Spa"
+      screenOptions={{
+        headerStyle: {
+          backgroundColor: 'black',
+          shadowRadius: 0,
+          height: 55,
+          shadowOffset: {
+            height: 0,
+          },
+        },
+        headerTintColor: '#fff',
+
+        headerBackTitleStyle: {
+          opacity: 0,
+        },
+      }}
       tabBarOptions={{
         style: {
           backgroundColor: '#121314',
@@ -140,16 +211,14 @@ export function MainTab() {
         showLabel: false,
       }}
       screenOptions={({ route }) => ({
-
-        
         tabBarIcon: ({ focused, color, size }) => {
           if (route.name === 'Car Spa') {
             return (
               <CarSpaIcon
-                style={
-                  ([focused ? { opacity: 1 } : { opacity: 0.4 }, { transform: [{ translateX: 30 }] }]
-                 )
-                }
+                style={[
+                  focused ? { opacity: 1 } : { opacity: 0.4 },
+                  { transform: [{ translateX: 30 }] },
+                ]}
               />
             );
           } else if (route.name === 'Bookings') {
@@ -157,10 +226,10 @@ export function MainTab() {
             // console.log(route)
             return (
               <BookingsIcon
-                style={
-                  ([focused ? { opacity: 1 } : { opacity: 0.4 }, { transform: [{ translateX: -30 }] }]
-                 )
-                }
+                style={[
+                  focused ? { opacity: 1 } : { opacity: 0.4 },
+                  { transform: [{ translateX: -30 }] },
+                ]}
               />
             );
           }
