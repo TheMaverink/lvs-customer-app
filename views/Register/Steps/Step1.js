@@ -115,10 +115,7 @@ class Step1 extends React.Component {
                 textColor="black"
                 margin={10}
                 action={handleSubmit((values) =>
-                  loginVerifyRequest(
-                    phoneNumberToVerify,
-                    values.verificationCode
-                  )
+                  sendSmsRequest(values.phoneNumber)
                 )}
               />
             </View>

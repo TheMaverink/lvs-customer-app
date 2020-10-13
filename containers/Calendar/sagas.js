@@ -16,8 +16,6 @@ import {
 } from './actions';
 
 function* selectDayWorker(action) {
-
- 
   try {
     const { dateString } = action.payload;
 
@@ -39,15 +37,20 @@ function* selectHourWorker(action) {
 
 function* bookingWorker(action) {
   let token;
-  token = yield AsyncStorage.getItem('token')
+  token = yield AsyncStorage.getItem('token');
   // yield action.payload['token'] = token
   try {
-    const apiResult = yield call(apiBooking, action.payload,token);
+    const apiResult = yield call(apiBooking, action.payload, token);
     yield put(bookingSuccess(apiResult.data));
     // console.log('from saga')
     // console.log(apiResult.data);
-    RootNavigation.navigate('Bookings',{bookingData:apiResult.data } );
-      // RootNavigation.navigate('Bookings');
+    // RootNavigation.navigate('Bookings',{bookingData:apiResult.data } );
+    RootNavigation.navigate('Bookings', {
+      screen: 'Booking Confirmation',
+      params: {
+        bookingData: apiResult.data,
+      },
+    });
   } catch (error) {
     console.log(error);
     yield put(bookingFailure(error));

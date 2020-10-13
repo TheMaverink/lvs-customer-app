@@ -101,6 +101,8 @@ console.log(props.route.params)
         <Text>LIst of bookings here</Text>
       )}
     </React.Fragment>
+
+    // <Text>Bookings View</Text>
   );
 };
 

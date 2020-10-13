@@ -21,6 +21,7 @@ import SplashView from 'views/Splash';
 import AuthView from 'views/Auth';
 import CalendarView from 'views/Calendar';
 import ConfirmationView from 'views/Confirmation';
+import BookingsView from 'views/Bookings';
 import LoginView from 'views/Login';
 import RegisterView from 'views/Register';
 import SelectWashView from 'views/SelectWash';
@@ -42,6 +43,50 @@ const stackNavigationConfig = {
 const Tab = createBottomTabNavigator();
 
 const Stack = createStackNavigator();
+
+export function BookingsStack() {
+  return <Stack.Navigator
+  headerMode="none" 
+    screenOptions={{
+      headerStyle: {
+        backgroundColor: 'black',
+        shadowRadius: 0,
+        height: 55,
+        shadowOffset: {
+          height: 0,
+        },
+      },
+      headerTintColor: '#fff',
+
+      headerBackTitleStyle: {
+        opacity: 0,
+      },
+    }}
+    initialRouteName="Bookings"
+  >
+    <Stack.Screen
+      name="Bookings"
+      options={{ headerShown: false }}
+      component={BookingsView}
+    />
+    <Stack.Screen
+      name="Booking Confirmation"
+      // options={{
+      //   headerStyle: {
+      //     backgroundColor: '#1a1b1c',
+      //     marginLeft: 20,
+      //     shadowRadius: 0,
+      //     height: 45,
+      //     shadowOffset: {
+      //       height: 0,
+      //     },
+      //   },
+      //   title: '',
+      // }}
+      component={ConfirmationView}
+    />
+  </Stack.Navigator>;
+}
 
 export function CarSpaStack() {
   return (
@@ -94,20 +139,19 @@ export function CarSpaStack() {
       <Stack.Screen
         options={{
           ...TransitionPresets.ModalSlideFromBottomIOS,
-          headerTintColor:'#1a1b1c',
-          
-            headerStyle: {
-              backgroundColor: '#ffffff',
-             headerTintColor:'red',
-             tintColor:'red',
-              shadowRadius: 0,
-              height: 45,
-              shadowOffset: {
-                height: 0,
-              },
+          headerTintColor: '#1a1b1c',
+
+          headerStyle: {
+            backgroundColor: '#ffffff',
+            headerTintColor: 'red',
+            tintColor: 'red',
+            shadowRadius: 0,
+            height: 45,
+            shadowOffset: {
+              height: 0,
             },
-            title:''
-        
+          },
+          title: '',
         }}
         name="Wash Description"
         component={WashDescriptionView}
@@ -207,6 +251,10 @@ export function MainTab() {
         style: {
           backgroundColor: '#121314',
           height: 60,
+          shadowRadius: 0,
+          shadowOffset: {
+            height: 0,
+          },
         },
         showLabel: false,
       }}
@@ -237,7 +285,7 @@ export function MainTab() {
       })}
     >
       <Tab.Screen name="Car Spa" component={CarSpaStack} />
-      <Tab.Screen name="Bookings" component={ConfirmationView} />
+      <Tab.Screen name="Bookings" component={BookingsStack} />
     </Tab.Navigator>
   );
 }
