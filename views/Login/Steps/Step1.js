@@ -4,6 +4,7 @@ import {
   Dimensions,
   StyleSheet,
   KeyboardAvoidingView,
+  Text
 } from 'react-native';
 
 import { Field, formValueSelector, reduxForm } from 'redux-form';
@@ -16,6 +17,8 @@ import { compose } from 'recompose';
 
 import LoginContainer from 'containers/Login';
 import TextInputField from '../../../components/TextInputField';
+
+import BaseButton from 'components/BaseButton';
 
 import FormWarningMessage from 'components/FormWarningMessage';
 
@@ -110,6 +113,23 @@ class Step1 extends React.Component {
                 loginSendSmsRequest(values.phoneNumber)
               )}
             />
+
+            <View style={styles.buttomContainer}>
+              <BaseButton
+                title="Send otp"
+                bgColor = {this.state.phoneNumberStatus === "valid" ? "rgba(216,216,216,1)" : "rgba(216,216,216,.6)" }
+               
+                textColor="black"
+                margin={10}
+                action={handleSubmit((values) =>
+                  loginVerifyRequest(
+                    phoneNumberToVerify,
+                    values.verificationCode
+                  )
+                )}
+              />
+
+            </View>
 
             {this.state.phoneNumberStatus === 'wrong' ? (
               <FormWarningMessage />

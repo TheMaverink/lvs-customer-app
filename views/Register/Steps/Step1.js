@@ -13,6 +13,7 @@ import { phoneNumberValidation } from 'utils/validations';
 import AuthQuestion from 'components/AuthQuestion';
 import { compose } from 'recompose';
 import FormWarningMessage from 'components/FormWarningMessage';
+import BaseButton from 'components/BaseButton';
 
 import TextInputField from '../../../components/TextInputField';
 import FormIcon from '../components/FormIcon';
@@ -65,7 +66,7 @@ class Step1 extends React.Component {
         phoneNumberStatus: phoneNumberValidation(this.props.sendSmsFormValues),
       });
 
-      console.log(this.props.sendSmsFormValues)
+      console.log(this.props.sendSmsFormValues);
     }
   }
 
@@ -75,39 +76,58 @@ class Step1 extends React.Component {
       <View style={styles.container}>
         <AuthQuestion question="Please enter your mobile number to continue." />
 
-
-
-      <KeyboardAvoidingView
+        <KeyboardAvoidingView
           behavior={Platform.OS == 'ios' ? 'padding' : 'height'}
           style={styles.container}
         >
-        <View style={styles.fieldContainer}>
-          <Field
-            name="phoneNumber"
-            component={TextInputField}
-            props={{ placeholder: 'Mobile number...' ,keyboardType: 'phone-pad'}}
-          />
+          <View style={styles.fieldContainer}>
+            <Field
+              name="phoneNumber"
+              component={TextInputField}
+              props={{
+                placeholder: 'Mobile number...',
+                keyboardType: 'phone-pad',
+              }}
+            />
 
-          <FormIcon
-            // validation={phoneNumberValidation(this.state.phoneNumberValue)}
-            validation={this.state.phoneNumberStatus}
-            action={handleSubmit((values) =>
-              sendSmsRequest(values.phoneNumber)
-            )}
-          />
-          {/* <TouchableOpacity
+            <FormIcon
+              // validation={phoneNumberValidation(this.state.phoneNumberValue)}
+              validation={this.state.phoneNumberStatus}
+              action={handleSubmit((values) =>
+                sendSmsRequest(values.phoneNumber)
+              )}
+            />
+            {/* <TouchableOpacity
             style={styles.button}
             onPress={handleSubmit((values) => sendSmsRequest(values.phoneNumber))}
           >
             <Image source={CheckCircle} />
           </TouchableOpacity> */}
-          {this.state.phoneNumberStatus === 'wrong' ? (
-            <FormWarningMessage />
-          ) : (
-            <SwitchAuth marginV={10} switchTo="login" />
-          )}
-        </View>
 
+            <View style={styles.buttomContainer}>
+              <BaseButton
+                title="Send otp"
+                bgColor={
+                  this.state.phoneNumberStatus === 'valid'
+                    ? 'rgba(216,216,216,1)'
+                    : 'rgba(216,216,216,.6)'
+                }
+                textColor="black"
+                margin={10}
+                action={handleSubmit((values) =>
+                  loginVerifyRequest(
+                    phoneNumberToVerify,
+                    values.verificationCode
+                  )
+                )}
+              />
+            </View>
+            {this.state.phoneNumberStatus === 'wrong' ? (
+              <FormWarningMessage />
+            ) : (
+              <SwitchAuth marginV={10} switchTo="login" />
+            )}
+          </View>
         </KeyboardAvoidingView>
       </View>
     );
