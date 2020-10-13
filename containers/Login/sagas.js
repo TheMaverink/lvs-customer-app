@@ -63,7 +63,7 @@ function* verifyCodeWorker(action) {
 function* loginWorker(action) {
   try {
     const apiResult = yield call(apiLogin, action.payload);
-    console.log(apiResult)
+ 
     yield put(loginSuccess(apiResult.data));
     // RootNavigation.navigate('Register Step 3');
 

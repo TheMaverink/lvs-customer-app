@@ -10,7 +10,7 @@ import {
 const initialState = {
   loading: false,
   errorMessage: null,
-  bookings:null
+  bookings:[]
 };
 
 export default function reducer(state = initialState, action) {
@@ -21,7 +21,7 @@ export default function reducer(state = initialState, action) {
         ...state,
         loading: true,
         errorMessage: null,
-        bookings: null,
+        bookings: [],
       };
     }
 
@@ -29,7 +29,7 @@ export default function reducer(state = initialState, action) {
       return {
         ...state,
         loading: false,
-        bookings: null,
+        bookings: [],
       };
     }
 

@@ -4,14 +4,13 @@ import { bindActionCreators } from 'redux';
 import { Field, formValueSelector, reduxForm } from 'redux-form';
 import { createStructuredSelector } from 'reselect';
 import reducer from './reducer';
+import { REDUCER_NAME } from './consts';
 
 import {
   getBookingsRequest,
   getBookingsFailure,
   getBookingsSuccess,
 } from './actions';
-
-import { REDUCER_NAME } from './consts';
 
 import { selectBookings, selectIsLoading } from './selectors';
 import store from 'store/store';

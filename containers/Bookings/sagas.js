@@ -10,11 +10,18 @@ import {
 } from './actions';
 
 function* getBookingsWorker(action) {
+
+  let token;
   try {
-    const apiResult = yield call(apiGetBookings);
-    yield put(getBookingsSuccess(apiResult));
+
+    token = yield AsyncStorage.getItem('token')
+
+    const apiResult = yield call(apiGetBookings,token);
+ 
+    yield put(getBookingsSuccess(apiResult.data));
   } catch (error) {
     yield put(getBookingsFailure(error));
+    console.log('error!');
     console.log(error);
   }
 }

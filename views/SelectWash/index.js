@@ -10,8 +10,9 @@ import {
 } from 'react-native';
 import WashCard from 'components/WashCard';
 import WashesContainer from 'containers/Washes';
+import BookingsContainer from 'containers/Bookings';
 import { compose, lifecycle } from 'recompose';
-import { useFocusEffect ,useIsFocused} from '@react-navigation/native';
+import { useFocusEffect, useIsFocused } from '@react-navigation/native';
 import { StatusColorContext } from 'components/AppView';
 const deviceHeight = Dimensions.get('window').height;
 const deviceWidth = Dimensions.get('window').width;
@@ -31,19 +32,27 @@ const styles = StyleSheet.create({
 });
 
 const SelectWashView = (props) => {
-  const { washesRequest, washes, selectWashRequest } = props;
+  const {
+    washesRequest,
+    washes,
+    selectWashRequest,
+    getBookingsRequest,
+  } = props;
 
   const scrollX = useRef(new Animated.Value(0)).current;
-
-  useEffect(() => {
-    washesRequest();
-  }, []);
-
+console.log(props.bokings)
   const colorContext = React.useContext(StatusColorContext);
   useFocusEffect(
     React.useCallback(() => {
       colorContext.changeAppViewColour('#1a1b1c');
       console.log(colorContext);
+
+      async function grabData() {
+        await washesRequest();
+        await getBookingsRequest();
+      }
+
+      grabData();
     }, [])
   );
 
@@ -51,7 +60,7 @@ const SelectWashView = (props) => {
 
   return (
     <View style={styles.background}>
-        {isFocused ? <StatusBar barStyle="light-content" /> : null}
+      {isFocused ? <StatusBar barStyle="light-content" /> : null}
       <HeaderMessage title={'Select your premium\ncar wash.'} />
       <View style={styles.animWrapper}>
         <Animated.FlatList
@@ -90,4 +99,4 @@ const SelectWashView = (props) => {
   );
 };
 
-export default compose(WashesContainer)(SelectWashView);
+export default compose(WashesContainer, BookingsContainer)(SelectWashView);

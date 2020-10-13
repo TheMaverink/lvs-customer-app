@@ -78,8 +78,7 @@ class CalendarView extends React.Component {
 
   componentDidMount() {
     this.props.change('service', this.props.selectedWash);
-    console.log('didmount');
-    console.log(this.props);
+   
   }
 
   render() {
