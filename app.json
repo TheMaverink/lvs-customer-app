@@ -3,13 +3,13 @@
     "name": "lvs-customer-frontend",
     "slug": "lvs-customer-frontend",
     "privacy": "public",
-    "version": "8.0.0",
+    "version": "9.0.0",
     "platforms": [
       "ios",
       "android"
     ],
     "orientation": "portrait",
-    "icon": "./assets/icons/icon.png",
+    "icon": "./assets/logos/icon.png",
     "splash": {
       "backgroundColor": "#000000"
     },

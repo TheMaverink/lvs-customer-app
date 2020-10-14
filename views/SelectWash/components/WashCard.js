@@ -16,7 +16,7 @@ import Indicator from './Indicator'
 
 import YellowCar from 'assets/images/cars/yellowcar.png';
 import BlueCar from 'assets/images/cars/bluecar.png';
-import InfoIcon from 'assets/icons/info-icon.png';
+import InfoIcon from 'assets/icons/info.svg';
 
 const deviceHeight = Dimensions.get('window').height;
 const deviceWidth = Dimensions.get('window').width;
@@ -265,7 +265,9 @@ const WashCard = (props) => {
                 })
               }
             >
-              <Image style={styles.icon} source={InfoIcon}></Image>
+
+              <InfoIcon style={styles.icon} />
+              {/* <Image style={styles.icon} source={InfoIcon}></Image> */}
             </TouchableHighlight>
           </View>
         </View>

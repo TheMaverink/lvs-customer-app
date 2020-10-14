@@ -13,7 +13,7 @@ import { Field, formValueSelector, reduxForm } from 'redux-form';
 import AuthQuestion from 'components/AuthQuestion';
 import BaseButton from 'components/BaseButton';
 import { compose } from 'recompose';
-import CheckCircle from 'assets/icons/check-circle.png';
+
 
 import UpdateCustomerContainer from 'containers/UpdateCustomer';
 import TextInputField from '../../../components/TextInputField';

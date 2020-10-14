@@ -20,7 +20,7 @@ const AppView = ({ children }) => {
         isAndroid,
       }}
     >
-      <SafeAreaView style={{ flex: 1, backgroundColor: bckgdColor }}>
+      <SafeAreaView style={{ flex: 1, backgroundColor: '#000000' }}>
         {children}
       </SafeAreaView>
     </StatusColorContext.Provider>

@@ -1,5 +1,5 @@
 import { PortalProvider, WhitePortal } from 'react-native-portal';
-import { View, Text, Image,StatusBar } from 'react-native';
+import { View, Text, Image, StatusBar } from 'react-native';
 import axios from 'axios';
 import React from 'react';
 import { Provider } from 'react-redux';
@@ -22,7 +22,7 @@ class App extends React.Component {
 
     this.state = {
       fontsLoaded: false,
-      canAppRun:false
+      canAppRun: false,
     };
   }
 
@@ -48,25 +48,19 @@ class App extends React.Component {
     );
 
     setTimeout(() => {
-      this.setState({canAppRun: true});
-    }, 3000)
+      this.setState({ canAppRun: true });
+    }, 3000);
   }
-
-
-
-
 
   render() {
     if (!this.state.canAppRun) {
       return (
         <View style={{ flex: 1 }}>
-              
           <Image
-            
             source={require('./assets/images/splash.gif')}
             onLoad={this._cacheResourcesAsync}
             resizeMode={'contain'}
-            style={{width:'100%', height:'100%'}}
+            style={{ width: '100%', height: '100%' }}
           />
         </View>
       );
@@ -76,7 +70,11 @@ class App extends React.Component {
       <PortalProvider>
         <Provider store={store}>
           <AppView>
-          <StatusBar barStyle="light-content" backgroundColor="#1A1B1C" translucent={false} />
+            <StatusBar
+              barStyle="light-content"
+              backgroundColor="#1A1B1C"
+              translucent={false}
+            />
             <AppNavigator />
           </AppView>
           <WhitePortal name="portal" />
@@ -84,11 +82,6 @@ class App extends React.Component {
       </PortalProvider>
     );
   }
-
-  _cacheSplashResourcesAsync = async () => {
-    const gif = require('./assets/images/splash.gif');
-    return Asset.fromModule(gif).downloadAsync();
-  };
 
 
 }

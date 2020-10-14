@@ -4,7 +4,6 @@ import {
   Text,
   View,
   Image,
-  StatusBar,
   Animated,
   Dimensions,
 } from 'react-native';
@@ -13,9 +12,8 @@ import BaseButton from 'components/BaseButton';
 import backgroundCar from 'assets/images/cars/authBackground.png';
 
 import { create, PREDEF_RES } from 'react-native-pixel-perfect';
-import { WhitePortal } from 'react-native-portal';
-import { COLORS } from 'consts/';
-import img from '../../assets/logos/logo.png';
+
+import img from 'assets/logos/logo.png';
 
 const deviceHeight = Dimensions.get('window').height;
 const deviceWidth = Dimensions.get('window').width;

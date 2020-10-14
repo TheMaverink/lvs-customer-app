@@ -226,7 +226,7 @@ export function LoginStack() {
       }}
       initialRouteName="Login Step 1"
     >
-      <Stack.Screen options={{gestureEnabled:false}} name="Login Step 1" component={LoginStep1View} />
+      <Stack.Screen  name="Login Step 1" component={LoginStep1View} />
       <Stack.Screen name="Login Step 2" component={LoginStep2View} />
     </Stack.Navigator>
   );
@@ -310,7 +310,7 @@ class AppNavigator extends React.Component {
         onNavigationStateChange={onNavChange}
         screenOptions={{ stackNavigationConfig }}
       >
-        <Stack.Navigator initialRouteName="Select Wash" headerMode="none">
+        <Stack.Navigator initialRouteName="Auth" headerMode="none">
           <Stack.Screen name="Splash" component={SplashView} />
           <Stack.Screen name="Auth" component={AuthView} />
           <Stack.Screen name="Login" component={LoginStack} />

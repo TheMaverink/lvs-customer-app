@@ -24,9 +24,9 @@ const deviceWidth = Dimensions.get('window').width;
 const styles = StyleSheet.create({
   container: {
     backgroundColor: '#1A1B1C',
-    height: deviceHeight,
-    width: deviceWidth,
-    position: 'relative',
+    height: '100%',
+    width: '100%',
+    // position: 'relative',
   },
   fieldContainer: {
     position:'absolute',
