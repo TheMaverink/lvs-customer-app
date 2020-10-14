@@ -10,7 +10,7 @@ import {
 } from 'react-native';
 
 import BaseButton from 'components/BaseButton';
-import backgroundCar from '../../assets/images/initial_screen_bckgd3.png';
+import backgroundCar from 'assets/images/cars/authBackground.png';
 
 import { create, PREDEF_RES } from 'react-native-pixel-perfect';
 import { WhitePortal } from 'react-native-portal';
@@ -125,7 +125,7 @@ const AuthView = ({ navigation }) => {
           <View style={styles.imageContainer}>
             <Image
               source={backgroundCar}
-              resizeMode={'cover'}
+              resizeMode={'contain'}
               style={styles.image}
             />
 

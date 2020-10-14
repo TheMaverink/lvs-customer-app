@@ -3,7 +3,7 @@
     "name": "lvs-customer-frontend",
     "slug": "lvs-customer-frontend",
     "privacy": "public",
-    "version": "7.0.0",
+    "version": "8.0.0",
     "platforms": [
       "ios",
       "android"

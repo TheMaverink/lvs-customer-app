@@ -8,7 +8,7 @@ import {
   Dimensions,
   Image,
 } from 'react-native';
-import carImg from 'assets/images/cars/car1.png';
+import carImg from 'assets/images/cars/yellowcar.png';
 import moment from 'moment';
 import minutesConverter from 'utils/minutesConverter';
 import ConfirmedBookingItem from './ConfirmedBookingItem';

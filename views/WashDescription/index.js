@@ -10,7 +10,7 @@ import {
   FlatList,
   StatusBar,
 } from 'react-native';
-import {StatusColorContext} from "components/AppView"
+import { StatusColorContext } from 'components/AppView';
 const { width, height } = Dimensions.get('window');
 import { useFocusEffect } from '@react-navigation/native';
 
@@ -20,7 +20,7 @@ import ServicesContainer from 'containers/Services/';
 
 import SubService from './components/SubService';
 
-import CarImg from '../../assets/images/cars/car1.png';
+import CarImg from '../../assets/images/cars/yellowcar.png';
 
 const styles = StyleSheet.create({
   container: {
@@ -35,7 +35,7 @@ const styles = StyleSheet.create({
     height: height * 0.2,
     backgroundColor: 'white',
 
-    justifyContent: 'center',
+    justifyContent: 'flex-start',
     paddingLeft: width * 0.05,
   },
   serviceTitle: {
@@ -58,12 +58,16 @@ const styles = StyleSheet.create({
   },
   imageContainer: {
     position: 'absolute',
+    width:'100%',
     left: 0,
     right: 0,
     justifyContent: 'center',
     alignItems: 'center',
-    transform: [{ translateY: '-40%' }],
+    transform: [{ translateY: -120 }],
+  },image: {
+    width:'70%'
   },
+  
   cornerLeftContainer: {
     position: 'absolute',
     backgroundColor: 'white',
@@ -98,14 +102,14 @@ const styles = StyleSheet.create({
     right: 0,
   },
 
-  image: {},
+  
   contentContainer: {
     marginTop: height * 0.075,
-    paddingLeft: width * 0.05,
+    paddingLeft: width * 0.07,
   },
   price: {
     color: '#FED400',
-    fontSize: 16,
+    fontSize: 24,
     fontFamily: 'DMSans-Bold',
     marginBottom: height * 0.045,
   },
@@ -131,10 +135,8 @@ const WashDescription = (props) => {
   const colorContext = React.useContext(StatusColorContext);
   useFocusEffect(
     React.useCallback(() => {
-
-    colorContext.changeAppViewColour('#ffffff')
+      colorContext.changeAppViewColour('#ffffff');
       console.log(colorContext);
-      
     }, [])
   );
 
@@ -172,7 +174,11 @@ const WashDescription = (props) => {
             <View style={styles.cornerRight}></View>
           </View>
           <View style={styles.imageContainer}>
-            <Image style={styles.image} source={CarImg}></Image>
+            <Image
+              style={styles.image}
+              source={CarImg}
+              resizeMode={'contain'}
+            ></Image>
           </View>
           <View style={styles.contentContainer}>
             <Text style={styles.price}>£{price}</Text>

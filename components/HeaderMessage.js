@@ -8,13 +8,13 @@ const styles = StyleSheet.create({
   container:{
     width:'100%',
     position:'absolute',
-    top:0,
-    left:0
+    top:45,
+    left:24
 
   },
   text: {
-    paddingTop:deviceHeight * 0.03,
-    paddingLeft:deviceWidth * 0.05,
+    // paddingTop:deviceHeight * 0.05,
+    // paddingLeft:deviceWidth * 0.05,
     color: 'white',
     fontSize: 24,
     fontFamily: 'DMSans-Regular',
@@ -27,7 +27,7 @@ const styles = StyleSheet.create({
 const HeaderMessage = (props) => {
   const { title } = props;
   return (
-    <View>
+    <View style={styles.container}>
       <Text style={styles.text}>{title}</Text>
     </View>
   );

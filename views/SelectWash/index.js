@@ -8,12 +8,15 @@ import {
   StatusBar,
   Dimensions,
 } from 'react-native';
-import WashCard from 'components/WashCard';
+import WashCard from './components/WashCard';
 import WashesContainer from 'containers/Washes';
 import BookingsContainer from 'containers/Bookings';
 import { compose, lifecycle } from 'recompose';
 import { useFocusEffect, useIsFocused } from '@react-navigation/native';
 import { StatusColorContext } from 'components/AppView';
+
+import { BlurView } from 'expo-blur';
+
 const deviceHeight = Dimensions.get('window').height;
 const deviceWidth = Dimensions.get('window').width;
 
@@ -28,6 +31,14 @@ const styles = StyleSheet.create({
   animWrapper: {
     width: '90%',
     overflow: 'visible',
+
+  },
+  absolute: {
+    position: 'absolute',
+    top: 0,
+    left: 0,
+    bottom: 0,
+    right: 0,
   },
 });
 
@@ -37,10 +48,14 @@ const SelectWashView = (props) => {
     washes,
     selectWashRequest,
     getBookingsRequest,
+    isBookingsLoading,
+    isWashesLoading,
   } = props;
+  console.log(props.isBookingsLoading ===true);
+  console.log(props.isWashesLoading ===true);
 
   const scrollX = useRef(new Animated.Value(0)).current;
-console.log(props.bokings)
+  console.log(props.bokings);
   const colorContext = React.useContext(StatusColorContext);
   useFocusEffect(
     React.useCallback(() => {
@@ -95,6 +110,11 @@ console.log(props.bokings)
           scrollEventThrottle={16}
         />
       </View>
+      {isBookingsLoading === true || isWashesLoading === true ? (
+        <BlurView style={styles.absolute} intensity={70} tint="dark">
+        
+        </BlurView>
+      ) : null}
     </View>
   );
 };

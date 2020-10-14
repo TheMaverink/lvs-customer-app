@@ -20,7 +20,7 @@ import { selectIsLoading, selectWashes, selectWash } from './selectors';
 import store from 'store/store';
 
 export const mapStateToProps = createStructuredSelector({
-  isLoading: selectIsLoading,
+  isWashesLoading: selectIsLoading,
   washes: selectWashes,
   selectedWash: selectWash,
 });

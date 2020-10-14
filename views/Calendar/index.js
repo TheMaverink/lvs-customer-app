@@ -15,6 +15,8 @@ import {
 import CardFlip from 'react-native-card-flip';
 import { compose } from 'recompose';
 
+import { BlurView } from 'expo-blur';
+
 import Calendar from './components/Calendar';
 import CalendarContainer from 'containers/Calendar';
 // import HourPicker from './components/HourPicker';
@@ -68,6 +70,13 @@ const styles = StyleSheet.create({
     // justifyContent: 'center',
     // alignItems: 'center',
   },
+  absolute: {
+    position: 'absolute',
+    top: 0,
+    left: 0,
+    bottom: 0,
+    right: 0,
+  },
 });
 
 class CalendarView extends React.Component {
@@ -87,6 +96,8 @@ class CalendarView extends React.Component {
       change,
       calendarFormValues,
       handleSubmit,
+      isLoading
+      
     } = this.props;
 
     return (
@@ -109,6 +120,12 @@ class CalendarView extends React.Component {
               flipAction={() => this.card.flip()}
             />
           </CardFlip>
+
+          {isLoading === true ? (
+        <BlurView style={styles.absolute} intensity={70} tint="dark">
+          <Text>Hello! I am bluring contents underneath</Text>
+        </BlurView>
+      ) : null}
   
           {/* <KeyboardAvoidingView
           behavior={Platform.OS == 'ios' ? 'padding' : 'height'}

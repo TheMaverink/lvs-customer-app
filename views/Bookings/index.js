@@ -11,7 +11,7 @@ import {
 } from 'react-native';
 import HeaderMessage from '../../components/HeaderMessage';
 import ConfirmedBookingItem from './components/ConfirmedBookingItem';
-import carImg from '../../assets/images/cars/car1.png';
+import carImg from '../../assets/images/cars/yellowcar.png';
 import BaseButton from '../../components/BaseButton';
 import * as RootNavigation from '../../RootNavigation';
 import minutesConverter from 'utils/minutesConverter';
@@ -36,14 +36,11 @@ const styles = StyleSheet.create({
 const BookingsView = (props) => {
   const isFocused = useIsFocused();
 
-  const { getBookingsRequest, bookings ,navigation} = props;
+  const { getBookingsRequest, bookings, navigation } = props;
 
   const colorContext = React.useContext(StatusColorContext);
 
   let [updatedBookings, updateBookings] = useState(props.bookings);
-
-console.log('NAVIGATION')
-console.log(props.route.params)
 
   useEffect(() => {
     const run = async () => {
@@ -57,8 +54,6 @@ console.log(props.route.params)
 
       run();
     }
-
-   
   }, [isFocused]);
 
   // useFocusEffect(
@@ -91,7 +86,6 @@ console.log(props.route.params)
   // const isFocused = useIsFocused();
 
   return (
-
     <React.Fragment>
       {!updatedBookings[0] || updatedBookings.length === [] ? (
         <NoBooking />

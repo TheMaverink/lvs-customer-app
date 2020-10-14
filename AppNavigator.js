@@ -45,47 +45,49 @@ const Tab = createBottomTabNavigator();
 const Stack = createStackNavigator();
 
 export function BookingsStack() {
-  return <Stack.Navigator
-  headerMode="none" 
-    screenOptions={{
-      headerStyle: {
-        backgroundColor: 'black',
-        shadowRadius: 0,
-        height: 55,
-        shadowOffset: {
-          height: 0,
+  return (
+    <Stack.Navigator
+      headerMode="none"
+      screenOptions={{
+        headerStyle: {
+          backgroundColor: 'black',
+          shadowRadius: 0,
+          height: 55,
+          shadowOffset: {
+            height: 0,
+          },
         },
-      },
-      headerTintColor: '#fff',
+        headerTintColor: '#fff',
 
-      headerBackTitleStyle: {
-        opacity: 0,
-      },
-    }}
-    initialRouteName="Bookings"
-  >
-    <Stack.Screen
-      name="Bookings"
-      options={{ headerShown: false }}
-      component={BookingsView}
-    />
-    <Stack.Screen
-      name="Booking Confirmation"
-      // options={{
-      //   headerStyle: {
-      //     backgroundColor: '#1a1b1c',
-      //     marginLeft: 20,
-      //     shadowRadius: 0,
-      //     height: 45,
-      //     shadowOffset: {
-      //       height: 0,
-      //     },
-      //   },
-      //   title: '',
-      // }}
-      component={ConfirmationView}
-    />
-  </Stack.Navigator>;
+        headerBackTitleStyle: {
+          opacity: 0,
+        },
+      }}
+      initialRouteName="Bookings"
+    >
+      <Stack.Screen
+        name="Bookings"
+        options={{ headerShown: false }}
+        component={BookingsView}
+      />
+      <Stack.Screen
+        name="Booking Confirmation"
+        // options={{
+        //   headerStyle: {
+        //     backgroundColor: '#1a1b1c',
+        //     marginLeft: 20,
+        //     shadowRadius: 0,
+        //     height: 45,
+        //     shadowOffset: {
+        //       height: 0,
+        //     },
+        //   },
+        //   title: '',
+        // }}
+        component={ConfirmationView}
+      />
+    </Stack.Navigator>
+  );
 }
 
 export function CarSpaStack() {
@@ -117,7 +119,8 @@ export function CarSpaStack() {
     >
       <Stack.Screen
         name="Select Wash"
-        options={{ headerShown: false }}
+        options={{ headerShown: false ,gestureEnabled:false}}
+      
         component={SelectWashView}
       />
       <Stack.Screen
@@ -202,6 +205,7 @@ export function RegisterStack() {
 export function LoginStack() {
   return (
     <Stack.Navigator
+    
       screenOptions={{
         title: 'LOGIN',
         headerStyle: {
@@ -222,7 +226,7 @@ export function LoginStack() {
       }}
       initialRouteName="Login Step 1"
     >
-      <Stack.Screen name="Login Step 1" component={LoginStep1View} />
+      <Stack.Screen options={{gestureEnabled:false}} name="Login Step 1" component={LoginStep1View} />
       <Stack.Screen name="Login Step 2" component={LoginStep2View} />
     </Stack.Navigator>
   );
@@ -247,14 +251,20 @@ export function MainTab() {
           opacity: 0,
         },
       }}
+      tabStyle={{
+        shadowRadius: 0,
+        shadowOffset: {
+          height: 0,
+          background: 'red',
+          backgroundColor: 'red',
+        },
+      }}
       tabBarOptions={{
         style: {
           backgroundColor: '#121314',
           height: 60,
-          shadowRadius: 0,
-          shadowOffset: {
-            height: 0,
-          },
+
+          borderTopColor: 'transparent',
         },
         showLabel: false,
       }}
@@ -300,12 +310,12 @@ class AppNavigator extends React.Component {
         onNavigationStateChange={onNavChange}
         screenOptions={{ stackNavigationConfig }}
       >
-        <Stack.Navigator initialRouteName="Auth" headerMode="none">
+        <Stack.Navigator initialRouteName="Select Wash" headerMode="none">
           <Stack.Screen name="Splash" component={SplashView} />
           <Stack.Screen name="Auth" component={AuthView} />
           <Stack.Screen name="Login" component={LoginStack} />
           <Stack.Screen name="Register" component={RegisterStack} />
-          <Stack.Screen name="Select Wash" component={MainTab} />
+          <Stack.Screen options={{gestureEnabled:false}}  name="Select Wash" component={MainTab} />
         </Stack.Navigator>
       </NavigationContainer>
     );

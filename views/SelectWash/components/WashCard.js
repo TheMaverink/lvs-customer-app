@@ -9,13 +9,14 @@ import {
   Text,
   Image,
 } from 'react-native';
-import * as RootNavigation from '../RootNavigation';
+import * as RootNavigation from '../../../RootNavigation';
 import { LinearGradient } from 'expo-linear-gradient';
 import BaseButton from 'components/BaseButton';
+import Indicator from './Indicator'
 
-import YellowCar from '../assets/images/cars/yellowcar.png';
-import BlueCar from '../assets/images/cars/bluecar.png';
-import InfoIcon from '../assets/icons/info-icon.png';
+import YellowCar from 'assets/images/cars/yellowcar.png';
+import BlueCar from 'assets/images/cars/bluecar.png';
+import InfoIcon from 'assets/icons/info-icon.png';
 
 const deviceHeight = Dimensions.get('window').height;
 const deviceWidth = Dimensions.get('window').width;
@@ -23,22 +24,27 @@ const adaptedWidth = deviceWidth * 0.9;
 
 const styles = StyleSheet.create({
   container: {
-    position:'relative',
+    position: 'relative',
     alignSelf: 'center',
     // transform: [{ translateX: -deviceHeight * 0.025 }],
     //  width:'100%',
     // borderRadius: 30,
     marginTop: '5%',
-   backgroundColor:'transparent',
+    backgroundColor: 'transparent',
    
+     height: deviceHeight * 1,
   },
   gradientContainer: {
-    position:'relative',
+    // borderWidth:3,
+    // borderColor:'red',
+    position: 'relative',
     borderRadius: 24,
     height: deviceHeight * 0.58,
-    width: adaptedWidth * 0.72,
+    // height:'80%',
+    width: adaptedWidth * 0.70,
+   marginTop: deviceHeight * 0.2,
     marginLeft: adaptedWidth * 0.15,
-    marginRight: adaptedWidth * 0.03,
+    // marginRight: adaptedWidth * 0.03,
     overflow: 'visible',
     justifyContent: 'center',
     // backgroundColor: 'red',
@@ -48,18 +54,21 @@ const styles = StyleSheet.create({
 
   image: {
     // marginTop: '5%',
-    position:'absolute',
-    top:50,
+    position: 'absolute',
+    top: -20,
     width: '100%',
     overflow: 'visible',
-    transform: [{ translateX: -deviceHeight * 0.02 },{ scale:0.9}],
+    transform: [{ translateX: -deviceHeight * 0.02 }, { scale: 1 }],
   },
   titleContainer: {
     flexDirection: 'row',
     flexWrap: 'wrap',
+    justifyContent:'space-between',
+    alignItems: 'stretch',
     paddingLeft: 20,
-    width:'100%',
+    width: '100%',
     transform: [{ translateY: -deviceHeight * 0.01 }],
+    
   },
 
   title: {
@@ -67,8 +76,9 @@ const styles = StyleSheet.create({
     color: '#FFFFFF',
     lineHeight: 48,
     fontFamily: 'DMSerifDisplay-Regular',
-    paddingHorizontal: '5%',
-    marginTop:'5%'
+    paddingLeft: '5%',
+    paddingRight: '15%',
+    marginTop: '5%',
     
   },
   description: {
@@ -78,19 +88,26 @@ const styles = StyleSheet.create({
     letterSpacing: -0.01,
     lineHeight: 20,
     paddingTop: '3%',
-    paddingHorizontal: '5%',
+    paddingLeft: '5%',
+    paddingRight: '30%',
+
+    
     fontFamily: 'DMSans-Regular',
   },
 
-
   iconContainer: {
-    width: '100%',
-    paddingHorizontal: '5%',
+    width: '90%',
+    alignSelf:'center',
+    paddingLeft: '5%',
+    paddingRight: '20%',
     paddingTop: '10%',
+
+   
   },
   icon: {
     width: 20,
-    height:20
+    height: 20,
+    
   },
   cornerLeftContainer: {
     position: 'absolute',
@@ -126,24 +143,27 @@ const styles = StyleSheet.create({
     right: 0,
   },
   button: {
-    position:'absolute',
-    bottom:16,
+    position: 'absolute',
+    bottom: 16,
     // marginVertical: 5,
     alignSelf: 'center',
     justifyContent: 'center',
     height: 48,
     borderRadius: 16,
     width: '87%',
-    fontFamily:'DMSans-Bold',
+    fontFamily: 'DMSans-Bold',
     fontSize: 14,
     backgroundColor: '#FFD500',
-    zIndex:3
+    zIndex:100,
+    
   },
   buttonText: {
     alignSelf: 'center',
     justifyContent: 'center',
     fontSize: 16,
+    
     color: 'black',
+    
   },
 });
 
@@ -197,6 +217,7 @@ const WashCard = (props) => {
 
   return (
     <Animated.View
+    
       style={[
         styles.container,
 
@@ -210,40 +231,26 @@ const WashCard = (props) => {
       <LinearGradient
         start={{ x: 0, y: 0 }}
         end={{ x: 0, y: 1 }}
-        locations={[0,0.15,1]}
-        colors={['transparent', 'transparent','black']}
+        locations={[0, 0.15, 1]}
+        colors={['transparent', 'transparent', 'black']}
         style={styles.gradientContainer}
       >
         {index === 1 ? (
           <Animated.Image
+            resizeMode={'contain'}
             source={BlueCar}
-            style={
-              // (styles.image,
-              // {
-              //   transform: [{ scale: imageScale }],
-              //   transform: [{ translateX: translateXHeading }],
-              // }
-              // )
-              styles.image
-            }
+            style={styles.image}
           ></Animated.Image>
         ) : (
           <Animated.Image
+            resizeMode={'contain'}
             source={YellowCar}
-            style={
-              // (styles.image,
-              // {
-              //   transform: [{ scale: imageScale }],
-              //   transform: [{ translateX: translateXHeading }],
-              // }
-              // )
-              styles.image
-            }
+            style={styles.image}
           ></Animated.Image>
         )}
 
         <View style={styles.titleContainer}>
-          <Animated.Text style={[styles.title]}>{title}</Animated.Text>
+          <Animated.Text  style={[styles.title]}>{title}</Animated.Text>
           <Animated.Text style={styles.description}>
             {description}
           </Animated.Text>
@@ -263,22 +270,24 @@ const WashCard = (props) => {
           </View>
         </View>
 
-      
-
         <TouchableOpacity
           style={styles.button}
           onPress={() => selectWashRequest(carWashType)}
+          // onPress={() =>console.log('clicked') }
         >
           <Text style={styles.buttonText}>BOOK NOW</Text>
         </TouchableOpacity>
 
         <View style={styles.cornerLeftContainer}>
-            <View style={styles.cornerLeft}></View>
-          </View>
-          <View style={styles.cornerRightContainer}>
-            <View style={styles.cornerRight}></View>
-          </View>
+          <View style={styles.cornerLeft}></View>
+        </View>
+        <View style={styles.cornerRightContainer}>
+          <View style={styles.cornerRight}></View>
+        </View>
+
+        <Indicator index={index}/>
       </LinearGradient>
+    
     </Animated.View>
   );
 };

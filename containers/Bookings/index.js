@@ -16,7 +16,7 @@ import { selectBookings, selectIsLoading } from './selectors';
 import store from 'store/store';
 
 export const mapStateToProps = createStructuredSelector({
-  isLoading: selectIsLoading,
+  isBookingsLoading: selectIsLoading,
   bookings: selectBookings,
 });
 
