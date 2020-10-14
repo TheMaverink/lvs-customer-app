@@ -16,3 +16,5 @@ web-build/
 deploy
 
 *.ia
+
+app.ia
