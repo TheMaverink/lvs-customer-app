@@ -39,7 +39,7 @@ const styles = StyleSheet.create({
     // borderColor:'red',
     position: 'relative',
     borderRadius: 24,
-    height: deviceHeight * 0.58,
+    height: deviceHeight * 0.61,
     // height:'80%',
     width: adaptedWidth * 0.70,
    marginTop: deviceHeight * 0.2,
@@ -55,7 +55,7 @@ const styles = StyleSheet.create({
   image: {
     // marginTop: '5%',
     position: 'absolute',
-    top: -20,
+    top: -30,
     width: '100%',
     overflow: 'visible',
     transform: [{ translateX: -deviceHeight * 0.02 }, { scale: 1 }],

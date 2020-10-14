@@ -1,17 +1,5 @@
-import React, { useState } from 'react';
-import {
-  StyleSheet,
-  Text,
-  View,
-  FlatList,
-  ImageBackground,
-  Button,
-  TouchableOpacity,
-  Animated,
-  ScrollView,
-  Dimensions,
-  KeyboardAvoidingView,
-} from 'react-native';
+import React from 'react';
+import { StyleSheet, Text, View, ScrollView, Dimensions } from 'react-native';
 import CardFlip from 'react-native-card-flip';
 import { compose } from 'recompose';
 
@@ -19,10 +7,10 @@ import { BlurView } from 'expo-blur';
 
 import Calendar from './components/Calendar';
 import CalendarContainer from 'containers/Calendar';
-// import HourPicker from './components/HourPicker';
 import HourPicker from './components/HourPicker';
 import VehicleForm from './components/VehicleForm';
 import BaseButton from 'components/BaseButton';
+import {calendarFormValidation} from 'utils/validations'
 
 const { width, height } = Dimensions.get('window');
 
@@ -53,23 +41,14 @@ const styles = StyleSheet.create({
     letterSpacing: -0.01,
     lineHeight: 24,
     paddingHorizontal: '7%',
-    // paddingTop: '3%',
     fontFamily: 'DMSans-Regular',
   },
   calendarContainer: {
     height: height * 0.34,
     width: width * 0.95,
     marginHorizontal: width * 0.025,
-    // overflow:'hidden'
   },
-  buttonContainer: {
-    // position: 'absolute',
-    // left: 0,
-    // right: 0,
-    // bottom: height * 0.01,
-    // justifyContent: 'center',
-    // alignItems: 'center',
-  },
+  buttonContainer: {},
   absolute: {
     position: 'absolute',
     top: 0,
@@ -82,12 +61,23 @@ const styles = StyleSheet.create({
 class CalendarView extends React.Component {
   constructor(props) {
     super(props);
-    this.state = {};
+    this.state = {
+      isValidated: false
+    };
   }
 
   componentDidMount() {
     this.props.change('service', this.props.selectedWash);
-   
+  }
+
+  componentDidUpdate(prevProps) {
+    if (this.props !== prevProps) {
+      this.setState({
+        isValidated: calendarFormValidation(this.props.calendarFormValues),
+      });
+
+      calendarFormValidation(this.props.calendarFormValues)
+    }
   }
 
   render() {
@@ -96,57 +86,50 @@ class CalendarView extends React.Component {
       change,
       calendarFormValues,
       handleSubmit,
-      isLoading
-      
+      isLoading,
     } = this.props;
+
+
 
     return (
       <ScrollView style={styles.container}>
-      
-          <View style={styles.headerContainer}>
-            <Text style={styles.headerService}>{selectedWash}</Text>
-            <Text style={styles.headerMessage}>Select a booking date.</Text>
-          </View>
+        <View style={styles.headerContainer}>
+          <Text style={styles.headerService}>{selectedWash}</Text>
+          <Text style={styles.headerMessage}>Select a booking date.</Text>
+        </View>
 
-          <CardFlip
-            style={styles.calendarContainer}
-            ref={(card) => (this.card = card)}
-          >
-            <Calendar {...this.props} flipAction={() => this.card.flip()} />
+        <CardFlip
+          style={styles.calendarContainer}
+          ref={(card) => (this.card = card)}
+        >
+          <Calendar {...this.props} flipAction={() => this.card.flip()} />
 
-            <HourPicker
-              style={{ flex: 1 }}
-              {...this.props}
-              flipAction={() => this.card.flip()}
-            />
-          </CardFlip>
+          <HourPicker
+            style={{ flex: 1 }}
+            {...this.props}
+            flipAction={() => this.card.flip()}
+          />
+        </CardFlip>
 
-          {isLoading === true ? (
-        <BlurView style={styles.absolute} intensity={70} tint="dark">
-          <Text>Hello! I am bluring contents underneath</Text>
-        </BlurView>
-      ) : null}
-  
-          {/* <KeyboardAvoidingView
-          behavior={Platform.OS == 'ios' ? 'padding' : 'height'}
-          style={styles.container}
-        > */}
-          <VehicleForm />
+        {isLoading === true ? (
+          <BlurView style={styles.absolute} intensity={70} tint="dark">
+            <Text>Hello! I am bluring contents underneath</Text>
+          </BlurView>
+        ) : null}
 
-          {/* </KeyboardAvoidingView> */}
-      
+        <VehicleForm />
+
         <View style={styles.buttonContainer}>
           <BaseButton
             title="Book"
-            bgColor="white"
+            bgColor = {!this.state.isValidated ?  "rgba(216,216,216,.6)" : "rgba(216,216,216,1)"  }
             textColor="black"
             action={async (values) => {
-              // await change('service', selectedWash);
+         
               await handleSubmit(values);
             }}
           />
         </View>
-       
       </ScrollView>
     );
   }

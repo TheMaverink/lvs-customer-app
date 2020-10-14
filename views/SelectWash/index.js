@@ -39,6 +39,7 @@ const styles = StyleSheet.create({
     left: 0,
     bottom: 0,
     right: 0,
+    opacity:.1
   },
 });
 
@@ -111,7 +112,7 @@ const SelectWashView = (props) => {
         />
       </View>
       {isBookingsLoading === true || isWashesLoading === true ? (
-        <BlurView style={styles.absolute} intensity={70} tint="dark">
+        <BlurView style={styles.absolute} intensity={30} tint="dark">
         
         </BlurView>
       ) : null}

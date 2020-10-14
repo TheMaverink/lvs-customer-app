@@ -11,7 +11,7 @@ import {
 import carImg from 'assets/images/cars/yellowcar.png';
 import moment from 'moment';
 import minutesConverter from 'utils/minutesConverter';
-import ConfirmedBookingItem from './ConfirmedBookingItem';
+import BookingItem from './BookingItem';
 import BaseButton from 'components/BaseButton';
 import * as RootNavigation from '../../../RootNavigation';
 import { useFocusEffect, useIsFocused } from '@react-navigation/native';
@@ -93,13 +93,11 @@ export default function ConfirmedBooking(props) {
     vehicleReg,
   } = props.booking;
 
-  // console.log('props.booking')
-  // console.log(props.booking)
 
-  // console.log('props')
-  // console.log(props)
+  // const formattedDuration = minutesConverter(duration);
+  // const formattedDay = moment(date).format('dddd Do MMMM').toString();
 
-  // return <Text>jfjdkjd</Text>
+  // const isFocused = useIsFocused();
 
   const formattedDuration = minutesConverter(duration);
   const formattedDay = moment(date).format('dddd Do MMMM').toString();
@@ -119,14 +117,14 @@ export default function ConfirmedBooking(props) {
           <Text style={styles.washTitle}>{service}</Text>
         </View>
 
-        <ConfirmedBookingItem firstText={formattedDay} secText="LVS Car Spa" />
+        <BookingItem firstText={formattedDay} secText="LVS Car Spa" />
 
-        <ConfirmedBookingItem
+        <BookingItem
           firstText={hour}
           secText={'Duration ' + formattedDuration}
         />
 
-        <ConfirmedBookingItem
+        <BookingItem
           firstText={vehicleMake}
           secText={vehicleReg.toUpperCase()}
         />

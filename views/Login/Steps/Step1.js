@@ -4,7 +4,7 @@ import {
   Dimensions,
   StyleSheet,
   KeyboardAvoidingView,
-  Text
+  Text,
 } from 'react-native';
 
 import { Field, formValueSelector, reduxForm } from 'redux-form';
@@ -115,17 +115,25 @@ class Step1 extends React.Component {
             />
 
             <View style={styles.buttomContainer}>
-              <BaseButton
-                title="Send otp"
-                bgColor = {this.state.phoneNumberStatus === "valid" ? "rgba(216,216,216,1)" : "rgba(216,216,216,.6)" }
-               
-                textColor="black"
-                margin={10}
-                action={handleSubmit((values) =>
-                  loginSendSmsRequest(values.phoneNumber)
-                )}
-              />
-
+              {this.state.phoneNumberStatus === 'valid' ? (
+                <BaseButton
+                  title="Send otp"
+                  bgColor={'rgba(216,216,216,1)'}
+                  textColor="black"
+                  margin={10}
+                  action={handleSubmit((values) =>
+                    loginSendSmsRequest(values.phoneNumber)
+                  )}
+                />
+              ) : (
+                <BaseButton
+                  title="Send otp"
+                  bgColor={'rgba(216,216,216,.6)'}
+                  textColor="black"
+                  margin={10}
+                  action={() => console.log('not allowed')}
+                />
+              )}
             </View>
 
             {this.state.phoneNumberStatus === 'wrong' ? (

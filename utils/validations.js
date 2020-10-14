@@ -31,7 +31,6 @@ export const phoneNumberValidation = (value) => {
 };
 
 export const codeValidation = (value) => {
-
   if (!new RegExp(/^\d+$/).test(value)) {
     return 'wrong';
   }
@@ -47,5 +46,16 @@ export const codeValidation = (value) => {
     return 'wrong';
   } else {
     return 'valid';
+  }
+};
+
+export const calendarFormValidation = (values) => {
+  if (Object.keys(values).length < 4) {
+    return false;
+  }
+
+  const { vehicleMake, vehicleReg } = values;
+  if (vehicleMake.length > 0 && vehicleReg.length > 0) {
+    return true;
   }
 };
