@@ -83,7 +83,7 @@ const styles = StyleSheet.create({
   },
 });
 
-export default function ConfirmedBooking(props) {
+export default function Booking(props) {
   const {
     service,
     date,

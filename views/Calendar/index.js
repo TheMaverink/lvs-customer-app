@@ -10,7 +10,7 @@ import CalendarContainer from 'containers/Calendar';
 import HourPicker from './components/HourPicker';
 import VehicleForm from './components/VehicleForm';
 import BaseButton from 'components/BaseButton';
-import {calendarFormValidation} from 'utils/validations'
+import { calendarFormValidation } from 'utils/validations';
 
 const { width, height } = Dimensions.get('window');
 
@@ -62,7 +62,7 @@ class CalendarView extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      isValidated: false
+      isValidated: false,
     };
   }
 
@@ -76,7 +76,7 @@ class CalendarView extends React.Component {
         isValidated: calendarFormValidation(this.props.calendarFormValues),
       });
 
-      calendarFormValidation(this.props.calendarFormValues)
+      calendarFormValidation(this.props.calendarFormValues);
     }
   }
 
@@ -88,8 +88,6 @@ class CalendarView extends React.Component {
       handleSubmit,
       isLoading,
     } = this.props;
-
-
 
     return (
       <ScrollView style={styles.container}>
@@ -119,16 +117,26 @@ class CalendarView extends React.Component {
 
         <VehicleForm />
 
-        <View style={styles.buttonContainer}>
-          <BaseButton
-            title="Book"
-            bgColor = {!this.state.isValidated ?  "rgba(216,216,216,.6)" : "rgba(216,216,216,1)"  }
-            textColor="black"
-            action={async (values) => {
-         
-              await handleSubmit(values);
-            }}
-          />
+        <View style={styles.buttomContainer}>
+          {this.state.isValidated ? (
+            <BaseButton
+              title="Book"
+              bgColor={'rgba(216,216,216,1)'}
+              textColor="black"
+              margin={10}
+              action={async (values) => {
+                await handleSubmit(values);
+              }}
+            />
+          ) : (
+            <BaseButton
+              title="Book"
+              bgColor={'rgba(216,216,216,.6)'}
+              textColor="black"
+              margin={10}
+              action={() => console.log('not allowed')}
+            />
+          )}
         </View>
       </ScrollView>
     );

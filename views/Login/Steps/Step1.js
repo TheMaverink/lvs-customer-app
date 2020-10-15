@@ -118,7 +118,11 @@ class Step1 extends React.Component {
               {this.state.phoneNumberStatus === 'valid' ? (
                 <BaseButton
                   title="Send otp"
-                  bgColor={'rgba(216,216,216,1)'}
+                  bgColor={
+                    this.state.phoneNumberStatus === 'valid'
+                      ? 'rgba(216,216,216,1)'
+                      : 'rgba(216,216,216,.6)'
+                  }
                   textColor="black"
                   margin={10}
                   action={handleSubmit((values) =>
@@ -128,12 +132,30 @@ class Step1 extends React.Component {
               ) : (
                 <BaseButton
                   title="Send otp"
-                  bgColor={'rgba(216,216,216,.6)'}
+                  bgColor={
+                    this.state.phoneNumberStatus === 'valid'
+                      ? 'rgba(216,216,216,1)'
+                      : 'rgba(216,216,216,.6)'
+                  }
                   textColor="black"
                   margin={10}
-                  action={() => console.log('not allowed')}
+                  action={()=>console.log('not allowed')}
                 />
               )}
+{/* 
+              <BaseButton
+                title="Send otp"
+                bgColor={
+                  this.state.phoneNumberStatus === 'valid'
+                    ? 'rgba(216,216,216,1)'
+                    : 'rgba(216,216,216,.6)'
+                }
+                textColor="black"
+                margin={10}
+                action={handleSubmit((values) =>
+                  loginSendSmsRequest(values.phoneNumber)
+                )}
+              /> */}
             </View>
 
             {this.state.phoneNumberStatus === 'wrong' ? (

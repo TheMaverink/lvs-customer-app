@@ -93,7 +93,7 @@ class Step2 extends React.Component {
               }}
             />
 
-            <View style={styles.buttomContainer}>
+            {/* <View style={styles.buttomContainer}>
               <BaseButton
                 title="Verify"
                 bgColor={
@@ -110,6 +110,33 @@ class Step2 extends React.Component {
                   )
                 )}
               />
+            </View> */}
+
+            <View style={styles.buttomContainer}>
+              {this.state.codeStatus === 'wrong' ? (
+                <BaseButton
+                  title="Verify"
+                  bgColor={'rgba(216,216,216,.6)'}
+                  textColor="black"
+                  margin={10}
+                  action={() => console.log('not allowed')}
+                 
+                />
+              ) : (
+                <BaseButton
+                  title="Verify"
+                  bgColor={'rgba(216,216,216,1)'}
+                  textColor="black"
+                  margin={10}
+                  action={handleSubmit((values) =>
+                    verifyCodeRequest(
+                      phoneNumberToVerify,
+                      values.verificationCode
+                    )
+                  )}
+                 
+                />
+              )}
             </View>
             <ResendCode />
           </View>

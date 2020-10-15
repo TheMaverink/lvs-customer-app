@@ -25,13 +25,11 @@ const styles = StyleSheet.create({
   background: {
     flex: 1,
     height: '100%',
-
     backgroundColor: '#1A1B1C',
   },
   animWrapper: {
     width: '90%',
     overflow: 'visible',
-
   },
   absolute: {
     position: 'absolute',
@@ -39,7 +37,7 @@ const styles = StyleSheet.create({
     left: 0,
     bottom: 0,
     right: 0,
-    opacity:.1
+    opacity: 0.1,
   },
 });
 
@@ -52,23 +50,21 @@ const SelectWashView = (props) => {
     isBookingsLoading,
     isWashesLoading,
   } = props;
-  console.log(props.isBookingsLoading ===true);
-  console.log(props.isWashesLoading ===true);
 
   const scrollX = useRef(new Animated.Value(0)).current;
-  console.log(props.bokings);
+
   const colorContext = React.useContext(StatusColorContext);
+
+  useEffect(() => {
+    washesRequest();
+  }, []);
+
   useFocusEffect(
     React.useCallback(() => {
       colorContext.changeAppViewColour('#1a1b1c');
       console.log(colorContext);
 
-      async function grabData() {
-        await washesRequest();
-        await getBookingsRequest();
-      }
-
-      grabData();
+      getBookingsRequest();
     }, [])
   );
 
@@ -112,9 +108,7 @@ const SelectWashView = (props) => {
         />
       </View>
       {isBookingsLoading === true || isWashesLoading === true ? (
-        <BlurView style={styles.absolute} intensity={30} tint="dark">
-        
-        </BlurView>
+        <BlurView style={styles.absolute} intensity={60} tint="dark"></BlurView>
       ) : null}
     </View>
   );

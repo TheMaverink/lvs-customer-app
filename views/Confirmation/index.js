@@ -6,6 +6,7 @@ import BookingsContainer from 'containers/Bookings';
 import { compose } from 'recompose';
 
 import ConfirmedBooking from './components/ConfirmedBooking';
+import NoBooking from "./components/NoBooking"
 
 import { useIsFocused } from '@react-navigation/native';
 import { StatusColorContext } from 'components/AppView';
@@ -27,10 +28,20 @@ const ConfirmationView = (props) => {
   console.log('NAVIGATION');
   console.log(props.route.params.bookingData.booking);
 
+
   return (
-    <ConfirmedBooking
-      booking={props.route.params.bookingData.booking}
-    ></ConfirmedBooking>
+    <React.Fragment>
+      {!props.route.params.bookingData ? (
+        <NoBooking />
+      ) : (
+        // <ConfirmedBooking booking={updatedBookings[0]}></ConfirmedBooking>
+        // <ConfirmedBooking booking={updatedBookings[0]}></ConfirmedBooking>
+
+        <ConfirmedBooking
+          booking={props.route.params.bookingData.booking}
+        ></ConfirmedBooking>
+      )}
+    </React.Fragment>
   );
 };
 

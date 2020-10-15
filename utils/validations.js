@@ -59,3 +59,22 @@ export const calendarFormValidation = (values) => {
     return true;
   }
 };
+
+export const editUserValidation = (values) => {
+
+  console.log(' values froom validation!')
+  console.log(values)
+  if (Object.keys(values).length < 2) {
+    return false;
+  }
+
+  const { name, email } = values;
+  function validateEmail(email) {
+    var re = /\S+@\S+\.\S+/;
+    return re.test(email);
+  }
+
+  if (name.length > 0 && validateEmail(email)) {
+    return true;
+  }
+};

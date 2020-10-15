@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import {
   View,
   Text,
@@ -14,10 +14,10 @@ import AuthQuestion from 'components/AuthQuestion';
 import BaseButton from 'components/BaseButton';
 import { compose } from 'recompose';
 
-
 import UpdateCustomerContainer from 'containers/UpdateCustomer';
 import TextInputField from '../../../components/TextInputField';
 import SwithAuth from '../../../components/SwitchAuth';
+import { editUserValidation } from 'utils/validations';
 
 const deviceHeight = Dimensions.get('window').height;
 const deviceWidth = Dimensions.get('window').width;
@@ -56,7 +56,19 @@ const styles = StyleSheet.create({
 });
 
 const Step3 = (props) => {
-  const { handleSubmit, onSubmit, updateCustomerRequest, phoneNumber } = props;
+  const {
+    handleSubmit,
+    userDetailsValues,
+    onSubmit,
+    updateCustomerRequest,
+    phoneNumber,
+  } = props;
+
+  const [isValidated, checkIsValidated] = useState(false);
+
+  useEffect(() => {
+    checkIsValidated(editUserValidation(userDetailsValues));
+  }, [userDetailsValues]);
 
   return (
     <View style={styles.container}>
@@ -81,15 +93,25 @@ const Step3 = (props) => {
           />
 
           <View style={styles.buttomContainer}>
-            <BaseButton
-              title="Proceed"
-              bgColor="grey"
-              textColor="black"
-              margin={10}
-              action={handleSubmit((values) =>
-                updateCustomerRequest(phoneNumber, values.name, values.email)
-              )}
-            />
+            {!isValidated ? (
+              <BaseButton
+                title="Proceed"
+                bgColor={'rgba(216,216,216,.6)'}
+                textColor="black"
+                margin={10}
+                action={() => console.log('not allowed')}
+              />
+            ) : (
+              <BaseButton
+                title="Proceed"
+                bgColor={'rgba(216,216,216,1)'}
+                textColor="black"
+                margin={10}
+                action={handleSubmit((values) =>
+                  updateCustomerRequest(phoneNumber, values.name, values.email)
+                )}
+              />
+            )}
 
             <SwithAuth marginV={40} switchTo="login" />
           </View>

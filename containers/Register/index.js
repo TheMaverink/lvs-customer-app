@@ -19,7 +19,11 @@ import {
 
 import { FORM_NAME, REDUCER_NAME } from './consts';
 
-import { selectIsLoading, selectUserData ,selectPhoneNumberToVerify} from './selectors';
+import {
+  selectIsLoading,
+  selectUserData,
+  selectPhoneNumberToVerify,
+} from './selectors';
 import store from 'store/store';
 
 export const mapStateToProps = createStructuredSelector({
@@ -27,11 +31,11 @@ export const mapStateToProps = createStructuredSelector({
   userData: selectUserData,
   phoneNumberToVerify: selectPhoneNumberToVerify,
   sendSmsFormValues: (state) =>
-  formValueSelector('registerSendSmsForm')(state, 'phoneNumber'),
-verificationCodeValues: (state) =>
-  formValueSelector('registerVerify')(state, 'verificationCode'),
+    formValueSelector('registerSendSmsForm')(state, 'phoneNumber'),
+  verificationCodeValues: (state) =>
+    formValueSelector('registerVerify')(state, 'verificationCode'),
   userDetailsValues: (state) =>
-  formValueSelector('addDetailsForm')(state, 'name','email'),
+    formValueSelector('addDetailsForm')(state, 'name', 'email'),
 });
 
 export const mapDispatchToProps = (dispatch) =>
@@ -57,6 +61,5 @@ export default compose(
     componentDidMount() {
       store.injectReducer(REDUCER_NAME, reducer);
     },
-  }),
-
+  })
 );

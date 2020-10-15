@@ -13,13 +13,19 @@ import {
 
 import { REDUCER_NAME } from './consts';
 
-import { selectIsLoading, selectUserData ,selectPhoneNumber} from './selectors';
+import {
+  selectIsLoading,
+  selectUserData,
+  selectPhoneNumber,
+} from './selectors';
 import store from 'store/store';
 
 export const mapStateToProps = createStructuredSelector({
   isLoading: selectIsLoading,
   userData: selectUserData,
-  phoneNumber:selectPhoneNumber
+  phoneNumber: selectPhoneNumber,
+  userDetailsValues: (state) =>
+    formValueSelector('addDetailsForm')(state, 'name', 'email'),
 });
 
 export const mapDispatchToProps = (dispatch) =>

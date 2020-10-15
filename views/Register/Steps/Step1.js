@@ -97,14 +97,8 @@ class Step1 extends React.Component {
                 sendSmsRequest(values.phoneNumber)
               )}
             />
-            {/* <TouchableOpacity
-            style={styles.button}
-            onPress={handleSubmit((values) => sendSmsRequest(values.phoneNumber))}
-          >
-            <Image source={CheckCircle} />
-          </TouchableOpacity> */}
 
-            <View style={styles.buttomContainer}>
+            {/* <View style={styles.buttomContainer}>
               <BaseButton
                 title="Send otp"
                 bgColor={
@@ -118,6 +112,28 @@ class Step1 extends React.Component {
                   sendSmsRequest(values.phoneNumber)
                 )}
               />
+            </View> */}
+
+            <View style={styles.buttomContainer}>
+              {this.state.phoneNumberStatus === 'valid' ? (
+                <BaseButton
+                  title="Send otp"
+                  bgColor={'rgba(216,216,216,1)'}
+                  textColor="black"
+                  margin={10}
+                  action={handleSubmit((values) =>
+                    sendSmsRequest(values.phoneNumber)
+                  )}
+                />
+              ) : (
+                <BaseButton
+                  title="Send otp"
+                  bgColor={'rgba(216,216,216,.6)'}
+                  textColor="black"
+                  margin={10}
+                  action={() => console.log('not allowed')}
+                />
+              )}
             </View>
             {this.state.phoneNumberStatus === 'wrong' ? (
               <FormWarningMessage />
