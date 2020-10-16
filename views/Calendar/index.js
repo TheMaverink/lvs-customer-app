@@ -1,5 +1,5 @@
 import React from 'react';
-import { StyleSheet, Text, View, ScrollView, Dimensions } from 'react-native';
+import { StyleSheet, Text, View, ScrollView, Dimensions ,KeyboardAvoidingView} from 'react-native';
 import CardFlip from 'react-native-card-flip';
 import { compose } from 'recompose';
 
@@ -90,6 +90,13 @@ class CalendarView extends React.Component {
     } = this.props;
 
     return (
+
+      <KeyboardAvoidingView
+      behavior={Platform.OS == 'ios' ? 'padding' : 'height'}
+      style={styles.container}
+      contentContainerStyle={{flex: 1}}
+      keyboardVerticalOffset={115}
+    >
       <ScrollView style={styles.container}>
         <View style={styles.headerContainer}>
           <Text style={styles.headerService}>{selectedWash}</Text>
@@ -139,6 +146,7 @@ class CalendarView extends React.Component {
           )}
         </View>
       </ScrollView>
+      </KeyboardAvoidingView>
     );
   }
 }

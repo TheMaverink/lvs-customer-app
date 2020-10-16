@@ -255,7 +255,7 @@ const WashCard = (props) => {
             {description}
           </Animated.Text>
           <View style={styles.iconContainer}>
-            <TouchableHighlight
+            <TouchableOpacity
               onPress={() =>
                 RootNavigation.navigate('Wash Description', {
                   price: price,
@@ -268,7 +268,7 @@ const WashCard = (props) => {
 
               <InfoIcon style={styles.icon} />
               {/* <Image style={styles.icon} source={InfoIcon}></Image> */}
-            </TouchableHighlight>
+            </TouchableOpacity>
           </View>
         </View>
 

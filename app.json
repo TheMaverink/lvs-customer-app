@@ -10,6 +10,7 @@
     ],
     "orientation": "portrait",
     "icon": "./assets/logos/icon.png",
+    "backgroundColor": "#000000",
     "splash": {
       "backgroundColor": "#000000"
     },

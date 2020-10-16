@@ -36,7 +36,9 @@ class App extends React.Component {
     });
 
     const gif = require('./assets/images/splash.gif');
+    const logo = require('./assets/logos/logo.png')
     await Asset.fromModule(gif).downloadAsync();
+    await Asset.fromModule(logo).downloadAsync();
 
     this.setState(
       {
