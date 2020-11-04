@@ -7,11 +7,10 @@ import { AsyncStorage } from 'react-native';
 // eslint-disable-next-line import/prefer-default-export
 export const apiGetBookings = async (token) => {
 
-
   const config = {
     headers: { 'Authorization': `Bearer ${ token }` },
   }
 
-  return axios.get(`/bookings/all`, config);
+  return axios.get(`/bookings/customer/all`, config);
 };
 

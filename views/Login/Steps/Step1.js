@@ -117,7 +117,7 @@ class Step1 extends React.Component {
             <View style={styles.buttomContainer}>
               {this.state.phoneNumberStatus === 'valid' ? (
                 <BaseButton
-                  title="Send otp"
+                  title="Verify"
                   bgColor={
                     this.state.phoneNumberStatus === 'valid'
                       ? 'rgba(216,216,216,1)'
@@ -131,7 +131,7 @@ class Step1 extends React.Component {
                 />
               ) : (
                 <BaseButton
-                  title="Send otp"
+                  title="Verify"
                   bgColor={
                     this.state.phoneNumberStatus === 'valid'
                       ? 'rgba(216,216,216,1)'

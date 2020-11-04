@@ -3,11 +3,15 @@
     "name": "lvs-customer-frontend",
     "slug": "lvs-customer-frontend",
     "privacy": "public",
-    "version": "9.0.0",
+    "version": "11.0.0",
     "platforms": [
       "ios",
       "android"
     ],
+    "android": {
+      "package": "com.julio.lvs",
+      "versionCode": 1
+    },
     "orientation": "portrait",
     "icon": "./assets/logos/icon.png",
     "backgroundColor": "#000000",
@@ -43,5 +47,6 @@
         "svg"
       ]
     }
+  
   }
 }

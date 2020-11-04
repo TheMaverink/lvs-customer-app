@@ -6,9 +6,9 @@ const localhost = Platform.OS === 'ios' ? 'localhost' : '10.0.2.2'
 
 const ENV = {
   dev: {
-    // API_URL: `http://${ localhost }:8080/api/`,
-    API_URL:
-    'http://lvsapi-env.eba-wfujhaxe.eu-west-2.elasticbeanstalk.com/api',
+    API_URL: `http://${ localhost }:8080/api/`,
+    // API_URL:
+    // 'http://lvsapi-env.eba-wfujhaxe.eu-west-2.elasticbeanstalk.com/api',
     
   },
   production: {

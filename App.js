@@ -61,7 +61,7 @@ class App extends React.Component {
           <Image
             source={require('./assets/images/splash.gif')}
             onLoad={this._cacheResourcesAsync}
-            resizeMode={'contain'}
+            resizeMode={'cover'}
             style={{ width: '100%', height: '100%' }}
           />
         </View>

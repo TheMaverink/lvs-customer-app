@@ -103,6 +103,7 @@ export default function ConfirmedBooking(props) {
 
   const formattedDuration = minutesConverter(duration);
   const formattedDay = moment(date).format('dddd Do MMMM').toString();
+  const formattedHour = hour + ":00"
 
   // const isFocused = useIsFocused();
 
@@ -122,7 +123,7 @@ export default function ConfirmedBooking(props) {
         <ConfirmedBookingItem firstText={formattedDay} secText="LVS Car Spa" />
 
         <ConfirmedBookingItem
-          firstText={hour}
+          firstText={formattedHour}
           secText={'Duration ' + formattedDuration}
         />
 
