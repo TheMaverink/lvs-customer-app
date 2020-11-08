@@ -10,6 +10,9 @@ import {
   BOOKING_REQUEST,
   BOOKING_FAILURE,
   BOOKING_SUCCESS,
+  GET_TIMES_REQUEST,
+  GET_TIMES_FAILURE,
+  GET_TIMES_SUCCESS,
 } from './actions';
 
 const initialState = {
@@ -17,7 +20,8 @@ const initialState = {
   errorMessage: null,
   selectedDay: null,
   selectedHour: null,
-  bookingData:null
+  bookingData:null,
+  openingTimes: null,
 };
 
 export default function reducer(state = initialState, action) {
@@ -99,6 +103,35 @@ export default function reducer(state = initialState, action) {
         bookingData: action.payload,
       };
     }
+
+    case GET_TIMES_REQUEST: {
+      return {
+        ...state,
+        loading: true,
+        errorMessage: null,
+        openingTimes: null,
+      };
+    }
+
+    case GET_TIMES_FAILURE: {
+      return {
+        ...state,
+        loading: false,
+        errorMessage: action.payload,
+        openingTimes: null,
+      };
+    }
+
+    case GET_TIMES_SUCCESS: {
+      return {
+        ...state,
+        loading: false,
+        errorMessage: null,
+        openingTimes: action.payload,
+      };
+    }
+
+    
     default:
       return state;
   }

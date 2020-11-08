@@ -1,5 +1,12 @@
 import React from 'react';
-import { StyleSheet, Text, View, ScrollView, Dimensions ,KeyboardAvoidingView} from 'react-native';
+import {
+  StyleSheet,
+  Text,
+  View,
+  ScrollView,
+  Dimensions,
+  KeyboardAvoidingView,
+} from 'react-native';
 import CardFlip from 'react-native-card-flip';
 import { compose } from 'recompose';
 
@@ -63,11 +70,32 @@ class CalendarView extends React.Component {
     super(props);
     this.state = {
       isValidated: false,
+      pickerDayOfTheWeek: 0,
+      canShowPicker:false
     };
   }
 
-  componentDidMount() {
+  handleDayOfTheWeek = (newIndex) => {
+
+    this.setState({
+      pickerDayOfTheWeek: newIndex,
+      canShowPicker:true
+    });
+  };
+
+  async componentDidMount() {
     this.props.change('service', this.props.selectedWash);
+
+    this.props.getTimesRequest();
+
+    // let dayOfTheWeekIndex;
+    // if (new Date().getDay() === 0) {
+    //   dayOfTheWeekIndex = 6;
+    // } else {
+    //   dayOfTheWeekIndex = new Date(day.timestamp).getDay() - 1;
+    // }
+
+    
   }
 
   componentDidUpdate(prevProps) {
@@ -77,6 +105,10 @@ class CalendarView extends React.Component {
       });
 
       calendarFormValidation(this.props.calendarFormValues);
+
+      // this.setState({
+      //   pickerDayOfTheWeek: dayOfTheWeekIndex,
+      // });
     }
   }
 
@@ -87,65 +119,72 @@ class CalendarView extends React.Component {
       calendarFormValues,
       handleSubmit,
       isLoading,
+      openingTimes,
     } = this.props;
 
     return (
-
       <KeyboardAvoidingView
-      behavior={Platform.OS == 'ios' ? 'padding' : 'height'}
-      style={styles.container}
-      contentContainerStyle={{flex: 1}}
-      keyboardVerticalOffset={115}
-    >
-      <ScrollView style={styles.container}>
-        <View style={styles.headerContainer}>
-          <Text style={styles.headerService}>{selectedWash}</Text>
-          <Text style={styles.headerMessage}>Select a booking date.</Text>
-        </View>
+        behavior={Platform.OS == 'ios' ? 'padding' : 'height'}
+        style={styles.container}
+        contentContainerStyle={{ flex: 1 }}
+        keyboardVerticalOffset={115}
+      >
+        <ScrollView style={styles.container}>
+          <View style={styles.headerContainer}>
+            <Text style={styles.headerService}>{selectedWash}</Text>
+            <Text style={styles.headerMessage}>Select a booking date.</Text>
+          </View>
 
-        <CardFlip
-          style={styles.calendarContainer}
-          ref={(card) => (this.card = card)}
-        >
-          <Calendar {...this.props} flipAction={() => this.card.flip()} />
-
-          <HourPicker
-            style={{ flex: 1 }}
-            {...this.props}
-            flipAction={() => this.card.flip()}
-          />
-        </CardFlip>
-
-        {isLoading === true ? (
-          <BlurView style={styles.absolute} intensity={70} tint="dark">
-            <Text>Hello! I am bluring contents underneath</Text>
-          </BlurView>
-        ) : null}
-
-        <VehicleForm />
-
-        <View style={styles.buttomContainer}>
-          {this.state.isValidated ? (
-            <BaseButton
-              title="Book"
-              bgColor={'rgba(216,216,216,1)'}
-              textColor="black"
-              margin={10}
-              action={async (values) => {
-                await handleSubmit(values);
-              }}
+          <CardFlip
+            style={styles.calendarContainer}
+            ref={(card) => (this.card = card)}
+          >
+            <Calendar
+              {...this.props}
+              flipAction={() => this.card.flip()}
+              handleDayOfTheWeek={this.handleDayOfTheWeek}
+              canShowPicker={this.state.canShowPicker}
             />
-          ) : (
-            <BaseButton
-              title="Book"
-              bgColor={'rgba(216,216,216,.6)'}
-              textColor="black"
-              margin={10}
-              action={() => console.log('not allowed')}
+
+            <HourPicker
+              style={{ flex: 1 }}
+              {...this.props}
+              flipAction={() => this.card.flip()}
+              openingTimes={openingTimes}
+              pickerDayOfTheWeek={this.state.pickerDayOfTheWeek}
             />
-          )}
-        </View>
-      </ScrollView>
+          </CardFlip>
+
+          {isLoading === true ? (
+            <BlurView style={styles.absolute} intensity={70} tint="dark">
+              <Text>Hello! I am bluring contents underneath</Text>
+            </BlurView>
+          ) : null}
+
+          <VehicleForm />
+
+          <View style={styles.buttomContainer}>
+            {this.state.isValidated ? (
+              <BaseButton
+                title="Book"
+                bgColor={'rgba(216,216,216,1)'}
+                textColor="black"
+                margin={10}
+                action={async (values) => {
+                  await handleSubmit(values);
+                }}
+              />
+            ) : (
+              <BaseButton
+                title="Book"
+                bgColor={'rgba(216,216,216,.6)'}
+                textColor="black"
+                margin={10}
+                action={() => console.log('not allowed')}
+              />
+            )}
+          </View>
+        </ScrollView>
       </KeyboardAvoidingView>
     );
   }

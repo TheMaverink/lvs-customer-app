@@ -22,3 +22,7 @@ export const apiBooking = async (bookingData,token) => {
 };
 
 
+export const apiGetTimes = async () => {
+  return axios.get(`/shop/opening-times`);
+};
+

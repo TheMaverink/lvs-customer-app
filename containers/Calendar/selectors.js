@@ -23,6 +23,12 @@ export const selectWash = createSelector(
   _get('selectedWash')
 )
 
+
+export const selectTimes = createSelector(
+  (state) => state[REDUCER_NAME],
+  _get('openingTimes'),
+)
+
 // export const bookingData = createSelector(
 //   (state) => state[REDUCER_NAME],
 //   _get('bookingData')

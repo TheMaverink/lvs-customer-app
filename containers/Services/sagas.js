@@ -14,6 +14,7 @@ function* getServicesWorker(action) {
   try {
     const apiResult = yield call(apiGetServices);
     yield put(getServicesSuccess(apiResult.data));
+  
   } catch (error) {
     console.log(error);
     yield put(getServicesFailure(error));

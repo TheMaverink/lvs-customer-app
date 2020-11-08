@@ -11,6 +11,7 @@ import {
 import WashCard from './components/WashCard';
 import WashesContainer from 'containers/Washes';
 import BookingsContainer from 'containers/Bookings';
+import CalendarContainer from 'containers/Calendar'
 import { compose, lifecycle } from 'recompose';
 import { useFocusEffect, useIsFocused } from '@react-navigation/native';
 import { StatusColorContext } from 'components/AppView';
@@ -47,6 +48,7 @@ const SelectWashView = (props) => {
     washes,
     selectWashRequest,
     getBookingsRequest,
+    getTimesRequest,
     isBookingsLoading,
     isWashesLoading,
   } = props;
@@ -57,7 +59,11 @@ const SelectWashView = (props) => {
 
   useEffect(() => {
     washesRequest();
+    getTimesRequest()
+   
   }, []);
+
+
 
   useFocusEffect(
     React.useCallback(() => {
@@ -114,4 +120,4 @@ const SelectWashView = (props) => {
   );
 };
 
-export default compose(WashesContainer, BookingsContainer)(SelectWashView);
+export default compose(WashesContainer, CalendarContainer,BookingsContainer)(SelectWashView);

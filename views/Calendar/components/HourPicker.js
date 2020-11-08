@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import {
   Text,
   View,
@@ -26,52 +26,85 @@ const styles = StyleSheet.create({
     width: width * 0.95,
     // marginHorizontal: width * 0.025,
     justifyContent: 'center',
-    overflow:'visible',
-    position:'relative',
-    borderRadius:25
+    overflow: 'visible',
+    position: 'relative',
+    borderRadius: 25,
   },
-  hourButtonsWrapper:{
-
-// borderColor:'red',
-// borderWidth:3,
-marginVertical:'22%',
-overflow:'visible',
-  
-    // position: 'absolute',
-  
-    // left: 0,
-    // right: 0,
-    // bottom: 0,
-
-
-  }
+  hourButtonsWrapper: {
+    marginVertical: '22%',
+    overflow: 'visible',
+  },
 });
 
 const HourPicker = (props) => {
-  const { change, selectHourRequest, selectedHour, flipAction } = props;
+  const {
+    change,
+    selectHourRequest,
+    selectedHour,
+    flipAction,
+    openingTimes,
+    pickerDayOfTheWeek,
+  } = props;
+
+  const [openingTimesRange, setOpeningTimesRange] = useState(null);
+  const [numColumnsState, setNumColumns] = useState(null);
+
+  useEffect(() => {
+    const range = (start, stop, step) =>
+      Array.from(
+        { length: (stop - start) / step + 1 },
+        (_, i) => start + i * step
+      );
+
+    if (openingTimes) {
+      const start = openingTimes[pickerDayOfTheWeek].periods[0].start;
+      const end = openingTimes[pickerDayOfTheWeek].periods[0].end;
+      let numColumns;
+
+      const hoursRange = range(start, end, 1);
+
+      setOpeningTimesRange(hoursRange);
+      if (hoursRange.length % 3 ===0){
+        numColumns = 3
+      }else if(hoursRange.length % 5 ===0){
+        numColumns = 5
+      }else{
+        numColumns = 4
+      }
+
+      setNumColumns(numColumns)
+      console.log('openingTimesRange');
+      console.log(openingTimesRange);
+    }
+  }, [openingTimes,pickerDayOfTheWeek]);
 
   return (
-    <View> 
+    <View>
       <View style={styles.pickerContainer}>
-        <FlatList style={styles.hourButtonsWrapper} 
-          columnWrapperStyle={{ justifyContent: 'space-around', padding: 10 }}
-          data={SlotHours}
-          keyExtractor={(item) => item}
-          numColumns={3}
-          renderItem={({ item, index }) => (
-            <HourPickerButton
-              item={item}
-              index={index}
-              selectHourRequest={selectHourRequest}
-              selectedHour={selectedHour}
-              change={change}
-            ></HourPickerButton>
-          )}
-        ></FlatList>
-
-
+        {numColumnsState ? (
+          <FlatList
+            style={styles.hourButtonsWrapper}
+            columnWrapperStyle={{ justifyContent: 'space-around', padding: 10 }}
+            data={openingTimesRange }
+            // keyExtractor={(item,index) => numColumnsState + index}
+            key = {numColumnsState + openingTimesRange}
+            numColumns={numColumnsState}
+            renderItem={({ item, index }) => (
+              <HourPickerButton
+                item={item}
+                index={index}
+                selectHourRequest={selectHourRequest}
+                selectedHour={selectedHour}
+                change={change}
+              ></HourPickerButton>
+            )}
+          ></FlatList>
+        ) : null}
       </View>
-      <SwitchCalendar action={flipAction} title="Click here to chose the day." />
+      <SwitchCalendar
+        action={flipAction}
+        title="Click here to chose the day."
+      />
     </View>
   );
 };

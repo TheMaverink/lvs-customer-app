@@ -6,12 +6,14 @@ import createSagaMiddleware from 'redux-saga'
 import navigationDebouncer from 'react-navigation-redux-debouncer'
 import rootSaga from './rootSaga'
 
+import calendarReducer from 'containers/Calendar/reducer'
+
 
 const sagaMiddleware = createSagaMiddleware()
 
 const staticReducers = {
   // ADD STATIC REDUCERS HERE
-  
+  'CALENDAR':calendarReducer
 
 }
 

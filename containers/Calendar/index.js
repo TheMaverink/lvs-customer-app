@@ -16,6 +16,9 @@ import {
   bookingRequest,
   bookingFailure,
   bookingSuccess,
+  getTimesRequest,
+  getTimesFailure,
+  getTimesSuccess
 } from './actions';
 
 import { REDUCER_NAME } from './consts';
@@ -25,6 +28,7 @@ import {
   selectHour,
   selectWash,
   selectIsLoading,
+  selectTimes
 } from './selectors';
 import store from 'store/store';
 const selector = formValueSelector('CALENDAR_FORM'); // <-- same as form name
@@ -36,6 +40,7 @@ export const mapStateToProps = createStructuredSelector({
   selectedWash: selectWash,
   calendarFormValues: (state) =>
     selector(state, 'vehicleMake', 'vehicleReg', 'selectedDay', 'selectedHour'),
+    openingTimes: selectTimes,
 });
 
 export const mapDispatchToProps = (dispatch) =>
@@ -50,6 +55,9 @@ export const mapDispatchToProps = (dispatch) =>
       bookingRequest,
       bookingFailure,
       bookingSuccess,
+      getTimesRequest,
+      getTimesFailure,
+      getTimesSuccess
     },
     dispatch
   );
@@ -60,8 +68,9 @@ export default compose(
   lifecycle({
     componentDidMount() {
       //call washes here ?
+      
 
-      store.injectReducer(REDUCER_NAME, reducer);
+      // store.injectReducer(REDUCER_NAME, reducer);
     },
   }),
   reduxForm({

@@ -41,25 +41,37 @@ class CalendarWrapper extends React.Component {
       selectDayHour,
       flipAction,
       change,
+      handleDayOfTheWeek,
+      canShowPicker
     } = this.props;
 
     const today = this.state.todayDay;
-    console.log(selectedDay);
-    console.log(today);
+
     return (
       <View>
         <Calendar
+          current={Date.now()}
           style={styles.calendar}
           // Minimum date that can be selected, dates before minDate will be grayed out. Default = undefined
           minDate={Date()}
           // Maximum date that can be selected, dates after maxDate will be grayed out. Default = undefined
           // maxDate={'2012-05-30'}
           // Handler which gets executed on day press. Default = undefined
-          onDayPress={(day) => {
+          onDayPress={async (day) => {
             // console.log('selected dayyy', day);
+            let dayOfTheWeekIndex;
+            if (new Date(day.timestamp).getDay() === 0) {
+              dayOfTheWeekIndex = 6;
+            } else {
+              dayOfTheWeekIndex = new Date(day.timestamp).getDay() - 1;
+            }
 
-            selectDayRequest(day);
-            change('selectedDay', day);
+            // dayOfTheWeekIndex = selectDayRequest(day);
+            day.dayOfTheWeekIndex = dayOfTheWeekIndex;
+
+            await change('selectedDay', day);
+            await selectDayRequest(day);
+            await handleDayOfTheWeek(dayOfTheWeekIndex);
           }}
           monthFormat={'MMMM'}
           hideExtraDays={true}
@@ -104,7 +116,7 @@ class CalendarWrapper extends React.Component {
           }}
         />
 
-        <SwitchCalendar action={flipAction} title="Click here to chose time." />
+       {canShowPicker ?  <SwitchCalendar action={flipAction} title="Click here to chose time." /> : null} 
       </View>
     );
   }

@@ -1,6 +1,8 @@
 import { takeLatest, call, put } from 'redux-saga/effects';
 import { AsyncStorage } from 'react-native';
 import * as RootNavigation from '../../RootNavigation';
+import { useStore } from 'react-redux'
+
 
 import {
   WASHES_REQUEST,
@@ -13,10 +15,15 @@ import {
 
 import { apiGetWashes } from './api';
 
+
+
 function* washesWorker(action) {
   try {
     const apiResult = yield call(apiGetWashes);
     yield put(washesSuccess(apiResult.data));
+    // yield put({type:'GET_TIMES_REQUEST'});
+
+   
   } catch (error) {
     console.log(error);
     yield put(washesFailure(error));

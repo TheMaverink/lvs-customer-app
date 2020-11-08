@@ -10,6 +10,10 @@ export const BOOKING_REQUEST = 'BOOKING_REQUEST';
 export const BOOKING_FAILURE = 'BOOKING_FAILURE';
 export const BOOKING_SUCCESS = 'BOOKING_SUCCESS';
 
+export const GET_TIMES_REQUEST = 'GET_TIMES_REQUEST';
+export const GET_TIMES_FAILURE = 'GET_TIMES_FAILURE';
+export const GET_TIMES_SUCCESS = 'GET_TIMES_SUCCESS';
+
 export const selectDayRequest = (day) => {
   return {
     type: SELECT_DAY_REQUEST,
@@ -75,3 +79,27 @@ export const bookingSuccess = (bookingData) => {
     payload: bookingData,
   };
 };
+
+///
+
+export const getTimesRequest = () => {
+  return {
+    type: GET_TIMES_REQUEST,
+  };
+};
+
+export const getTimesFailure = (errorMessage) => {
+  return {
+    type: GET_TIMES_FAILURE,
+    payload: errorMessage,
+  };
+};
+
+export const getTimesSuccess = (timesData) => {
+  return {
+    type: GET_TIMES_SUCCESS,
+    payload: timesData,
+  };
+};
+
+///
