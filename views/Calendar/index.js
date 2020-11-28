@@ -51,9 +51,11 @@ const styles = StyleSheet.create({
     fontFamily: 'DMSans-Regular',
   },
   calendarContainer: {
-    height: height * 0.34,
+    // height: height * 0.64,
+    // height:500,
     width: width * 0.95,
     marginHorizontal: width * 0.025,
+    height: 370,
   },
   buttonContainer: {},
   absolute: {
@@ -71,31 +73,28 @@ class CalendarView extends React.Component {
     this.state = {
       isValidated: false,
       pickerDayOfTheWeek: 0,
-      canShowPicker:false
+      canShowPicker: false,
     };
   }
 
   handleDayOfTheWeek = (newIndex) => {
-
     this.setState({
       pickerDayOfTheWeek: newIndex,
-      canShowPicker:true
+      canShowPicker: true,
     });
   };
 
   async componentDidMount() {
     this.props.change('service', this.props.selectedWash);
 
-    this.props.getTimesRequest();
-
+    this.props.getTimesRequest(); //axios.get(`/shop/opening-times`);
+    this.props.resetDayRequest();
     // let dayOfTheWeekIndex;
     // if (new Date().getDay() === 0) {
     //   dayOfTheWeekIndex = 6;
     // } else {
     //   dayOfTheWeekIndex = new Date(day.timestamp).getDay() - 1;
     // }
-
-    
   }
 
   componentDidUpdate(prevProps) {
@@ -152,6 +151,7 @@ class CalendarView extends React.Component {
               flipAction={() => this.card.flip()}
               openingTimes={openingTimes}
               pickerDayOfTheWeek={this.state.pickerDayOfTheWeek}
+              canShowPicker={this.state.canShowPicker}
             />
           </CardFlip>
 
@@ -169,18 +169,20 @@ class CalendarView extends React.Component {
                 title="Book"
                 bgColor={'rgba(216,216,216,1)'}
                 textColor="black"
-                margin={10}
+                margin={20}
                 action={async (values) => {
                   await handleSubmit(values);
                 }}
+                style={styles.buttonContainer}
               />
             ) : (
               <BaseButton
                 title="Book"
                 bgColor={'rgba(216,216,216,.6)'}
                 textColor="black"
-                margin={10}
+                margin={20}
                 action={() => console.log('not allowed')}
+                style={styles.buttonContainer}
               />
             )}
           </View>

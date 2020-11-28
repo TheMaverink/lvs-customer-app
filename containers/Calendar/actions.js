@@ -1,10 +1,14 @@
 export const SELECT_DAY_REQUEST = 'SELECT_DAY_REQUEST';
 export const SELECT_DAY_FAILURE = 'SELECT_DAY_FAILURE';
-export const SELECT_DAY_SUCCESS= 'SELECT_DAY_SUCCESS';
+export const SELECT_DAY_SUCCESS = 'SELECT_DAY_SUCCESS';
+
+export const RESET_DAY_REQUEST = 'RESET_DAY_REQUEST';
 
 export const SELECT_HOUR_REQUEST = 'SELECT_HOUR_REQUEST';
 export const SELECT_HOUR_FAILURE = 'SELECT_HOUR_FAILURE';
 export const SELECT_HOUR_SUCCESS = 'SELECT_HOUR_SUCCESS';
+
+export const RESET_HOUR_REQUEST = 'RESET_HOUR_REQUEST';
 
 export const BOOKING_REQUEST = 'BOOKING_REQUEST';
 export const BOOKING_FAILURE = 'BOOKING_FAILURE';
@@ -43,6 +47,12 @@ export const selectHourRequest = (hour) => {
   };
 };
 
+export const resetDayRequest = () => {
+  return {
+    type: RESET_DAY_REQUEST,
+  };
+};
+
 export const selectHourFailure = (errorMessage) => {
   return {
     type: SELECT_HOUR_FAILURE,
@@ -54,6 +64,12 @@ export const selectHourSuccess = (hour) => {
   return {
     type: SELECT_HOUR_SUCCESS,
     payload: hour,
+  };
+};
+
+export const resetHourRequest = () => {
+  return {
+    type: RESET_HOUR_REQUEST,
   };
 };
 

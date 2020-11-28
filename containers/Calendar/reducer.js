@@ -1,5 +1,3 @@
-import { REDUCER_NAME } from './consts';
-
 import {
   SELECT_DAY_REQUEST,
   SELECT_DAY_FAILURE,
@@ -7,6 +5,8 @@ import {
   SELECT_HOUR_REQUEST,
   SELECT_HOUR_FAILURE,
   SELECT_HOUR_SUCCESS,
+  RESET_HOUR_REQUEST,
+  RESET_DAY_REQUEST,
   BOOKING_REQUEST,
   BOOKING_FAILURE,
   BOOKING_SUCCESS,
@@ -51,6 +51,14 @@ export default function reducer(state = initialState, action) {
       };
     }
 
+    case RESET_DAY_REQUEST: {
+      return {
+        ...state,
+        loading: false,
+        selectedDay: null,
+      };
+    }
+
     //
 
     case SELECT_HOUR_REQUEST: {
@@ -75,6 +83,14 @@ export default function reducer(state = initialState, action) {
         ...state,
         loading: false,
         selectedHour: action.payload,
+      };
+    }
+
+    case RESET_HOUR_REQUEST: {
+      return {
+        ...state,
+        loading: false,
+        selectedHour: null,
       };
     }
 

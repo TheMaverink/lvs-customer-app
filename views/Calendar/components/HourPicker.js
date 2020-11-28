@@ -22,7 +22,8 @@ const { width, height } = Dimensions.get('window');
 const styles = StyleSheet.create({
   pickerContainer: {
     backgroundColor: '#121213',
-    height: '100%',
+    // height: '100%',
+    height: 370,
     width: width * 0.95,
     // marginHorizontal: width * 0.025,
     justifyContent: 'center',
@@ -44,6 +45,7 @@ const HourPicker = (props) => {
     flipAction,
     openingTimes,
     pickerDayOfTheWeek,
+    canShowPicker
   } = props;
 
   const [openingTimesRange, setOpeningTimesRange] = useState(null);
@@ -101,10 +103,12 @@ const HourPicker = (props) => {
           ></FlatList>
         ) : null}
       </View>
-      <SwitchCalendar
+      {/* <SwitchCalendar
         action={flipAction}
         title="Click here to chose the day."
-      />
+      /> */}
+             {canShowPicker ?  <SwitchCalendar action={flipAction} title="Click here to chose the day." /> : null} 
+
     </View>
   );
 };

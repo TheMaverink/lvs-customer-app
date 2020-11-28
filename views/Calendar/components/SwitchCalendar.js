@@ -16,7 +16,7 @@ const styles = StyleSheet.create({
   switchCalendar: {
     marginHorizontal: width * 0.025,
     // paddingHorizontal: '7%',
-    paddingTop: '5%',
+    paddingTop: 20,
 // position:'absolute',
     flexDirection: 'row',
     justifyContent: 'space-between',

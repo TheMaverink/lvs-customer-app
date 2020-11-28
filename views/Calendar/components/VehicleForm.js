@@ -9,7 +9,7 @@ const { width, height } = Dimensions.get('window');
 
 const styles = StyleSheet.create({
   container: {
-    marginTop:120,
+    marginTop:100,
     marginBottom:20,
     paddingHorizontal: '5%',
 

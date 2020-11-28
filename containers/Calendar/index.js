@@ -13,12 +13,14 @@ import {
   selectHourRequest,
   selectHourFailure,
   selectHourSuccess,
+  resetHourRequest,
   bookingRequest,
   bookingFailure,
   bookingSuccess,
   getTimesRequest,
   getTimesFailure,
-  getTimesSuccess
+  getTimesSuccess,
+  resetDayRequest
 } from './actions';
 
 import { REDUCER_NAME } from './consts';
@@ -49,9 +51,11 @@ export const mapDispatchToProps = (dispatch) =>
       selectDayRequest,
       selectDayFailure,
       selectDaySuccess,
+      resetDayRequest,
       selectHourRequest,
       selectHourFailure,
       selectHourSuccess,
+      resetHourRequest,
       bookingRequest,
       bookingFailure,
       bookingSuccess,

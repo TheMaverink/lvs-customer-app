@@ -21,7 +21,9 @@ const styles = StyleSheet.create({
   calendar: {
     // borderWidth: 1,
     borderRadius: 25,
-    height: '100%',
+    // borderColor:'red',
+    // borderWidth:1,
+    height: 370,
   },
 });
 
@@ -46,6 +48,7 @@ class CalendarWrapper extends React.Component {
     } = this.props;
 
     const today = this.state.todayDay;
+   
 
     return (
       <View>

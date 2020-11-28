@@ -5,8 +5,6 @@ const { width, height } = Dimensions.get('window');
 
 const DOT_SIZE = 15;
 
-
-
 const styles = StyleSheet.create({
   pagination: {
     position: 'absolute',
@@ -21,14 +19,12 @@ const styles = StyleSheet.create({
     width: DOT_SIZE * 0.7,
     height: DOT_SIZE * 0.7,
     borderRadius: DOT_SIZE * 0.35,
-    
-  
   },
   paginationDotContainer: {
     width: DOT_SIZE,
     // alignItems: 'center',
     justifyContent: 'center',
-    marginHorizontal:2
+    marginHorizontal: 2,
   },
   paginationIndicator: {
     width: DOT_SIZE * 1.1,
@@ -38,8 +34,6 @@ const styles = StyleSheet.create({
     // borderColor: '#ddd',
     backgroundColor: 'white',
   },
-
-
 });
 
 const Pagination = (props) => {
@@ -47,7 +41,7 @@ const Pagination = (props) => {
   const inputRange = [-width, 0, width];
   const translateX = scrollX.interpolate({
     inputRange,
-    outputRange: [-DOT_SIZE * 1.3, 0, (DOT_SIZE * 1.3) + 8],
+    outputRange: [-DOT_SIZE * 1.3, 0, DOT_SIZE * 1.3 + 8],
   });
   return (
     <View style={[styles.pagination]}>
@@ -64,7 +58,7 @@ const Pagination = (props) => {
       {data
         ? data.map((item) => {
             return (
-              <View key={item.key} style={styles.paginationDotContainer}>
+              <View key={item._id} style={styles.paginationDotContainer}>
                 <View
                   style={[
                     styles.paginationDot,
