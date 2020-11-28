@@ -11,11 +11,11 @@ import {
 import WashCard from './components/WashCard';
 import WashesContainer from 'containers/Washes';
 import BookingsContainer from 'containers/Bookings';
-import CalendarContainer from 'containers/Calendar'
+import CalendarContainer from 'containers/Calendar';
 import { compose, lifecycle } from 'recompose';
 import { useFocusEffect, useIsFocused } from '@react-navigation/native';
 import { StatusColorContext } from 'components/AppView';
-
+import Pagination from './components/Pagination';
 import { BlurView } from 'expo-blur';
 
 const deviceHeight = Dimensions.get('window').height;
@@ -59,11 +59,8 @@ const SelectWashView = (props) => {
 
   useEffect(() => {
     washesRequest();
-    getTimesRequest()
-   
+    getTimesRequest();
   }, []);
-
-
 
   useFocusEffect(
     React.useCallback(() => {
@@ -112,6 +109,8 @@ const SelectWashView = (props) => {
           )}
           scrollEventThrottle={16}
         />
+
+        <Pagination scrollX={scrollX} data={washes} />
       </View>
       {isBookingsLoading === true || isWashesLoading === true ? (
         <BlurView style={styles.absolute} intensity={60} tint="dark"></BlurView>
@@ -120,4 +119,8 @@ const SelectWashView = (props) => {
   );
 };
 
-export default compose(WashesContainer, CalendarContainer,BookingsContainer)(SelectWashView);
+export default compose(
+  WashesContainer,
+  CalendarContainer,
+  BookingsContainer
+)(SelectWashView);

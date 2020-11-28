@@ -1,6 +1,8 @@
 import React from 'react'
 
-import {View,StyleSheet} from 'react-native'
+import {View,StyleSheet,Dimensions} from 'react-native'
+
+const deviceWidth = Dimensions.get('window').width;
 
 const styles = StyleSheet.create({
   container:{
@@ -11,7 +13,8 @@ const styles = StyleSheet.create({
     position:'absolute',
     bottom:-30,
     left:'50%',
-   transform: [{ translateX: '-20%'}],
+  //  transform: [{ translateX: '-20%'}], 
+   transform: [{ translateX: -deviceWidth * 0.2 }], 
    
   },
   active:{

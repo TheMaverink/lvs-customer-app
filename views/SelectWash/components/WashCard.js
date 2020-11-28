@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {setState, useEffect} from 'react';
 import {
   View,
   TouchableOpacity,
@@ -185,6 +185,10 @@ const WashCard = (props) => {
 
   const inputRange = [(index - 1) * width, index * width, (index + 1) * width];
 
+  // useEffect(() => {
+  //  console.log(scrollX)
+  // }, [scrollX]);
+
   const cardScale = scrollX.interpolate({
     inputRange,
     outputRange: [0.9, 1, 0.9],
@@ -287,7 +291,7 @@ const WashCard = (props) => {
           <View style={styles.cornerRight}></View>
         </View>
 
-        <Indicator index={index}/>
+        {/* <Indicator index={index}/> */}
       </LinearGradient>
     
     </Animated.View>

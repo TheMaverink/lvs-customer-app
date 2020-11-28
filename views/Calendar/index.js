@@ -157,7 +157,7 @@ class CalendarView extends React.Component {
 
           {isLoading === true ? (
             <BlurView style={styles.absolute} intensity={70} tint="dark">
-              <Text>Hello! I am bluring contents underneath</Text>
+              <Text>Loading</Text>
             </BlurView>
           ) : null}
 
