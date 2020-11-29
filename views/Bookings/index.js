@@ -4,8 +4,7 @@ import { compose } from 'recompose';
 import BookingsContainer from 'containers/Bookings';
 import BookingsList from './components/BookingsList';
 import moment from 'moment';
-import { useFocusEffect } from '@react-navigation/native';
-import { useIsFocused } from '@react-navigation/native';
+import { useIsFocused,useFocusEffect } from '@react-navigation/native';
 
 const todayDate = moment(new Date()).format('dddd Do MMMM').toString();
 const { width, height } = Dimensions.get('window');
@@ -48,11 +47,17 @@ const BookingsView = (props) => {
 
   const isFocused = useIsFocused();
 
-  useEffect(() => {
-    if (isFocused) {
+  // useEffect(() => {
+  //   if (isFocused) {
+  //     getBookingsRequest();
+  //   }
+  // }, [isFocused]);
+
+  useFocusEffect(
+    React.useCallback(() => {
       getBookingsRequest();
-    }
-  }, [isFocused]);
+    },[])
+  );
   return (
     <View style={styles.container}>
       <View style={styles.headerContainer}>
