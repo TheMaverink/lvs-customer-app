@@ -103,7 +103,12 @@ export default function ConfirmedBooking(props) {
 
   const formattedDuration = minutesConverter(duration);
   const formattedDay = moment(date).format('dddd Do MMMM').toString();
-  const formattedHour = hour + ":00"
+  const formattedHour = hour + ':00';
+
+  const handleRedirect = async () => {
+    await RootNavigation.navigate('Bookings', { screen: 'Bookings' });
+    await RootNavigation.navigate('Car Spa', { screen: 'Select Wash' });
+  };
 
   // const isFocused = useIsFocused();
 
@@ -145,9 +150,7 @@ export default function ConfirmedBooking(props) {
             title="done"
             bgColor="black"
             textColor="white"
-            action={() =>
-              RootNavigation.navigate('Car Spa', { screen: 'Select Wash' })
-            }
+            action={ handleRedirect}
           />
         </View>
       </View>

@@ -22,6 +22,7 @@ import AuthView from 'views/Auth';
 import CalendarView from 'views/Calendar';
 import ConfirmationView from 'views/Confirmation';
 import BookingsView from 'views/Bookings';
+
 import LoginView from 'views/Login';
 import RegisterView from 'views/Register';
 import SelectWashView from 'views/SelectWash';
@@ -70,6 +71,7 @@ export function BookingsStack() {
         options={{ headerShown: false }}
         component={BookingsView}
       />
+   
       <Stack.Screen
         name="Booking Confirmation"
         // options={{

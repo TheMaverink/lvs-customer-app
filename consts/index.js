@@ -55,5 +55,9 @@ export const DESIGN_RESOLUTION={
   HEIGHT:375
 }
 
+export const MONTHS = ["Jan", "Feb", "Mar", "Apr", "May", "Jun",
+  "Jul", "Aug", "Sept", "Oc", "Nov", "Dec"
+];
+
 
 export const { API_URL } = getEnvVars()

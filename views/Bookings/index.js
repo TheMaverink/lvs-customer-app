@@ -1,94 +1,67 @@
 import React, { useState, useEffect } from 'react';
-
-import {
-  StyleSheet,
-  Text,
-
-} from 'react-native';
-
-import BookingsContainer from 'containers/Bookings';
+import { StyleSheet, Text, View, ScrollView, Dimensions } from 'react-native';
 import { compose } from 'recompose';
+import BookingsContainer from 'containers/Bookings';
+import BookingsList from './components/BookingsList';
 import moment from 'moment';
-import Booking from './components/Booking';
-import NoBooking from './components/NoBooking';
-import store from 'store/store';
-import {  useIsFocused } from '@react-navigation/native';
-import { StatusColorContext } from 'components/AppView';
+import { useFocusEffect } from '@react-navigation/native';
+import { useIsFocused } from '@react-navigation/native';
+
+const todayDate = moment(new Date()).format('dddd Do MMMM').toString();
+const { width, height } = Dimensions.get('window');
 
 const styles = StyleSheet.create({
   container: {
     flex: 1,
     backgroundColor: '#1A1B1C',
-    justifyContent: 'flex-end',
-    height: '100%',
+    width: width,
+    paddingVertical: 10,
+  },
+  headerContainer: {
+    // height: height * 0.1,
+    justifyContent: 'center',
+    marginBottom: height * 0.06,
+  },
+  headerService: {
+    fontSize: 40,
+    color: '#FFFFFF',
+    lineHeight: 48,
+    fontFamily: 'DMSerifDisplay-Regular',
+    paddingTop: '7%',
+    paddingHorizontal: '7%',
+    color: 'white',
+  },
+  headerMessage: {
+    opacity: 0.8,
+    fontSize: 16,
+    color: 'white',
+    letterSpacing: -0.01,
+    lineHeight: 24,
+    paddingHorizontal: '7%',
+    // paddingTop: '3%',
+    fontFamily: 'DMSans-Regular',
   },
 });
 
 const BookingsView = (props) => {
-  const isFocused = useIsFocused();
-
   const { getBookingsRequest, bookings, navigation } = props;
 
-  const colorContext = React.useContext(StatusColorContext);
-
-  let [updatedBookings, updateBookings] = useState(props.bookings);
+  const isFocused = useIsFocused();
 
   useEffect(() => {
-    const run = async () => {
-      await getBookingsRequest();
-      await updateBookings(props.bookings);
-    };
-
     if (isFocused) {
-      console.log('updatedBookings');
-      console.log(updatedBookings);
-
-      run();
+      getBookingsRequest();
     }
   }, [isFocused]);
-
-  // useFocusEffect(
-  //   React.useCallback(() => {
-  //     const test = async () => {
-  //       await alert('screen focus');
-  //       await colorContext.changeAppViewColour('#1a1b1c');
-  //       await getBookingsRequest();
-  //     };
-
-  //     test();
-
-  //     return undefined;
-  //   }, [])
-  // );
-
-  // useEffect(() => {
-  //   const test = async () => {
-  //     await navigation.addListener('focus', () => {
-  //       console.log('focus');
-  //     });
-  //   };
-
-  //   return test;
-  //   // updateBookings(bookings);
-  //   // console.log('updatedBookings');
-  //   // console.log(updatedBookings);
-  // }, [{ navigation }]);
-
-  // const isFocused = useIsFocused();
-
   return (
-    <React.Fragment>
-      {!updatedBookings[0] || updatedBookings.length === [] ? (
-        <NoBooking />
-      ) : (
-        // <ConfirmedBooking booking={updatedBookings[0]}></ConfirmedBooking>
-        // <ConfirmedBooking booking={updatedBookings[0]}></ConfirmedBooking>
-       
-      <Booking booking={updatedBookings[0]}></Booking>
-      )}
-    </React.Fragment>
+    <View style={styles.container}>
+      <View style={styles.headerContainer}>
+        <Text style={styles.headerService}>Bookings</Text>
+        <Text style={styles.headerMessage}>{todayDate}</Text>
+      </View>
 
-    // <Text>Bookings View</Text>
+      <BookingsList bookings={bookings} />
+    </View>
   );
 };
 
