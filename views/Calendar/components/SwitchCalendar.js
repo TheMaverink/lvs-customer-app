@@ -3,10 +3,13 @@ import {
   StyleSheet,
   Text,
   View,
-  TouchableOpacity,
+  // TouchableOpacity,
+  TouchableNativeFeedback,
   Dimensions,
   Image,
 } from 'react-native';
+
+import {TouchableOpacity} from 'react-native-gesture-handler'
 
 const { width, height } = Dimensions.get('window');
 
@@ -14,9 +17,12 @@ import Arrow from '../../../assets/icons/arrow.png';
 
 const styles = StyleSheet.create({
   switchCalendar: {
+    zIndex:9000,
+    elevation:9000,
     marginHorizontal: width * 0.025,
+    marginTop:30,
     // paddingHorizontal: '7%',
-    paddingTop: 20,
+    // paddingTop: 20,
 // position:'absolute',
     flexDirection: 'row',
     justifyContent: 'space-between',
@@ -42,8 +48,12 @@ const SwitchCalendar = (props) => {
       onPress={() => action()}
       style={styles.switchCalendar}
     >
+      
       <Text style={styles.switchCalendarText}>{title}</Text>
       <Image style={styles.switchCalendarImage} source={Arrow} />
+
+  
+
     </TouchableOpacity>
   );
 };

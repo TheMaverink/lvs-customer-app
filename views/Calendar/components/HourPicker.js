@@ -11,6 +11,7 @@ import {
 import { Field } from 'redux-form';
 import { compose } from 'recompose';
 import { reduxForm } from 'redux-form';
+import AnimatedEllipsis from 'react-native-animated-ellipsis';
 
 import CalendarContainer from 'containers/Calendar';
 import HourPickerButton from './HourPickerButton';
@@ -35,6 +36,11 @@ const styles = StyleSheet.create({
     marginVertical: '22%',
     overflow: 'visible',
   },
+  // loading:{
+  //  position:'absolute',
+  //  top:'30%',
+  //  zIndex:500
+  // }
 });
 
 const HourPicker = (props) => {
@@ -45,51 +51,58 @@ const HourPicker = (props) => {
     flipAction,
     openingTimes,
     pickerDayOfTheWeek,
-    canShowPicker
+    canShowPicker,
+    dayFreeSlotsRequest,
+    currentSelectedDay,
+    isHourPickerVisible,
+    handleHourPickerVisibility,
+    dayFreeSlots,
+    isLoading,
   } = props;
 
-  const [openingTimesRange, setOpeningTimesRange] = useState(null);
   const [numColumnsState, setNumColumns] = useState(null);
 
-  useEffect(() => {
-    const range = (start, stop, step) =>
-      Array.from(
-        { length: (stop - start) / step + 1 },
-        (_, i) => start + i * step
-      );
+  const handleFlip = () => {
+    handleHourPickerVisibility();
+    flipAction();
+  };
 
-    if (openingTimes) {
-      const start = openingTimes[pickerDayOfTheWeek].periods[0].start;
-      const end = openingTimes[pickerDayOfTheWeek].periods[0].end;
+  useEffect(() => {
+    if (isHourPickerVisible === true) {
+      dayFreeSlotsRequest(currentSelectedDay);
+    }
+  }, [isHourPickerVisible]);
+
+  useEffect(() => {
+    if (dayFreeSlots) {
       let numColumns;
 
-      const hoursRange = range(start, end, 1);
-
-      setOpeningTimesRange(hoursRange);
-      if (hoursRange.length % 3 ===0){
-        numColumns = 3
-      }else if(hoursRange.length % 5 ===0){
-        numColumns = 5
-      }else{
-        numColumns = 4
+      // setOpeningTimesRange(dayFreeSlots);
+      if (dayFreeSlots.length % 3 === 0) {
+        numColumns = 3;
+      } else if (dayFreeSlots.length % 5 === 0) {
+        numColumns = 5;
+      } else {
+        numColumns = 4;
       }
 
-      setNumColumns(numColumns)
-      console.log('openingTimesRange');
-      console.log(openingTimesRange);
+      setNumColumns(numColumns);
     }
-  }, [openingTimes,pickerDayOfTheWeek]);
+  }, [dayFreeSlots, pickerDayOfTheWeek]);
 
   return (
     <View>
       <View style={styles.pickerContainer}>
-        {numColumnsState ? (
+        {isLoading ? (
+          // <AnimatedEllipsis />
+          <Text>Loading</Text>
+        ) : numColumnsState ? (
           <FlatList
             style={styles.hourButtonsWrapper}
             columnWrapperStyle={{ justifyContent: 'space-around', padding: 10 }}
-            data={openingTimesRange }
+            data={dayFreeSlots}
             // keyExtractor={(item,index) => numColumnsState + index}
-            key = {numColumnsState + openingTimesRange}
+            key={numColumnsState + dayFreeSlots}
             numColumns={numColumnsState}
             renderItem={({ item, index }) => (
               <HourPickerButton
@@ -103,12 +116,13 @@ const HourPicker = (props) => {
           ></FlatList>
         ) : null}
       </View>
-      {/* <SwitchCalendar
-        action={flipAction}
-        title="Click here to chose the day."
-      /> */}
-             {canShowPicker ?  <SwitchCalendar action={flipAction} title="Click here to chose the day." /> : null} 
 
+      {canShowPicker ? (
+        <SwitchCalendar
+          action={handleFlip}
+          title="Click here to chose the day."
+        />
+      ) : null}
     </View>
   );
 };

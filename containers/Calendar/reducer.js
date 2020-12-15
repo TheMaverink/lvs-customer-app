@@ -13,6 +13,15 @@ import {
   GET_TIMES_REQUEST,
   GET_TIMES_FAILURE,
   GET_TIMES_SUCCESS,
+  DAY_FREE_SLOTS_REQUEST,
+  DAY_FREE_SLOTS_FAILURE,
+  DAY_FREE_SLOTS_SUCCESS,
+  GET_CLOSED_DAYS_REQUEST,
+  GET_CLOSED_DAYS_FAILURE,
+  GET_CLOSED_DAYS_SUCCESS,
+  GET_BOOKED_DAYS_REQUEST,
+  GET_BOOKED_DAYS_FAILURE,
+  GET_BOOKED_DAYS_SUCCESS,
 } from './actions';
 
 const initialState = {
@@ -20,12 +29,95 @@ const initialState = {
   errorMessage: null,
   selectedDay: null,
   selectedHour: null,
-  bookingData:null,
+  bookingData: null,
   openingTimes: null,
+  dayFreeSlots: null,
+  closedDays: null,
+  bookedDays: null,
 };
 
 export default function reducer(state = initialState, action) {
   switch (action.type) {
+    case GET_BOOKED_DAYS_REQUEST: {
+      return {
+        ...state,
+        loading: true,
+        errorMessage: null,
+        bookedDays: null,
+      };
+    }
+
+    case GET_BOOKED_DAYS_FAILURE: {
+      return {
+        ...state,
+        loading: false,
+        bookedDays: null,
+      };
+    }
+
+    case GET_BOOKED_DAYS_SUCCESS: {
+      return {
+        ...state,
+        loading: false,
+        bookedDays: action.payload,
+      };
+    }
+
+    //
+
+    case GET_CLOSED_DAYS_REQUEST: {
+      return {
+        ...state,
+        loading: true,
+        errorMessage: null,
+        closedDays: null,
+      };
+    }
+
+    case GET_CLOSED_DAYS_FAILURE: {
+      return {
+        ...state,
+        loading: false,
+        closedDays: null,
+      };
+    }
+
+    case GET_CLOSED_DAYS_SUCCESS: {
+      return {
+        ...state,
+        loading: false,
+        closedDays: action.payload,
+      };
+    }
+
+    //
+
+    case DAY_FREE_SLOTS_REQUEST: {
+      return {
+        ...state,
+        loading: true,
+        errorMessage: null,
+        dayFreeSlots: null,
+      };
+    }
+
+    case DAY_FREE_SLOTS_FAILURE: {
+      return {
+        ...state,
+        loading: false,
+        dayFreeSlots: null,
+      };
+    }
+
+    case DAY_FREE_SLOTS_SUCCESS: {
+      return {
+        ...state,
+        loading: false,
+        dayFreeSlots: action.payload,
+      };
+    }
+
+    //
     case SELECT_DAY_REQUEST: {
       return {
         ...state,
@@ -50,6 +142,8 @@ export default function reducer(state = initialState, action) {
         selectedDay: action.payload,
       };
     }
+
+    //
 
     case RESET_DAY_REQUEST: {
       return {
@@ -100,7 +194,7 @@ export default function reducer(state = initialState, action) {
       return {
         ...state,
         loading: true,
-        bookingData:null
+        bookingData: null,
       };
     }
 
@@ -108,7 +202,7 @@ export default function reducer(state = initialState, action) {
       return {
         ...state,
         loading: false,
-        bookingData:null
+        bookingData: null,
       };
     }
 
@@ -147,10 +241,7 @@ export default function reducer(state = initialState, action) {
       };
     }
 
-    
     default:
       return state;
   }
 }
-
-

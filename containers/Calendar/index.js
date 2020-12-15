@@ -20,7 +20,16 @@ import {
   getTimesRequest,
   getTimesFailure,
   getTimesSuccess,
-  resetDayRequest
+  resetDayRequest,
+  dayFreeSlotsRequest,
+  dayFreeSlotsFailure,
+  dayFreeSlotsSuccess,
+  getClosedDaysRequest,
+  getClosedDaysFailure,
+  getClosedDaysSuccess,
+  getBookedDaysRequest,
+  getBookedDaysFailure,
+  getBookedDaysSuccess,
 } from './actions';
 
 import { REDUCER_NAME } from './consts';
@@ -30,7 +39,10 @@ import {
   selectHour,
   selectWash,
   selectIsLoading,
-  selectTimes
+  selectTimes,
+  selectDayFreeSlots,
+  selectClosedDays,
+  selectBookedDays
 } from './selectors';
 import store from 'store/store';
 const selector = formValueSelector('CALENDAR_FORM'); // <-- same as form name
@@ -40,6 +52,9 @@ export const mapStateToProps = createStructuredSelector({
   selectedDay: selectDay,
   selectedHour: selectHour,
   selectedWash: selectWash,
+  dayFreeSlots:selectDayFreeSlots,
+  closedDays:selectClosedDays,
+  bookedDays:selectBookedDays,
   calendarFormValues: (state) =>
     selector(state, 'vehicleMake', 'vehicleReg', 'selectedDay', 'selectedHour'),
     openingTimes: selectTimes,
@@ -61,7 +76,16 @@ export const mapDispatchToProps = (dispatch) =>
       bookingSuccess,
       getTimesRequest,
       getTimesFailure,
-      getTimesSuccess
+      getTimesSuccess,
+      dayFreeSlotsRequest,
+      dayFreeSlotsFailure,
+      dayFreeSlotsSuccess,
+      getClosedDaysRequest,
+      getClosedDaysFailure,
+      getClosedDaysSuccess,
+      getBookedDaysRequest,
+      getBookedDaysFailure,
+      getBookedDaysSuccess,
     },
     dispatch
   );

@@ -74,27 +74,41 @@ class CalendarView extends React.Component {
       isValidated: false,
       pickerDayOfTheWeek: 0,
       canShowPicker: false,
+      currentSelectedDay: null,
+      isHourPickerVisible: false,
     };
+
+    this.handleHourPickerVisibility = this.handleHourPickerVisibility.bind(
+      this
+    );
+    this.handleDayOfTheWeek = this.handleDayOfTheWeek.bind(this);
   }
 
-  handleDayOfTheWeek = (newIndex) => {
+  handleHourPickerVisibility = () => {
+    this.setState({
+      isHourPickerVisible: !this.state.isHourPickerVisible,
+    });
+  };
+
+  handleDayOfTheWeek = (newIndex, day) => {
     this.setState({
       pickerDayOfTheWeek: newIndex,
       canShowPicker: true,
+      currentSelectedDay: day,
     });
   };
 
   async componentDidMount() {
     this.props.change('service', this.props.selectedWash);
 
-    this.props.getTimesRequest(); //axios.get(`/shop/opening-times`);
+    this.props.getTimesRequest();
     this.props.resetDayRequest();
-    // let dayOfTheWeekIndex;
-    // if (new Date().getDay() === 0) {
-    //   dayOfTheWeekIndex = 6;
-    // } else {
-    //   dayOfTheWeekIndex = new Date(day.timestamp).getDay() - 1;
-    // }
+    this.props.getClosedDaysRequest();
+    this.props.getBookedDaysRequest()
+
+    // this.setState({
+
+    // })
   }
 
   componentDidUpdate(prevProps) {
@@ -119,7 +133,15 @@ class CalendarView extends React.Component {
       handleSubmit,
       isLoading,
       openingTimes,
+      dayFreeSlotsRequest,
+      getClosedDaysRequest,
+      closedDays,
+      bookedDays
     } = this.props;
+
+    // console.log('CALENDAR');
+
+    // console.log(this.props);
 
     return (
       <KeyboardAvoidingView
@@ -133,17 +155,25 @@ class CalendarView extends React.Component {
             <Text style={styles.headerService}>{selectedWash}</Text>
             <Text style={styles.headerMessage}>Select a booking date.</Text>
           </View>
+          
 
           <CardFlip
             style={styles.calendarContainer}
             ref={(card) => (this.card = card)}
           >
-            <Calendar
-              {...this.props}
-              flipAction={() => this.card.flip()}
-              handleDayOfTheWeek={this.handleDayOfTheWeek}
-              canShowPicker={this.state.canShowPicker}
-            />
+           
+              <Calendar
+                {...this.props}
+                flipAction={() => this.card.flip()}
+                handleDayOfTheWeek={this.handleDayOfTheWeek}
+                canShowPicker={this.state.canShowPicker}
+                dayFreeSlotsRequest={dayFreeSlotsRequest}
+                isHourPickerVisible={this.state.isHourPickerVisible}
+                handleHourPickerVisibility={this.handleHourPickerVisibility}
+                closedDays={closedDays}
+                bookedDays={bookedDays}
+              />
+           
 
             <HourPicker
               style={{ flex: 1 }}
@@ -152,14 +182,20 @@ class CalendarView extends React.Component {
               openingTimes={openingTimes}
               pickerDayOfTheWeek={this.state.pickerDayOfTheWeek}
               canShowPicker={this.state.canShowPicker}
+              dayFreeSlotsRequest={dayFreeSlotsRequest}
+              dayFreeSlots={this.props.dayFreeSlots}
+              currentSelectedDay={this.state.currentSelectedDay}
+              isHourPickerVisible={this.state.isHourPickerVisible}
+              handleHourPickerVisibility={this.handleHourPickerVisibility}
+              isLoading={isLoading}
             />
           </CardFlip>
 
-          {isLoading === true ? (
+          {/* {isLoading === true ? (
             <BlurView style={styles.absolute} intensity={70} tint="dark">
               <Text>Loading</Text>
             </BlurView>
-          ) : null}
+          ) : null} */}
 
           <VehicleForm />
 

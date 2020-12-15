@@ -77,7 +77,7 @@ const HourPickerButton = (props) => {
       <Text
         style={selectedHour === slotHour ? styles.selectedText : styles.text}
       >
-        {slotHour.toString().length > 1 ? slotHour : '0' + slotHour}
+        {slotHour.toString().length > 1 ? slotHour : '0' + slotHour}:00
       </Text>
     </TouchableOpacity>
   );

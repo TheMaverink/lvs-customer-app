@@ -54,7 +54,8 @@ const styles = StyleSheet.create({
     position: 'relative',
     borderRadius: 25,
     width: width * 1.02,
-    transform: [{ translateX: -width * 0.01 }],
+    // transform: [{ translateX: -width * 0.01 }],
+    transform: [{ translateX: 0.01 }],
   },
   imageContainer: {
     position: 'absolute',

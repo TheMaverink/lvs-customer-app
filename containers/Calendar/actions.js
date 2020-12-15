@@ -18,6 +18,85 @@ export const GET_TIMES_REQUEST = 'GET_TIMES_REQUEST';
 export const GET_TIMES_FAILURE = 'GET_TIMES_FAILURE';
 export const GET_TIMES_SUCCESS = 'GET_TIMES_SUCCESS';
 
+export const DAY_FREE_SLOTS_REQUEST = 'DAY_FREE_SLOTS_REQUEST';
+export const DAY_FREE_SLOTS_FAILURE = 'DAY_FREE_SLOTS_FAILURE';
+export const DAY_FREE_SLOTS_SUCCESS = 'DAY_FREE_SLOTS_SUCCESS';
+
+export const GET_CLOSED_DAYS_REQUEST = 'GET_CLOSED_DAYS_REQUEST';
+export const GET_CLOSED_DAYS_FAILURE = 'GET_CLOSED_DAYS_FAILURE';
+export const GET_CLOSED_DAYS_SUCCESS = 'GET_CLOSED_DAYS_SUCCESS';
+
+export const GET_BOOKED_DAYS_REQUEST = 'GET_BOOKED_DAYS_REQUEST';
+export const GET_BOOKED_DAYS_FAILURE = 'GET_BOOKED_DAYS_FAILURE';
+export const GET_BOOKED_DAYS_SUCCESS = 'GET_BOOKED_DAYS_SUCCESS';
+
+export const getBookedDaysRequest = () => {
+  return {
+    type: GET_BOOKED_DAYS_REQUEST,
+  };
+};
+
+export const getBookedDaysFailure = (errorMessage) => {
+  return {
+    type: GET_BOOKED_DAYS_FAILURE,
+    payload: errorMessage,
+  };
+};
+
+export const getBookedDaysSuccess = (bookedDays) => {
+  return {
+    type: GET_BOOKED_DAYS_SUCCESS,
+    payload: bookedDays,
+  };
+};
+
+//
+
+export const getClosedDaysRequest = () => {
+  return {
+    type: GET_CLOSED_DAYS_REQUEST,
+  };
+};
+
+export const getClosedDaysFailure = (errorMessage) => {
+  return {
+    type: GET_CLOSED_DAYS_FAILURE,
+    payload: errorMessage,
+  };
+};
+
+export const getClosedDaysSuccess = (closedDays) => {
+  return {
+    type: GET_CLOSED_DAYS_SUCCESS,
+    payload: closedDays,
+  };
+};
+
+//
+
+export const dayFreeSlotsRequest = (day) => {
+  return {
+    type: DAY_FREE_SLOTS_REQUEST,
+    payload: day,
+  };
+};
+
+export const dayFreeSlotsFailure = (errorMessage) => {
+  return {
+    type: DAY_FREE_SLOTS_FAILURE,
+    payload: errorMessage,
+  };
+};
+
+export const dayFreeSlotsSuccess = (dayFreeSlots) => {
+  return {
+    type: DAY_FREE_SLOTS_SUCCESS,
+    payload: dayFreeSlots,
+  };
+};
+
+//
+
 export const selectDayRequest = (day) => {
   return {
     type: SELECT_DAY_REQUEST,

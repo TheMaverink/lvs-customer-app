@@ -29,6 +29,23 @@ export const selectTimes = createSelector(
   _get('openingTimes'),
 )
 
+
+export const selectDayFreeSlots = createSelector(
+  (state) => state[REDUCER_NAME],
+  _get('dayFreeSlots'),
+)
+
+
+export const selectClosedDays = createSelector(
+  (state) => state[REDUCER_NAME],
+  _get('closedDays'),
+)
+
+export const selectBookedDays = createSelector(
+  (state) => state[REDUCER_NAME],
+  _get('bookedDays'),
+)
+
 // export const bookingData = createSelector(
 //   (state) => state[REDUCER_NAME],
 //   _get('bookingData')

@@ -23,7 +23,7 @@ const styles = StyleSheet.create({
     color: 'white',
   },
   link: {
-    marginLeft: 20,
+    // marginLeft: 20,
     fontFamily: 'DMSans-Bold',
     fontSize: 16,
     opacity: 1,

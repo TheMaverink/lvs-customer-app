@@ -35,20 +35,27 @@ class CalendarWrapper extends React.Component {
     };
   }
 
+  handleFlip = () => {
+    console.log('flip triggered');
+    this.props.handleHourPickerVisibility();
+    this.props.flipAction();
+  };
+
   render() {
     const {
       selectedDay,
-      selectedHour,
       selectDayRequest,
-      selectDayHour,
-      flipAction,
+      closedDays,
+      bookedDays,
       change,
       handleDayOfTheWeek,
-      canShowPicker
+      canShowPicker,
     } = this.props;
 
     const today = this.state.todayDay;
-   
+
+    console.log('closedDays');
+    console.log(closedDays);
 
     return (
       <View>
@@ -74,9 +81,11 @@ class CalendarWrapper extends React.Component {
 
             await change('selectedDay', day);
             await selectDayRequest(day);
-            await handleDayOfTheWeek(dayOfTheWeekIndex);
+            await handleDayOfTheWeek(dayOfTheWeekIndex, day);
+            // await dayFreeSlotsRequest(day)
           }}
           monthFormat={'MMMM'}
+          // disabledDaysIndexes={[0,6]}
           hideExtraDays={true}
           firstDay={1}
           onPressArrowLeft={(subtractMonth) => subtractMonth()}
@@ -96,6 +105,9 @@ class CalendarWrapper extends React.Component {
               selectedColor: 'rgba(255, 213, 0, 1)',
               // activeOpacity: 0,
             },
+            ...bookedDays,
+            //HERE!!!!!
+            ...closedDays,
           }}
           theme={{
             calendarBackground: '#121213',
@@ -119,7 +131,12 @@ class CalendarWrapper extends React.Component {
           }}
         />
 
-       {canShowPicker ?  <SwitchCalendar action={flipAction} title="Click here to chose time." /> : null} 
+        {canShowPicker ? (
+          <SwitchCalendar
+            action={this.handleFlip}
+            title="Click here to chose time."
+          />
+        ) : null}
       </View>
     );
   }

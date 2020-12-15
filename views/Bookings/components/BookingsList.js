@@ -32,6 +32,7 @@ const styles = StyleSheet.create({
     top: '50%',
     right: '-5%',
     zIndex: 100,
+    elevation:100,
     transform: [{ translateY: -8 }],
   },
   bookingItem: {

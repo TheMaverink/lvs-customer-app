@@ -22,6 +22,8 @@ const deviceHeight = Dimensions.get('window').height;
 const deviceWidth = Dimensions.get('window').width;
 const adaptedWidth = deviceWidth * 0.9;
 
+const valToTranslate = -deviceHeight * 0.02 
+
 const styles = StyleSheet.create({
   container: {
     position: 'relative',
@@ -58,7 +60,8 @@ const styles = StyleSheet.create({
     top: -30,
     width: '100%',
     overflow: 'visible',
-    transform: [{ translateX: -deviceHeight * 0.02 }, { scale: 1 }],
+    // transform: [{ translateX: -deviceHeight * 0.02 }, { scale: 1 }],
+    transform: [{ translateX: valToTranslate }, { scale: 1 }],
   },
   titleContainer: {
     flexDirection: 'row',
@@ -155,6 +158,7 @@ const styles = StyleSheet.create({
     fontSize: 14,
     backgroundColor: '#FFD500',
     zIndex:100,
+    elevation:100
     
   },
   buttonText: {
@@ -239,7 +243,7 @@ const WashCard = (props) => {
         colors={['transparent', 'transparent', 'black']}
         style={styles.gradientContainer}
       >
-        {index === 1 ? (
+        {index %2 ===1 ? (
           <Animated.Image
             resizeMode={'contain'}
             source={BlueCar}

@@ -4,6 +4,8 @@ import {View,StyleSheet,Dimensions} from 'react-native'
 
 const deviceWidth = Dimensions.get('window').width;
 
+const valToTranslate = -deviceWidth * 0.2 
+
 const styles = StyleSheet.create({
   container:{
     width:38,
@@ -14,7 +16,8 @@ const styles = StyleSheet.create({
     bottom:-30,
     left:'50%',
   //  transform: [{ translateX: '-20%'}], 
-   transform: [{ translateX: -deviceWidth * 0.2 }], 
+  //  transform: [{ translateX: -deviceWidth * 0.2 }], 
+   transform: [{ translateX:  valToTranslate }], 
    
   },
   active:{

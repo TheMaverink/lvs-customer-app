@@ -5,11 +5,16 @@ const { width, height } = Dimensions.get('window');
 
 const DOT_SIZE = 15;
 
+const valToTranslate = width / 2
+
 const styles = StyleSheet.create({
   pagination: {
+    zIndex:5000,
+    elevation:5000,
     position: 'absolute',
     right: '50%',
     transform: [{ translateX: '50%' }],
+    // transform: [{ translateX: valToTranslate}],
     bottom: 40,
     flexDirection: 'row',
     height: DOT_SIZE,
@@ -37,6 +42,8 @@ const styles = StyleSheet.create({
 });
 
 const Pagination = (props) => {
+
+
   const { scrollX, data } = props;
   const inputRange = [-width, 0, width];
   const translateX = scrollX.interpolate({

@@ -1,9 +1,10 @@
 {
   "expo": {
-    "name": "lvs-customer-frontend",
-    "slug": "lvs-customer-frontend",
+    "name": "LVS",
+    "slug": "lvs",
+    "description":"Car wash app",
     "privacy": "public",
-    "version": "11.0.0",
+    "version": "15.0.0",
     "platforms": [
       "ios",
       "android"
@@ -11,6 +12,9 @@
     "android": {
       "package": "com.julio.lvs",
       "versionCode": 1
+    },
+    "androidNavigationBar": {
+      "visible": "sticky-immersive"
     },
     "orientation": "portrait",
     "icon": "./assets/logos/icon.png",
@@ -47,6 +51,5 @@
         "svg"
       ]
     }
-  
   }
 }

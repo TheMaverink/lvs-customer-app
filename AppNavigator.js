@@ -1,6 +1,6 @@
 import React from 'react';
 import { NavigationContainer } from '@react-navigation/native';
-import { TouchableHighlight, Image } from 'react-native';
+
 
 import {
   createStackNavigator,
@@ -130,7 +130,7 @@ export function CarSpaStack() {
         options={{
           headerStyle: {
             backgroundColor: '#1a1b1c',
-            marginLeft: 20,
+            // marginLeft: 20,
             shadowRadius: 0,
             height: 45,
             shadowOffset: {
@@ -312,7 +312,7 @@ class AppNavigator extends React.Component {
         onNavigationStateChange={onNavChange}
         screenOptions={{ stackNavigationConfig }}
       >
-        <Stack.Navigator initialRouteName="Select Wash" headerMode="none">
+        <Stack.Navigator initialRouteName="Auth" headerMode="none">
           <Stack.Screen name="Splash" component={SplashView} />
           <Stack.Screen name="Auth" component={AuthView} />
           <Stack.Screen name="Login" component={LoginStack} />

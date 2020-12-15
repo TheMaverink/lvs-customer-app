@@ -73,6 +73,9 @@ const SelectWashView = (props) => {
 
   const isFocused = useIsFocused();
 
+  const valToTranslate = -deviceWidth * 0.05
+ 
+
   return (
     <View style={styles.background}>
       {isFocused ? <StatusBar barStyle="light-content" /> : null}
@@ -80,7 +83,8 @@ const SelectWashView = (props) => {
       <View style={styles.animWrapper}>
         <Animated.FlatList
           style={{
-            transform: [{ translateX: -deviceWidth * 0.05 }],
+            // transform: [{ translateX: -deviceWidth * 0.05 }],
+            transform: [{ translateX: valToTranslate }],
             overflow: 'visible',
           }}
           // style={{ overflow:'visible'}}
@@ -112,9 +116,9 @@ const SelectWashView = (props) => {
 
         <Pagination scrollX={scrollX} data={washes} />
       </View>
-      {isBookingsLoading === true || isWashesLoading === true ? (
+      {/* {isBookingsLoading === true || isWashesLoading === true ? (
         <BlurView style={styles.absolute} intensity={60} tint="dark"></BlurView>
-      ) : null}
+      ) : null} */}
     </View>
   );
 };
