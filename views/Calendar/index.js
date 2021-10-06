@@ -104,7 +104,7 @@ class CalendarView extends React.Component {
     this.props.getTimesRequest();
     this.props.resetDayRequest();
     this.props.getClosedDaysRequest();
-    this.props.getBookedDaysRequest()
+    // this.props.getBookedDaysRequest()
 
     // this.setState({
 
@@ -171,7 +171,7 @@ class CalendarView extends React.Component {
                 isHourPickerVisible={this.state.isHourPickerVisible}
                 handleHourPickerVisibility={this.handleHourPickerVisibility}
                 closedDays={closedDays}
-                bookedDays={bookedDays}
+                
               />
            
 

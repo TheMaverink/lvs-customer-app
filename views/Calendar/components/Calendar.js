@@ -46,7 +46,6 @@ class CalendarWrapper extends React.Component {
       selectedDay,
       selectDayRequest,
       closedDays,
-      bookedDays,
       change,
       handleDayOfTheWeek,
       canShowPicker,
@@ -93,6 +92,7 @@ class CalendarWrapper extends React.Component {
           disableAllTouchEventsForDisabledDays={true}
           enableSwipeMonths={true}
           markedDates={{
+          
             // '2020-09-16': {selected: true,  selectedColor: 'rgba(255, 213, 0, 1)'},
             [today]: {
               marked: true,
@@ -105,7 +105,7 @@ class CalendarWrapper extends React.Component {
               selectedColor: 'rgba(255, 213, 0, 1)',
               // activeOpacity: 0,
             },
-            ...bookedDays,
+        
             //HERE!!!!!
             ...closedDays,
           }}

@@ -1,10 +1,10 @@
 {
   "expo": {
-    "name": "LVS",
-    "slug": "lvs",
+    "name": "LVS Car Spa",
+    "slug": "LVSCarSpa",
     "description":"Car wash app",
     "privacy": "public",
-    "version": "15.0.0",
+    "version": "17.0.0",
     "platforms": [
       "ios",
       "android"
@@ -17,7 +17,7 @@
       "visible": "sticky-immersive"
     },
     "orientation": "portrait",
-    "icon": "./assets/logos/icon.png",
+    "icon": "./assets/favicon.png",
     "backgroundColor": "#000000",
     "splash": {
       "backgroundColor": "#000000"
